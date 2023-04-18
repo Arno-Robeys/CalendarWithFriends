@@ -2,6 +2,7 @@ defmodule Calendarwithfriends.Event do
   use Ecto.Schema
 
   schema "events" do
+    field :id, :integer
     field :title, :string
     field :description, :string
     field :start_time, :datetime
