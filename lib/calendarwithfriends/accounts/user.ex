@@ -3,10 +3,17 @@ defmodule Calendarwithfriends.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
+    field :name, :string
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
+
+    has_many :feeds, Calendarwithfriends.Feed
+    has_many :events, Calendarwithfriends.Event
+    has_many :interests, Calendarwithfriends.Interest
+    has_many :friendships, Calendarwithfriends.Friendship
+    has_many :friend_requests, Calendarwithfriends.FriendRequest
 
     timestamps()
   end
