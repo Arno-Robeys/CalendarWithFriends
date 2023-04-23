@@ -2,6 +2,10 @@ defmodule CalendarwithfriendsWeb.Router do
   use CalendarwithfriendsWeb, :router
 
   import CalendarwithfriendsWeb.UserAuth
+  alias CalendarwithfriendsWeb.EventController
+  alias CalendarwithfriendsWeb.FriendRequestController
+  alias CalendarwithfriendsWeb.FriendshipController
+  alias CalendarwithfriendsWeb.InterestController
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -24,6 +28,14 @@ defmodule CalendarwithfriendsWeb.Router do
     get "/", PageController, :index
 
     live "/my_page", MyPage
+  end
+
+  scope "/api", CalendarwithfriendsWeb do
+    pipe_through :api
+    resources "/events", EventController, except: [:new, :edit]
+    resources "/friend_requests", FriendRequestController, except: [:new, :edit]
+    resources "/friendships", FriendshipController, except: [:new, :edit]
+    resources "/interests", InterestController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.

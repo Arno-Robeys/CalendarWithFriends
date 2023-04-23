@@ -1,19 +1,44 @@
 defmodule Calendarwithfriends.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  
+  alias Calendarwithfriends.Accounts.User
+  alias Calendarwithfriends.Events.Event
+  alias Calendarwithfriends.Interests.Interest
+  alias Calendarwithfriends.Friendships.Friendship
+  alias Calendarwithfriends.FriendRequests.FriendRequest
 
+  @primary_key {:id,:binary_id,autogenerate: true}
+  @foreign_key_type :binary_id
   schema "users" do
-    field :id, :integer
-    field :name, :string
+    field :full_name, :string
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
     field :confirmed_at, :naive_datetime
 
-    has_many :events, Calendarwithfriends.Event
-    has_many :interests, Calendarwithfriends.Interest
-    has_many :friendships, Calendarwithfriends.Friendship
-    has_many :friend_requests, Calendarwithfriends.FriendRequest
+    many_to_many :friendships,
+                 User,
+                 join_through: Friendship,
+                 join_keys: [user_id: :id, friend_id: :id]
+
+    many_to_many :reverse_friendships,
+                 User,
+                 join_through: Friendship,
+                 join_keys: [friend_id: :id, user_id: :id]
+
+    many_to_many :friend_requests,
+                 User,
+                 join_through: FriendRequest,
+                 join_keys: [user_id: :id, pending_friend_id: :id]
+
+    many_to_many :reverse_friend_requests,
+                 User,
+                 join_through: FriendRequest,
+                 join_keys: [pending_friend_id: :id, user_id: :id]
+
+    has_many :events, Event
+    has_many :interests, Interest
 
     timestamps()
   end
