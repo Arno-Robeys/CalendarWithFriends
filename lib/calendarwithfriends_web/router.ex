@@ -2,10 +2,6 @@ defmodule CalendarwithfriendsWeb.Router do
   use CalendarwithfriendsWeb, :router
 
   import CalendarwithfriendsWeb.UserAuth
-  alias CalendarwithfriendsWeb.EventController
-  alias CalendarwithfriendsWeb.FriendRequestController
-  alias CalendarwithfriendsWeb.FriendshipController
-  alias CalendarwithfriendsWeb.InterestController
 
   pipeline :browser do
     plug :accepts, ["html"]

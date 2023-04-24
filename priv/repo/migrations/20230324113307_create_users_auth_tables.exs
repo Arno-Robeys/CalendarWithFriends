@@ -14,6 +14,7 @@ defmodule Calendarwithfriends.Repo.Migrations.CreateUsersAuthTables do
     end
 
     create unique_index(:users, [:email])
+    create index(:users, [:full_name,:email])
 
     create table(:users_tokens) do
       add :user_id, references(:users, on_delete: :delete_all)
