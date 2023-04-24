@@ -1,15 +1,15 @@
 defmodule Calendarwithfriends.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
-  
+
   alias Calendarwithfriends.Accounts.User
   alias Calendarwithfriends.Events.Event
   alias Calendarwithfriends.Interests.Interest
   alias Calendarwithfriends.Friendships.Friendship
   alias Calendarwithfriends.FriendRequests.FriendRequest
 
-  @primary_key {:id,:binary_id,autogenerate: true}
-  @foreign_key_type :binary_id
+  #@primary_key {:id,:binary_id,autogenerate: true}
+  #@foreign_key_type :binary_id
   schema "users" do
     field :full_name, :string
     field :email, :string

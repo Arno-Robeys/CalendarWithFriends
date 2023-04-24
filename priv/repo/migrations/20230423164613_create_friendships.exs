@@ -4,7 +4,7 @@ defmodule Calendarwithfriends.Repo.Migrations.CreateFriendships do
   def change do
     create table(:friendships) do
       add :user_id, references(:users)
-      add :friend_id, references(:friend_requests)
+      add :friend_id, references(:users)
 
       timestamps()
     end
