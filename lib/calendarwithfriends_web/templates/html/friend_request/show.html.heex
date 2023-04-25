@@ -1,0 +1,12 @@
+<h1>Show Friend request</h1>
+
+<ul>
+
+  <li>
+    <strong>Message text:</strong>
+    <%= @friend_request.message_text %>
+  </li>
+
+</ul>
+
+<span><%= link "Back", to: Routes.html_friend_request_path(@conn, :index) %></span>

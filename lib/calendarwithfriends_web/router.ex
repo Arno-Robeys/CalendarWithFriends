@@ -34,6 +34,14 @@ defmodule CalendarwithfriendsWeb.Router do
     resources "/interests", InterestController, except: [:new, :edit]
   end
 
+  scope "/html", CalendarwithfriendsWeb.Html, as: :html do
+    pipe_through :browser
+    resources "/events", EventController
+    resources "/friend_requests", FriendRequestController, except: [:edit,:update]
+    resources "/friendships", FriendshipController, except: [:new,:create,:edit,:update]
+    resources "/interests", InterestController, except: [:edit,:update]
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", CalendarwithfriendsWeb do
   #   pipe_through :api
