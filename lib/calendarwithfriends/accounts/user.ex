@@ -62,9 +62,20 @@ defmodule Calendarwithfriends.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:full_name, :email, :password])
     |> validate_email()
     |> validate_password(opts)
+    |> validate_full_name()
+  end
+
+  defp validate_full_name(changeset) do
+    changeset
+    |> validate_required([:full_name])
+    |> validate_length(:full_name, max: 160)
+    |> validate_length(:full_name, min: 2)
+    |> validate_format(:full_name, ~r/^[a-zA-Z\s]+$/,
+      message: "must only contain letters and spaces"
+    )
   end
 
   defp validate_email(changeset) do
@@ -111,6 +122,21 @@ defmodule Calendarwithfriends.Accounts.User do
     |> case do
       %{changes: %{email: _}} = changeset -> changeset
       %{} = changeset -> add_error(changeset, :email, "did not change")
+    end
+  end
+
+  @doc """
+  A user changeset for changing the full name.
+  
+  It requires the full_name to change otherwise an error is added.
+  """
+  def full_name_changeset(user, attrs) do
+    user
+    |> cast(attrs, [:full_name])
+    |> validate_full_name()
+    |> case do
+      %{changes: %{full_name: _}} = changeset -> changeset
+      %{} = changeset -> add_error(changeset, :full_name, "did not change")
     end
   end
 
