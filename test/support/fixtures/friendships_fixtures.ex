@@ -10,9 +10,7 @@ defmodule Calendarwithfriends.FriendshipsFixtures do
   def friendship_fixture(attrs \\ %{}) do
     {:ok, friendship} =
       attrs
-      |> Enum.into(%{
-
-      })
+      |> Enum.into(%{})
       |> Calendarwithfriends.Friendships.create_friendship()
 
     friendship

@@ -5,7 +5,7 @@ defmodule Calendarwithfriends.Repo.Migrations.CreateUsersAuthTables do
     execute "CREATE EXTENSION IF NOT EXISTS citext", ""
 
     create table(:users) do
-      #add :id, :binary_id, primary_key: true
+      # add :id, :binary_id, primary_key: true
       add :full_name, :string
       add :email, :citext, null: false
       add :hashed_password, :string, null: false
@@ -14,7 +14,7 @@ defmodule Calendarwithfriends.Repo.Migrations.CreateUsersAuthTables do
     end
 
     create unique_index(:users, [:email])
-    create index(:users, [:full_name,:email])
+    create index(:users, [:full_name, :email])
 
     create table(:users_tokens) do
       add :user_id, references(:users, on_delete: :delete_all)

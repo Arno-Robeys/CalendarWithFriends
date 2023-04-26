@@ -12,7 +12,8 @@ defmodule CalendarwithfriendsWeb.FriendRequestController do
   end
 
   def create(conn, %{"friend_request" => friend_request_params}) do
-    with {:ok, %FriendRequest{} = friend_request} <- FriendRequests.create_friend_request(friend_request_params) do
+    with {:ok, %FriendRequest{} = friend_request} <-
+           FriendRequests.create_friend_request(friend_request_params) do
       conn
       |> put_status(:created)
       |> render("show.json", friend_request: friend_request)
@@ -27,7 +28,8 @@ defmodule CalendarwithfriendsWeb.FriendRequestController do
   def update(conn, %{"id" => id, "friend_request" => friend_request_params}) do
     friend_request = FriendRequests.get_friend_request!(id)
 
-    with {:ok, %FriendRequest{} = friend_request} <- FriendRequests.update_friend_request(friend_request, friend_request_params) do
+    with {:ok, %FriendRequest{} = friend_request} <-
+           FriendRequests.update_friend_request(friend_request, friend_request_params) do
       render(conn, "show.json", friend_request: friend_request)
     end
   end

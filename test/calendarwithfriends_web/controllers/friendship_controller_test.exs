@@ -5,12 +5,8 @@ defmodule CalendarwithfriendsWeb.FriendshipControllerTest do
 
   alias Calendarwithfriends.Friendships.Friendship
 
-  @create_attrs %{
-
-  }
-  @update_attrs %{
-
-  }
+  @create_attrs %{}
+  @update_attrs %{}
   @invalid_attrs %{}
 
   setup %{conn: conn} do
@@ -45,8 +41,13 @@ defmodule CalendarwithfriendsWeb.FriendshipControllerTest do
   describe "update friendship" do
     setup [:create_friendship]
 
-    test "renders friendship when data is valid", %{conn: conn, friendship: %Friendship{id: id} = friendship} do
-      conn = put(conn, Routes.friendship_path(conn, :update, friendship), friendship: @update_attrs)
+    test "renders friendship when data is valid", %{
+      conn: conn,
+      friendship: %Friendship{id: id} = friendship
+    } do
+      conn =
+        put(conn, Routes.friendship_path(conn, :update, friendship), friendship: @update_attrs)
+
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
       conn = get(conn, Routes.friendship_path(conn, :show, id))
@@ -57,7 +58,9 @@ defmodule CalendarwithfriendsWeb.FriendshipControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, friendship: friendship} do
-      conn = put(conn, Routes.friendship_path(conn, :update, friendship), friendship: @invalid_attrs)
+      conn =
+        put(conn, Routes.friendship_path(conn, :update, friendship), friendship: @invalid_attrs)
+
       assert json_response(conn, 422)["errors"] != %{}
     end
   end

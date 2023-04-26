@@ -23,7 +23,8 @@ defmodule CalendarwithfriendsWeb.Html.FriendRequestControllerTest do
 
   describe "create friend_request" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.html_friend_request_path(conn, :create), friend_request: @create_attrs)
+      conn =
+        post(conn, Routes.html_friend_request_path(conn, :create), friend_request: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.html_friend_request_path(conn, :show, id)
@@ -33,7 +34,9 @@ defmodule CalendarwithfriendsWeb.Html.FriendRequestControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.html_friend_request_path(conn, :create), friend_request: @invalid_attrs)
+      conn =
+        post(conn, Routes.html_friend_request_path(conn, :create), friend_request: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "New Friend request"
     end
   end
@@ -41,7 +44,10 @@ defmodule CalendarwithfriendsWeb.Html.FriendRequestControllerTest do
   describe "edit friend_request" do
     setup [:create_friend_request]
 
-    test "renders form for editing chosen friend_request", %{conn: conn, friend_request: friend_request} do
+    test "renders form for editing chosen friend_request", %{
+      conn: conn,
+      friend_request: friend_request
+    } do
       conn = get(conn, Routes.html_friend_request_path(conn, :edit, friend_request))
       assert html_response(conn, 200) =~ "Edit Friend request"
     end
@@ -51,7 +57,11 @@ defmodule CalendarwithfriendsWeb.Html.FriendRequestControllerTest do
     setup [:create_friend_request]
 
     test "redirects when data is valid", %{conn: conn, friend_request: friend_request} do
-      conn = put(conn, Routes.html_friend_request_path(conn, :update, friend_request), friend_request: @update_attrs)
+      conn =
+        put(conn, Routes.html_friend_request_path(conn, :update, friend_request),
+          friend_request: @update_attrs
+        )
+
       assert redirected_to(conn) == Routes.html_friend_request_path(conn, :show, friend_request)
 
       conn = get(conn, Routes.html_friend_request_path(conn, :show, friend_request))
@@ -59,7 +69,11 @@ defmodule CalendarwithfriendsWeb.Html.FriendRequestControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, friend_request: friend_request} do
-      conn = put(conn, Routes.html_friend_request_path(conn, :update, friend_request), friend_request: @invalid_attrs)
+      conn =
+        put(conn, Routes.html_friend_request_path(conn, :update, friend_request),
+          friend_request: @invalid_attrs
+        )
+
       assert html_response(conn, 200) =~ "Edit Friend request"
     end
   end

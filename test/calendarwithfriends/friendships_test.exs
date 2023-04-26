@@ -34,12 +34,16 @@ defmodule Calendarwithfriends.FriendshipsTest do
       friendship = friendship_fixture()
       update_attrs = %{}
 
-      assert {:ok, %Friendship{} = friendship} = Friendships.update_friendship(friendship, update_attrs)
+      assert {:ok, %Friendship{} = friendship} =
+               Friendships.update_friendship(friendship, update_attrs)
     end
 
     test "update_friendship/2 with invalid data returns error changeset" do
       friendship = friendship_fixture()
-      assert {:error, %Ecto.Changeset{}} = Friendships.update_friendship(friendship, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Friendships.update_friendship(friendship, @invalid_attrs)
+
       assert friendship == Friendships.get_friendship!(friendship.id)
     end
 

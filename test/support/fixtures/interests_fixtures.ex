@@ -10,9 +10,7 @@ defmodule Calendarwithfriends.InterestsFixtures do
   def interest_fixture(attrs \\ %{}) do
     {:ok, interest} =
       attrs
-      |> Enum.into(%{
-
-      })
+      |> Enum.into(%{})
       |> Calendarwithfriends.Interests.create_interest()
 
     interest

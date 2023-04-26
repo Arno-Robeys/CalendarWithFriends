@@ -8,8 +8,8 @@ defmodule Calendarwithfriends.Accounts.User do
   alias Calendarwithfriends.Friendships.Friendship
   alias Calendarwithfriends.FriendRequests.FriendRequest
 
-  #@primary_key {:id,:binary_id,autogenerate: true}
-  #@foreign_key_type :binary_id
+  # @primary_key {:id,:binary_id,autogenerate: true}
+  # @foreign_key_type :binary_id
   schema "users" do
     field :full_name, :string
     field :email, :string
@@ -45,14 +45,14 @@ defmodule Calendarwithfriends.Accounts.User do
 
   @doc """
   A user changeset for registration.
-
+  
   It is important to validate the length of both email and password.
   Otherwise databases may truncate the email without warnings, which
   could lead to unpredictable or insecure behaviour. Long passwords may
   also be very expensive to hash for certain algorithms.
-
+  
   ## Options
-
+  
     * `:hash_password` - Hashes the password so it can be stored securely
       in the database and ensures the password field is cleared to prevent
       leaks in the logs. If password hashing is not needed and clearing the
@@ -101,7 +101,7 @@ defmodule Calendarwithfriends.Accounts.User do
 
   @doc """
   A user changeset for changing the email.
-
+  
   It requires the email to change otherwise an error is added.
   """
   def email_changeset(user, attrs) do
@@ -116,9 +116,9 @@ defmodule Calendarwithfriends.Accounts.User do
 
   @doc """
   A user changeset for changing the password.
-
+  
   ## Options
-
+  
     * `:hash_password` - Hashes the password so it can be stored securely
       in the database and ensures the password field is cleared to prevent
       leaks in the logs. If password hashing is not needed and clearing the
@@ -143,11 +143,14 @@ defmodule Calendarwithfriends.Accounts.User do
 
   @doc """
   Verifies the password.
-
+  
   If there is no user or the user doesn't have a password, we call
   `Pbkdf2.no_user_verify/0` to avoid timing attacks.
   """
-  def valid_password?(%Calendarwithfriends.Accounts.User{hashed_password: hashed_password}, password)
+  def valid_password?(
+        %Calendarwithfriends.Accounts.User{hashed_password: hashed_password},
+        password
+      )
       when is_binary(hashed_password) and byte_size(password) > 0 do
     Pbkdf2.verify_pass(password, hashed_password)
   end

@@ -27,7 +27,8 @@ defmodule CalendarwithfriendsWeb.FriendshipController do
   def update(conn, %{"id" => id, "friendship" => friendship_params}) do
     friendship = Friendships.get_friendship!(id)
 
-    with {:ok, %Friendship{} = friendship} <- Friendships.update_friendship(friendship, friendship_params) do
+    with {:ok, %Friendship{} = friendship} <-
+           Friendships.update_friendship(friendship, friendship_params) do
       render(conn, "show.json", friendship: friendship)
     end
   end

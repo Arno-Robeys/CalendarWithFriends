@@ -5,12 +5,8 @@ defmodule CalendarwithfriendsWeb.InterestControllerTest do
 
   alias Calendarwithfriends.Interests.Interest
 
-  @create_attrs %{
-
-  }
-  @update_attrs %{
-
-  }
+  @create_attrs %{}
+  @update_attrs %{}
   @invalid_attrs %{}
 
   setup %{conn: conn} do
@@ -45,7 +41,10 @@ defmodule CalendarwithfriendsWeb.InterestControllerTest do
   describe "update interest" do
     setup [:create_interest]
 
-    test "renders interest when data is valid", %{conn: conn, interest: %Interest{id: id} = interest} do
+    test "renders interest when data is valid", %{
+      conn: conn,
+      interest: %Interest{id: id} = interest
+    } do
       conn = put(conn, Routes.interest_path(conn, :update, interest), interest: @update_attrs)
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 

@@ -3,8 +3,20 @@ defmodule CalendarwithfriendsWeb.Html.EventControllerTest do
 
   import Calendarwithfriends.EventsFixtures
 
-  @create_attrs %{description: "some description", end_time: ~N[2023-04-24 15:06:00], is_private: true, start_time: ~N[2023-04-24 15:06:00], title: "some title"}
-  @update_attrs %{description: "some updated description", end_time: ~N[2023-04-25 15:06:00], is_private: false, start_time: ~N[2023-04-25 15:06:00], title: "some updated title"}
+  @create_attrs %{
+    description: "some description",
+    end_time: ~N[2023-04-24 15:06:00],
+    is_private: true,
+    start_time: ~N[2023-04-24 15:06:00],
+    title: "some title"
+  }
+  @update_attrs %{
+    description: "some updated description",
+    end_time: ~N[2023-04-25 15:06:00],
+    is_private: false,
+    start_time: ~N[2023-04-25 15:06:00],
+    title: "some updated title"
+  }
   @invalid_attrs %{description: nil, end_time: nil, is_private: nil, start_time: nil, title: nil}
 
   describe "index" do

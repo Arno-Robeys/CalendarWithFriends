@@ -21,7 +21,7 @@ defmodule Calendarwithfriends.Events.Event do
   @doc false
   def changeset(event, attrs) do
     event
-    |> cast(attrs, [:title, :description, :start_time, :end_time, :is_private,:user_id])
+    |> cast(attrs, [:title, :description, :start_time, :end_time, :is_private, :user_id])
     |> validate_required([:title, :description, :start_time, :end_time, :is_private, :user_id])
   end
 end

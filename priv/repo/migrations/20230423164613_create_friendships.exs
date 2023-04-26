@@ -8,6 +8,7 @@ defmodule Calendarwithfriends.Repo.Migrations.CreateFriendships do
 
       timestamps()
     end
+
     create unique_index(:friendships, [:user_id, :friend_id])
   end
 end
