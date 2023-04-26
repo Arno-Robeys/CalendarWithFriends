@@ -24,6 +24,9 @@ defmodule Calendarwithfriends.FriendRequests.FriendRequest do
       name: :friend_requests_pending_friend_id_user_id_index
     )
     |> validate_required([:message_text, :user_id, :pending_friend_id])
-    |> check_constraint(:user_id, name: :friend_requests_not_to_self)
+    |> check_constraint(:user_id,
+      name: :friend_requests_not_to_self,
+      message: "You can't be friends with yourself!"
+    )
   end
 end

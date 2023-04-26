@@ -159,7 +159,7 @@ defmodule Calendarwithfriends.Accounts do
 
   @doc """
   Updates the user full name using the given token.
-
+  
   If the token matches, the user full name is updated and the token is deleted.
   The confirmed_at date is also updated to the current time.
   """
@@ -180,12 +180,12 @@ defmodule Calendarwithfriends.Accounts do
 
   @doc """
   Returns an `%Ecto.Changeset{}` for changing the user full name.
-
+  
   ## Examples
-
+  
       iex> change_user_full_name(user)
       %Ecto.Changeset{data: %User{}}
-
+  
   """
   def change_user_full_name(user, attrs \\ %{}) do
     User.full_name_changeset(user, attrs)

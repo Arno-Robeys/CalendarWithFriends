@@ -22,7 +22,7 @@ defmodule Calendarwithfriends.Repo.Migrations.CreateFriendRequests do
              [:pending_friend_id, :user_id],
              name: :friend_requests_pending_friend_id_user_id_index
            )
-           
+
     create constraint(:friend_requests, :friend_requests_not_to_self,
              check: """
                user_id <> pending_friend_id

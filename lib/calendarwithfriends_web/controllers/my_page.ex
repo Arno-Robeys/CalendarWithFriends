@@ -5,7 +5,8 @@ defmodule CalendarwithfriendsWeb.MyPage do
   def mount(_params, session, socket) do
     user = Accounts.get_user_by_session_token(session["user_token"])
     # if connected?(socket), do: IO.puts(inspect(session))
-    {:ok, assign(socket, sessie: inspect(session), user: user.email)}
+    current_date = Date.utc_today()
+    {:ok, assign(socket, sessie: inspect(session), user: user.email, current_date: current_date)}
   end
 
   @spec render(any) :: Phoenix.LiveView.Rendered.t()
@@ -17,6 +18,7 @@ defmodule CalendarwithfriendsWeb.MyPage do
       ____________________________________________
       <h2 style="font-weight: bold;">Your Session:</h2>
       <p><%= inspect(assigns) %></p>
+      <.live_component module={CalendarwithfriendsWeb.Lib.CalendarComponent} id="calendar" current_date={@current_date} />
     </div>
     """
   end
