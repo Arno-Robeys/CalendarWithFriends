@@ -6,27 +6,41 @@ defmodule CalendarwithfriendsWeb.Lib.CalendarComponent do
   def render(assigns) do
     ~H"""
     <div>
-      <h1>Calendar</h1>
+      <div>
+        <h3><%= Calendar.strftime(@current_date, "%B %Y") %></h3>
+        <div>
+          <button type="button" class={["text-black"]} phx-target={@myself} phx-click="prev-month">&laquo; Prev</button>
+          <button type="button" class={["text-black"]} phx-target={@myself} phx-click="next-month">Next &raquo;</button>
+        </div>
+      </div>
+
       <table>
         <thead>
           <tr>
-          <% for week_day <- List.first(@week_rows) do %>
+          <%= for week_day <- List.first(@week_rows) do %>
             <th>
-              <%= week_day %>
+              <%= Calendar.strftime(week_day, "%a") %>
             </th>
           <% end %>
           </tr>
         </thead>
         <tbody>
-          <% for week <- @week_rows do %>
-            <tr>
-              <% for day <- week do %>
-                <td>
-                  <%= day %>
-                </td>
-              <% end %>
-            </tr>
-          <% end %>
+        <%= for week <- @week_rows do %>
+          <tr>
+            <%= for day <- week do %>
+            <td class={[
+              "text-center",
+              today?(day) && "bg-green-100",
+              other_month?(day, @current_date) && "bg-gray-100",
+              selected_date?(day, @selected_date) && "bg-blue-100"
+            ]}>
+              <button type="button" class={["text-black","border-none","hover:bg-none"]} phx-target={@myself} phx-click="pick-date" phx-value-date={Calendar.strftime(day, "%Y-%m-%d")}>
+                <time datetime={Calendar.strftime(day, "%Y-%m-%d")}><%= Calendar.strftime(day, "%d") %></time>
+              </button>
+            </td>
+           <% end %>
+          </tr>
+        <% end %>
         </tbody>
       </table>
     </div>
@@ -60,4 +74,37 @@ defmodule CalendarwithfriendsWeb.Lib.CalendarComponent do
     |> Enum.map(& &1)
     |> Enum.chunk_every(7)
   end
+
+  def handle_event("prev-month", _, socket) do
+    new_date = socket.assigns.current_date |> Date.beginning_of_month() |> Date.add(-1)
+
+    assigns = [
+      current_date: new_date,
+      week_rows: week_rows(new_date)
+    ]
+
+    {:noreply, assign(socket, assigns)}
+  end
+
+  def handle_event("next-month", _, socket) do
+    new_date = socket.assigns.current_date |> Date.end_of_month() |> Date.add(1)
+
+    assigns = [
+      current_date: new_date,
+      week_rows: week_rows(new_date)
+    ]
+
+    {:noreply, assign(socket, assigns)}
+  end
+
+  def handle_event("pick-date", %{"date" => date}, socket) do
+    {:noreply, assign(socket, :selected_date, Date.from_iso8601!(date))}
+  end
+
+  defp selected_date?(day, selected_date), do: day == selected_date
+
+  defp today?(day), do: day == Date.utc_today()
+
+  defp other_month?(day, current_date),
+    do: Date.beginning_of_month(day) != Date.beginning_of_month(current_date)
 end
