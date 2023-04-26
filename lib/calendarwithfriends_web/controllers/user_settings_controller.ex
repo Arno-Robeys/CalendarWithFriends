@@ -50,6 +50,22 @@ defmodule CalendarwithfriendsWeb.UserSettingsController do
     end
   end
 
+  def update(conn, %{"action" => "update_full_name"} = params) do
+    %{"user" => user_params} = params
+    user = conn.assigns.current_user
+
+    case Accounts.update_user_full_name(user, user_params) do
+      {:ok, user} ->
+        conn
+        |> put_flash(:info, "Full name updated successfully.")
+        |> put_session(:user_return_to, Routes.user_settings_path(conn, :edit))
+        |> UserAuth.log_in_user(user)
+
+      {:error, changeset} ->
+        render(conn, "edit.html", full_name_changeset: changeset)
+    end
+  end
+
   def confirm_email(conn, %{"token" => token}) do
     case Accounts.update_user_email(conn.assigns.current_user, token) do
       :ok ->
@@ -70,5 +86,6 @@ defmodule CalendarwithfriendsWeb.UserSettingsController do
     conn
     |> assign(:email_changeset, Accounts.change_user_email(user))
     |> assign(:password_changeset, Accounts.change_user_password(user))
+    |> assign(:full_name_changeset, Accounts.change_user_full_name(user))
   end
 end

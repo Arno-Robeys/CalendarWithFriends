@@ -18,7 +18,7 @@ defmodule CalendarwithfriendsWeb.Router do
   end
 
   scope "/", CalendarwithfriendsWeb do
-    #pipe_through :browser
+    # pipe_through :browser
     pipe_through [:browser, :require_authenticated_user]
 
     get "/", PageController, :index
@@ -37,9 +37,9 @@ defmodule CalendarwithfriendsWeb.Router do
   scope "/html", CalendarwithfriendsWeb.Html, as: :html do
     pipe_through :browser
     resources "/events", EventController
-    resources "/friend_requests", FriendRequestController, except: [:edit,:update]
-    resources "/friendships", FriendshipController, except: [:new,:create,:edit,:update]
-    resources "/interests", InterestController, except: [:edit,:update]
+    resources "/friend_requests", FriendRequestController, except: [:edit, :update]
+    resources "/friendships", FriendshipController, except: [:new, :create, :edit, :update]
+    resources "/interests", InterestController, except: [:edit, :update]
   end
 
   # Other scopes may use custom stacks.

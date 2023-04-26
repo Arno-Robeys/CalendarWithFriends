@@ -158,6 +158,40 @@ defmodule Calendarwithfriends.Accounts do
   end
 
   @doc """
+  Updates the user full name using the given token.
+
+  If the token matches, the user full name is updated and the token is deleted.
+  The confirmed_at date is also updated to the current time.
+  """
+  def update_user_full_name(user, attrs) do
+    changeset =
+      user
+      |> User.full_name_changeset(attrs)
+
+    Ecto.Multi.new()
+    |> Ecto.Multi.update(:user, changeset)
+    |> Ecto.Multi.delete_all(:tokens, UserToken.user_and_contexts_query(user, :all))
+    |> Repo.transaction()
+    |> case do
+      {:ok, %{user: user}} -> {:ok, user}
+      {:error, :user, changeset, _} -> {:error, changeset}
+    end
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for changing the user full name.
+
+  ## Examples
+
+      iex> change_user_full_name(user)
+      %Ecto.Changeset{data: %User{}}
+
+  """
+  def change_user_full_name(user, attrs \\ %{}) do
+    User.full_name_changeset(user, attrs)
+  end
+
+  @doc """
   Delivers the update email instructions to the given user.
 
   ## Examples

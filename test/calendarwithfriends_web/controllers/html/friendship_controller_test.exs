@@ -51,7 +51,11 @@ defmodule CalendarwithfriendsWeb.Html.FriendshipControllerTest do
     setup [:create_friendship]
 
     test "redirects when data is valid", %{conn: conn, friendship: friendship} do
-      conn = put(conn, Routes.html_friendship_path(conn, :update, friendship), friendship: @update_attrs)
+      conn =
+        put(conn, Routes.html_friendship_path(conn, :update, friendship),
+          friendship: @update_attrs
+        )
+
       assert redirected_to(conn) == Routes.html_friendship_path(conn, :show, friendship)
 
       conn = get(conn, Routes.html_friendship_path(conn, :show, friendship))
@@ -59,7 +63,11 @@ defmodule CalendarwithfriendsWeb.Html.FriendshipControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, friendship: friendship} do
-      conn = put(conn, Routes.html_friendship_path(conn, :update, friendship), friendship: @invalid_attrs)
+      conn =
+        put(conn, Routes.html_friendship_path(conn, :update, friendship),
+          friendship: @invalid_attrs
+        )
+
       assert html_response(conn, 200) =~ "Edit Friendship"
     end
   end

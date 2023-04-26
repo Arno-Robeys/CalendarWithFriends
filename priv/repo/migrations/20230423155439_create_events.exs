@@ -8,9 +8,11 @@ defmodule Calendarwithfriends.Repo.Migrations.CreateEvents do
       add :start_time, :naive_datetime
       add :end_time, :naive_datetime
       add :is_private, :boolean, default: true, null: false
-      add :user_id, references(:users), null: false #new added
+      # new added
+      add :user_id, references(:users), null: false
       timestamps()
     end
+
     create index(:events, [:title])
   end
 end

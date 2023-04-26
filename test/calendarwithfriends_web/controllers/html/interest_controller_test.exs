@@ -51,7 +51,9 @@ defmodule CalendarwithfriendsWeb.Html.InterestControllerTest do
     setup [:create_interest]
 
     test "redirects when data is valid", %{conn: conn, interest: interest} do
-      conn = put(conn, Routes.html_interest_path(conn, :update, interest), interest: @update_attrs)
+      conn =
+        put(conn, Routes.html_interest_path(conn, :update, interest), interest: @update_attrs)
+
       assert redirected_to(conn) == Routes.html_interest_path(conn, :show, interest)
 
       conn = get(conn, Routes.html_interest_path(conn, :show, interest))
@@ -59,7 +61,9 @@ defmodule CalendarwithfriendsWeb.Html.InterestControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, interest: interest} do
-      conn = put(conn, Routes.html_interest_path(conn, :update, interest), interest: @invalid_attrs)
+      conn =
+        put(conn, Routes.html_interest_path(conn, :update, interest), interest: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Edit Interest"
     end
   end

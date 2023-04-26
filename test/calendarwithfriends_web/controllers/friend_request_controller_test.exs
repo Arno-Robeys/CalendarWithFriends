@@ -46,8 +46,15 @@ defmodule CalendarwithfriendsWeb.FriendRequestControllerTest do
   describe "update friend_request" do
     setup [:create_friend_request]
 
-    test "renders friend_request when data is valid", %{conn: conn, friend_request: %FriendRequest{id: id} = friend_request} do
-      conn = put(conn, Routes.friend_request_path(conn, :update, friend_request), friend_request: @update_attrs)
+    test "renders friend_request when data is valid", %{
+      conn: conn,
+      friend_request: %FriendRequest{id: id} = friend_request
+    } do
+      conn =
+        put(conn, Routes.friend_request_path(conn, :update, friend_request),
+          friend_request: @update_attrs
+        )
+
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
       conn = get(conn, Routes.friend_request_path(conn, :show, id))
@@ -59,7 +66,11 @@ defmodule CalendarwithfriendsWeb.FriendRequestControllerTest do
     end
 
     test "renders errors when data is invalid", %{conn: conn, friend_request: friend_request} do
-      conn = put(conn, Routes.friend_request_path(conn, :update, friend_request), friend_request: @invalid_attrs)
+      conn =
+        put(conn, Routes.friend_request_path(conn, :update, friend_request),
+          friend_request: @invalid_attrs
+        )
+
       assert json_response(conn, 422)["errors"] != %{}
     end
   end

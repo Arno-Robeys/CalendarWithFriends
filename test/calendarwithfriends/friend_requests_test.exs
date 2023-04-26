@@ -23,7 +23,9 @@ defmodule Calendarwithfriends.FriendRequestsTest do
     test "create_friend_request/1 with valid data creates a friend_request" do
       valid_attrs = %{message_text: "some message_text"}
 
-      assert {:ok, %FriendRequest{} = friend_request} = FriendRequests.create_friend_request(valid_attrs)
+      assert {:ok, %FriendRequest{} = friend_request} =
+               FriendRequests.create_friend_request(valid_attrs)
+
       assert friend_request.message_text == "some message_text"
     end
 
@@ -35,20 +37,28 @@ defmodule Calendarwithfriends.FriendRequestsTest do
       friend_request = friend_request_fixture()
       update_attrs = %{message_text: "some updated message_text"}
 
-      assert {:ok, %FriendRequest{} = friend_request} = FriendRequests.update_friend_request(friend_request, update_attrs)
+      assert {:ok, %FriendRequest{} = friend_request} =
+               FriendRequests.update_friend_request(friend_request, update_attrs)
+
       assert friend_request.message_text == "some updated message_text"
     end
 
     test "update_friend_request/2 with invalid data returns error changeset" do
       friend_request = friend_request_fixture()
-      assert {:error, %Ecto.Changeset{}} = FriendRequests.update_friend_request(friend_request, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               FriendRequests.update_friend_request(friend_request, @invalid_attrs)
+
       assert friend_request == FriendRequests.get_friend_request!(friend_request.id)
     end
 
     test "delete_friend_request/1 deletes the friend_request" do
       friend_request = friend_request_fixture()
       assert {:ok, %FriendRequest{}} = FriendRequests.delete_friend_request(friend_request)
-      assert_raise Ecto.NoResultsError, fn -> FriendRequests.get_friend_request!(friend_request.id) end
+
+      assert_raise Ecto.NoResultsError, fn ->
+        FriendRequests.get_friend_request!(friend_request.id)
+      end
     end
 
     test "change_friend_request/1 returns a friend_request changeset" do

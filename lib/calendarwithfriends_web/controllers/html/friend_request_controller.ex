@@ -15,8 +15,7 @@ defmodule CalendarwithfriendsWeb.Html.FriendRequestController do
   end
 
   def create(conn, %{"friend_request" => friend_request_params}) do
-    case FriendRequests.create_friend_request(friend_request_params)
-    do
+    case FriendRequests.create_friend_request(friend_request_params) do
       {:ok, friend_request} ->
         conn
         |> put_flash(:info, "Friend request created successfully.")
