@@ -1,0 +1,26 @@
+<h1>Show Friend request</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.friend_request_show_path(@socket, :show, @friend_request)}>
+    <.live_component
+      module={CalendarwithfriendsWeb.FriendRequestLive.FormComponent}
+      id={@friend_request.id}
+      title={@page_title}
+      action={@live_action}
+      friend_request={@friend_request}
+      return_to={Routes.friend_request_show_path(@socket, :show, @friend_request)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Message text:</strong>
+    <%= @friend_request.message_text %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.friend_request_show_path(@socket, :edit, @friend_request), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.friend_request_index_path(@socket, :index) %></span>

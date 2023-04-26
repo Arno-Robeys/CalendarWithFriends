@@ -1,0 +1,39 @@
+<h1>Listing Friend requests</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.friend_request_index_path(@socket, :index)}>
+    <.live_component
+      module={CalendarwithfriendsWeb.FriendRequestLive.FormComponent}
+      id={@friend_request.id || :new}
+      title={@page_title}
+      action={@live_action}
+      friend_request={@friend_request}
+      return_to={Routes.friend_request_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message text</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="friend_requests">
+    <%= for friend_request <- @friend_requests do %>
+      <tr id={"friend_request-#{friend_request.id}"}>
+        <td><%= friend_request.message_text %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.friend_request_show_path(@socket, :show, friend_request) %></span>
+          <span><%= live_patch "Edit", to: Routes.friend_request_index_path(@socket, :edit, friend_request) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: friend_request.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Friend request", to: Routes.friend_request_index_path(@socket, :new) %></span>

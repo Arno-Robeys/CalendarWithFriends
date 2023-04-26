@@ -42,6 +42,37 @@ defmodule CalendarwithfriendsWeb.Router do
     resources "/interests", InterestController, except: [:edit, :update]
   end
 
+  scope "live", CalendarwithfriendsWeb do
+    pipe_through :browser
+    live "/events", EventLive.Index, :index
+    live "/events/new", EventLive.Index, :new
+    live "/events/:id/edit", EventLive.Index, :edit
+
+    live "/events/:id", EventLive.Show, :show
+    live "/events/:id/show/edit", EventLive.Show, :edit
+
+    live "/friend_requests", FriendRequestLive.Index, :index
+    live "/friend_requests/new", FriendRequestLive.Index, :new
+    live "/friend_requests/:id/edit", FriendRequestLive.Index, :edit
+
+    live "/friend_requests/:id", FriendRequestLive.Show, :show
+    live "/friend_requests/:id/show/edit", FriendRequestLive.Show, :edit
+
+    live "/friendships", FriendshipLive.Index, :index
+    live "/friendships/new", FriendshipLive.Index, :new
+    live "/friendships/:id/edit", FriendshipLive.Index, :edit
+
+    live "/friendships/:id", FriendshipLive.Show, :show
+    live "/friendships/:id/show/edit", FriendshipLive.Show, :edit
+
+    live "/interests", InterestLive.Index, :index
+    live "/interests/new", InterestLive.Index, :new
+    live "/interests/:id/edit", InterestLive.Index, :edit
+
+    live "/interests/:id", InterestLive.Show, :show
+    live "/interests/:id/show/edit", InterestLive.Show, :edit
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", CalendarwithfriendsWeb do
   #   pipe_through :api

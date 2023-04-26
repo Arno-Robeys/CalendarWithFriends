@@ -1,0 +1,37 @@
+<h1>Listing Friendships</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.friendship_index_path(@socket, :index)}>
+    <.live_component
+      module={CalendarwithfriendsWeb.FriendshipLive.FormComponent}
+      id={@friendship.id || :new}
+      title={@page_title}
+      action={@live_action}
+      friendship={@friendship}
+      return_to={Routes.friendship_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="friendships">
+    <%= for friendship <- @friendships do %>
+      <tr id={"friendship-#{friendship.id}"}>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.friendship_show_path(@socket, :show, friendship) %></span>
+          <span><%= live_patch "Edit", to: Routes.friendship_index_path(@socket, :edit, friendship) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: friendship.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Friendship", to: Routes.friendship_index_path(@socket, :new) %></span>
