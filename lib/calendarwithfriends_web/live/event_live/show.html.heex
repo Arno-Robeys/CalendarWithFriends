@@ -42,16 +42,23 @@
             <%= @event.is_private %>
           </li>
         </ul>
-
         <%= live_patch("Edit",
           to: Routes.event_show_path(@socket, :edit, @event),
           class:
-            "button block mt-10 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-[#FFC933] rounded-[14px] hover:bg-[#FFC933DD] focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-80"
+            "button block mt-10 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-gray-400 rounded-[14px] hover:bg-opacity-50 focus:outline-none text-white"
+        ) %>
+        <%= link("Delete",
+          to: Routes.event_index_path(@socket, :index),
+          phx_click: "delete",
+          phx_value_id: @event.id,
+          data: [confirm: "Are you sure?"],
+          class:
+            "button block mt-1.5 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-gray-400 rounded-[14px] hover:bg-opacity-50 focus:outline-none text-white"
         ) %>
         <%= live_redirect("Back",
           to: Routes.event_index_path(@socket, :index),
           class:
-            "block mt-1.5 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform rounded-[14px] hover:bg-[#F2ECE7] hover:text-[#000000dd] focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-80"
+            "block mt-1.5 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform rounded-[14px] bg-gray-400 hover:bg-opacity-50 hover:text-[#000000dd] focus:outline-none text-white"
         ) %>
       </div>
     </div>
