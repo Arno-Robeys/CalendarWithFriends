@@ -6,9 +6,10 @@ defmodule CalendarwithfriendsWeb.EventLive.Index do
   alias Calendarwithfriends.Accounts
 
   @impl true
-  def mount(_params, _session, socket) do
+  def mount(_params, session, socket) do
+    user = Accounts.get_user_by_session_token(session["user_token"])
     current_date = Date.utc_today()
-    assigns = %{events: list_events(), current_date: current_date}
+    assigns = %{events: list_events(), current_date: current_date, current_user: user}
     {:ok, assign(socket, assigns)}
   end
 

@@ -9,6 +9,10 @@
     phx-change="validate"
     phx-submit="save">
 
+    <%= if @action in [:new] do %>
+      <%= hidden_input f, :user_id, id: "user_id", value: @current_user.id %>
+    <% end %>
+
     <div class="mb-6">
       <%= label f, :title, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
       <div class="mb-8">
