@@ -14,13 +14,17 @@
 <% end %>
 
 <ul>
-
   <li>
     <strong>Message text:</strong>
     <%= @friend_request.message_text %>
   </li>
-
 </ul>
 
-<span><%= live_patch "Edit", to: Routes.friend_request_show_path(@socket, :edit, @friend_request), class: "button" %></span> |
-<span><%= live_redirect "Back", to: Routes.friend_request_index_path(@socket, :index) %></span>
+<span>
+  <%= live_patch("Edit",
+    to: Routes.friend_request_show_path(@socket, :edit, @friend_request),
+    class: "button"
+  ) %>
+</span>
+|
+<span><%= live_redirect("Back", to: Routes.friend_request_index_path(@socket, :index)) %></span>

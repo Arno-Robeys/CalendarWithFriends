@@ -1,5 +1,8 @@
 <h1>Edit Interest</h1>
 
-<%= render "form.html", Map.put(assigns, :action, Routes.html_interest_path(@conn, :update, @interest)) %>
+<%= render(
+  "form.html",
+  Map.put(assigns, :action, Routes.html_interest_path(@conn, :update, @interest))
+) %>
 
-<span><%= link "Back", to: Routes.html_interest_path(@conn, :index) %></span>
+<span><%= link("Back", to: Routes.html_interest_path(@conn, :index)) %></span>

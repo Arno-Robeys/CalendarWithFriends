@@ -14,11 +14,14 @@ defmodule CalendarwithfriendsWeb.MyPage do
     ~H"""
     <div>
       <h1>Hellooooooo <%= @user %></h1>
-      <br>
-      ____________________________________________
+      <br /> ____________________________________________
       <h2 style="font-weight: bold;">Your Session:</h2>
       <p><%= inspect(assigns) %></p>
-      <.live_component module={CalendarwithfriendsWeb.Lib.CalendarComponent} id="calendar" current_date={@current_date} />
+      <.live_component
+        module={CalendarwithfriendsWeb.Lib.CalendarComponent}
+        id="calendar"
+        current_date={@current_date}
+      />
     </div>
     """
   end

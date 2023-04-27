@@ -1,26 +1,38 @@
 <ul class="flex gap-2">
-	<%= if @current_user do %>
-	<li class="text-white"><%= @current_user.email %></li>
-	<li>
-		<%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class:
-		"rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white
-		hover:bg-opacity-10" %>
-	</li>
-	<li>
-		<%= link "Log out", to: Routes.user_session_path(@conn, :delete), method:
-		:delete, class: "rounded-md px-3 py-2 text-sm font-medium text-white
-		hover:bg-white hover:bg-opacity-10" %>
-	</li>
-	<% else %>
-	<li>
-		<%= link "Register", to: Routes.user_registration_path(@conn, :new), class:
-		"rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white
-		hover:bg-opacity-10"%>
-	</li>
-	<li>
-		<%= link "Log in", to: Routes.user_session_path(@conn, :new), class:
-		"rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white
-		hover:bg-opacity-10" %>
-	</li>
-	<% end %>
+  <%= if @current_user do %>
+    <li class="text-white"><%= @current_user.email %></li>
+
+    <li>
+      <%= link("Settings",
+        to: Routes.user_settings_path(@conn, :edit),
+        class: "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white
+		hover:bg-opacity-10"
+      ) %>
+    </li>
+
+    <li>
+      <%= link("Log out",
+        to: Routes.user_session_path(@conn, :delete),
+        method: :delete,
+        class: "rounded-md px-3 py-2 text-sm font-medium text-white
+		hover:bg-white hover:bg-opacity-10"
+      ) %>
+    </li>
+  <% else %>
+    <li>
+      <%= link("Register",
+        to: Routes.user_registration_path(@conn, :new),
+        class: "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white
+		hover:bg-opacity-10"
+      ) %>
+    </li>
+
+    <li>
+      <%= link("Log in",
+        to: Routes.user_session_path(@conn, :new),
+        class: "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white
+		hover:bg-opacity-10"
+      ) %>
+    </li>
+  <% end %>
 </ul>

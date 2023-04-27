@@ -27,13 +27,30 @@
         <td><%= friend_request.message_text %></td>
 
         <td>
-          <span><%= live_redirect "Show", to: Routes.friend_request_show_path(@socket, :show, friend_request) %></span>
-          <span><%= live_patch "Edit", to: Routes.friend_request_index_path(@socket, :edit, friend_request) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: friend_request.id, data: [confirm: "Are you sure?"] %></span>
+          <span>
+            <%= live_redirect("Show",
+              to: Routes.friend_request_show_path(@socket, :show, friend_request)
+            ) %>
+          </span>
+          <span>
+            <%= live_patch("Edit",
+              to: Routes.friend_request_index_path(@socket, :edit, friend_request)
+            ) %>
+          </span>
+          <span>
+            <%= link("Delete",
+              to: "#",
+              phx_click: "delete",
+              phx_value_id: friend_request.id,
+              data: [confirm: "Are you sure?"]
+            ) %>
+          </span>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<span><%= live_patch "New Friend request", to: Routes.friend_request_index_path(@socket, :new) %></span>
+<span>
+  <%= live_patch("New Friend request", to: Routes.friend_request_index_path(@socket, :new)) %>
+</span>

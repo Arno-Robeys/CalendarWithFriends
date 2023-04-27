@@ -9,7 +9,15 @@ defmodule CalendarwithfriendsWeb.EventLive.Index do
   def mount(_params, session, socket) do
     user = Accounts.get_user_by_session_token(session["user_token"])
     current_date = Date.utc_today()
-    assigns = %{events: list_events(), current_date: current_date, current_user: user}
+    if connected?(socket), do: Events.subscribe()
+
+    assigns = %{
+      events: list_events(),
+      current_date: current_date,
+      current_user: user,
+      temporary_assigns: [events: []]
+    }
+
     {:ok, assign(socket, assigns)}
   end
 
@@ -42,6 +50,16 @@ defmodule CalendarwithfriendsWeb.EventLive.Index do
     {:ok, _} = Events.delete_event(event)
 
     {:noreply, assign(socket, :events, list_events())}
+  end
+
+  @impl true
+  def handle_info({:event_created, event}, socket) do
+    {:noreply, update(socket, :events, fn events -> [event | events] end)}
+  end
+
+  @impl true
+  def handle_info({:event_updated, event}, socket) do
+    {:noreply, update(socket, :events, fn events -> [event | events] end)}
   end
 
   defp list_events do

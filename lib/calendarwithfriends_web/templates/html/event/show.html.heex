@@ -1,7 +1,6 @@
 <h1>Show Event</h1>
 
 <ul>
-
   <li>
     <strong>Title:</strong>
     <%= @event.title %>
@@ -26,8 +25,7 @@
     <strong>Is private:</strong>
     <%= @event.is_private %>
   </li>
-
 </ul>
 
-<span><%= link "Edit", to: Routes.html_event_path(@conn, :edit, @event) %></span> |
-<span><%= link "Back", to: Routes.html_event_path(@conn, :index) %></span>
+<span><%= link("Edit", to: Routes.html_event_path(@conn, :edit, @event)) %></span> |
+<span><%= link("Back", to: Routes.html_event_path(@conn, :index)) %></span>

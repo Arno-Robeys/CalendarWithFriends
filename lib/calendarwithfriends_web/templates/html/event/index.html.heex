@@ -14,23 +14,29 @@
     </tr>
   </thead>
   <tbody>
-<%= for event <- @events do %>
-    <tr>
-      <td><%= event.user_id %></td>
-      <td><%= event.title %></td>
-      <td><%= event.description %></td>
-      <td><%= event.start_time %></td>
-      <td><%= event.end_time %></td>
-      <td><%= event.is_private %></td>
+    <%= for event <- @events do %>
+      <tr>
+        <td><%= event.user_id %></td>
+        <td><%= event.title %></td>
+        <td><%= event.description %></td>
+        <td><%= event.start_time %></td>
+        <td><%= event.end_time %></td>
+        <td><%= event.is_private %></td>
 
-      <td>
-        <span><%= link "Show", to: Routes.html_event_path(@conn, :show, event) %></span>
-        <span><%= link "Edit", to: Routes.html_event_path(@conn, :edit, event) %></span>
-        <span><%= link "Delete", to: Routes.html_event_path(@conn, :delete, event), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </td>
-    </tr>
-<% end %>
+        <td>
+          <span><%= link("Show", to: Routes.html_event_path(@conn, :show, event)) %></span>
+          <span><%= link("Edit", to: Routes.html_event_path(@conn, :edit, event)) %></span>
+          <span>
+            <%= link("Delete",
+              to: Routes.html_event_path(@conn, :delete, event),
+              method: :delete,
+              data: [confirm: "Are you sure?"]
+            ) %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Event", to: Routes.html_event_path(@conn, :new) %></span>
+<span><%= link("New Event", to: Routes.html_event_path(@conn, :new)) %></span>

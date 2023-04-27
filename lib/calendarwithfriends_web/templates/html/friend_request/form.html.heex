@@ -5,18 +5,18 @@
     </div>
   <% end %>
 
-  <%= hidden_input f, :user_id, id: "user_id", value: @current_user.id %>
-  <%= error_tag f, :user_id %>
+  <%= hidden_input(f, :user_id, id: "user_id", value: @current_user.id) %>
+  <%= error_tag(f, :user_id) %>
 
-  <%= label f, :pending_friend_id %>
-  <%= text_input f, :pending_friend_id %>
-  <%= error_tag f, :pending_friend_id %>
+  <%= label(f, :pending_friend_id) %>
+  <%= text_input(f, :pending_friend_id) %>
+  <%= error_tag(f, :pending_friend_id) %>
 
-  <%= label f, :message_text %>
-  <%= text_input f, :message_text %>
-  <%= error_tag f, :message_text %>
+  <%= label(f, :message_text) %>
+  <%= text_input(f, :message_text) %>
+  <%= error_tag(f, :message_text) %>
 
   <div>
-    <%= submit "Save" %>
+    <%= submit("Save") %>
   </div>
 </.form>

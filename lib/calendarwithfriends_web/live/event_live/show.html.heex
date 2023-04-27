@@ -12,42 +12,48 @@
 <% end %>
 
 <div class="mt-10">
-  <div class='w-full max-w-md  mx-auto bg-white rounded-3xl shadow-xl overflow-hidden'>
-      <div class='max-w-md mx-auto'>
-        <div class="h-[236px]" style={@image_link}></div>
-        <div class='p-4 sm:p-6'>
-          <ul>
-            <li>
-              <strong>Title:</strong>
-              <%= @event.title%>
-            </li>
-          
-            <li>
-              <strong>Description:</strong>
-              <%= @event.description %>
-            </li>
-          
-            <li>
-              <strong>Start time:</strong>
-              <%= @event.start_time %>
-            </li>
-          
-            <li>
-              <strong>End time:</strong>
-              <%= @event.end_time %>
-            </li>
-          
-            <li>
-              <strong>Is private:</strong>
-              <%= @event.is_private %>
-            </li>     
-          </ul>
+  <div class="w-full max-w-md  mx-auto bg-white rounded-3xl shadow-xl overflow-hidden">
+    <div class="max-w-md mx-auto">
+      <div class="h-[236px]" style={@image_link}></div>
+      <div class="p-4 sm:p-6">
+        <ul>
+          <li>
+            <strong>Title:</strong>
+            <%= @event.title %>
+          </li>
 
+          <li>
+            <strong>Description:</strong>
+            <%= @event.description %>
+          </li>
 
-          
-            <%= live_patch "Edit", to: Routes.event_show_path(@socket, :edit, @event), class: "button block mt-10 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-[#FFC933] rounded-[14px] hover:bg-[#FFC933DD] focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-80" %>
-            <%= live_redirect "Back", to: Routes.event_index_path(@socket, :index), class: "block mt-1.5 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform rounded-[14px] hover:bg-[#F2ECE7] hover:text-[#000000dd] focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-80"%>
-        </div>
+          <li>
+            <strong>Start time:</strong>
+            <%= @event.start_time %>
+          </li>
+
+          <li>
+            <strong>End time:</strong>
+            <%= @event.end_time %>
+          </li>
+
+          <li>
+            <strong>Is private:</strong>
+            <%= @event.is_private %>
+          </li>
+        </ul>
+
+        <%= live_patch("Edit",
+          to: Routes.event_show_path(@socket, :edit, @event),
+          class:
+            "button block mt-10 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-[#FFC933] rounded-[14px] hover:bg-[#FFC933DD] focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-80"
+        ) %>
+        <%= live_redirect("Back",
+          to: Routes.event_index_path(@socket, :index),
+          class:
+            "block mt-1.5 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform rounded-[14px] hover:bg-[#F2ECE7] hover:text-[#000000dd] focus:outline-none focus:ring focus:ring-teal-300 focus:ring-opacity-80"
+        ) %>
       </div>
+    </div>
   </div>
 </div>

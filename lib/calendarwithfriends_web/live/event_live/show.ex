@@ -14,8 +14,10 @@ defmodule CalendarwithfriendsWeb.EventLive.Show do
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
      |> assign(:event, Events.get_event!(id))
-     |> assign(:image_link, "background-image: url(https://loremflickr.com/420/236/#{String.replace(Events.get_event!(id).description, " ", "")}); background-size: cover; background-position: center;")
-  }
+     |> assign(
+       :image_link,
+       "background-image: url(https://loremflickr.com/420/236/#{String.replace(Events.get_event!(id).description, " ", "")}); background-size: cover; background-position: center;"
+     )}
   end
 
   defp page_title(:show), do: "Show Event"
