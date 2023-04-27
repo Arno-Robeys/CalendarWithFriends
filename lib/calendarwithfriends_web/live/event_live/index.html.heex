@@ -1,47 +1,51 @@
-<h1>Listing Events</h1>
+<div class="space-y-8">
+  <h1 class="text-3xl">Listing Events</h1>
 
-<%= if @live_action in [:new, :edit] do %>
-  <.modal return_to={Routes.event_index_path(@socket, :index)}>
-    <.live_component
-      module={CalendarwithfriendsWeb.EventLive.FormComponent}
-      id={@event.id || :new}
-      title={@page_title}
-      action={@live_action}
-      event={@event}
-      return_to={Routes.event_index_path(@socket, :index)}
-    />
-  </.modal>
-<% end %>
+  <%= if @live_action in [:new, :edit] do %>
+    <.modal return_to={Routes.event_index_path(@socket, :index)}>
+      <.live_component
+        module={CalendarwithfriendsWeb.EventLive.FormComponent}
+        id={@event.id || :new}
+        title={@page_title}
+        action={@live_action}
+        event={@event}
+        return_to={Routes.event_index_path(@socket, :index)}
+      />
+    </.modal>
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th>Is private</th>
+  <table class="table-auto w-full">
+    <thead>
+      <tr>
+        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left border-slate-100 dark:border-slate-700">By userid</th>
+        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left border-slate-100 dark:border-slate-700">Title</th>
+        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left border-slate-100 dark:border-slate-700">Description</th>
+        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left border-slate-100 dark:border-slate-700">Start time</th>
+        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left border-slate-100 dark:border-slate-700">End time</th>
+        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left border-slate-100 dark:border-slate-700">Is private</th>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id="events">
-    <%= for event <- @events do %>
-      <tr id={"event-#{event.id}"}>
-        <td><%= event.title %></td>
-        <td><%= event.description %></td>
-        <td><%= event.start_time %></td>
-        <td><%= event.end_time %></td>
-        <td><%= event.is_private %></td>
-
-        <td>
-          <span><%= live_redirect "Show", to: Routes.event_show_path(@socket, :show, event) %></span>
-          <span><%= live_patch "Edit", to: Routes.event_index_path(@socket, :edit, event) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: event.id, data: [confirm: "Are you sure?"] %></span>
-        </td>
+        <th class="border-b p-4 pl-8 border-slate-100 dark:border-slate-700"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody id="events">
+      <%= for event <- @events do %>
+        <tr id={"event-#{event.id}"} class="hover:bg-slate-100">
+          <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-black"><%= event.user_id %></td>
+          <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-black"><%= event.title %></td>
+          <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-black"><%= event.description %></td>
+          <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-black"><%= event.start_time %></td>
+          <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-black"><%= event.end_time %></td>
+          <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-black"><%= event.is_private %></td>
 
-<span><%= live_patch "New Event", to: Routes.event_index_path(@socket, :new) %></span>
+          <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-black">
+            <span><%= live_redirect "Show", to: Routes.event_show_path(@socket, :show, event), class: "p-2 rounded-xl bg-slate-500 text-white hover:bg-opacity-50 shadow-md" %></span>
+            <span><%= live_patch "Edit", to: Routes.event_index_path(@socket, :edit, event), class: "p-2 rounded-xl bg-slate-500 text-white hover:bg-opacity-50 shadow-md" %></span>
+            <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: event.id, data: [confirm: "Are you sure?"], class: "p-2 rounded-xl bg-slate-500 text-white hover:bg-opacity-50 shadow-md" %></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div><%= live_patch "New Event", to: Routes.event_index_path(@socket, :new), class: "p-2 rounded-xl bg-slate-500 text-white hover:bg-opacity-50 shadow-md" %></div>
+  <.live_component module={CalendarwithfriendsWeb.Lib.CalendarComponent} id="calendar" current_date={@current_date} events={@events}/>
+</div>

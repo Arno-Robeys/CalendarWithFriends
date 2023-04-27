@@ -2,7 +2,8 @@ defmodule CalendarwithfriendsWeb.EventLive.FormComponent do
   use CalendarwithfriendsWeb, :live_component
 
   alias Calendarwithfriends.Events
-
+  alias Calendarwithfriends.Accounts
+  
   @impl true
   def update(%{event: event} = assigns, socket) do
     changeset = Events.change_event(event)

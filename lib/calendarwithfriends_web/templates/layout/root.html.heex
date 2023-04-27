@@ -9,21 +9,22 @@
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
-  <body>
+  <body class="bg-gray-100">
     <header>
       <section class="container">
-        <nav>
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-          </ul>
-          <%= render "_user_menu.html", assigns %>
+        <nav class="bg-gray-800 fixed w-full top-0 z-50">
+          <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <ul class="relative flex h-16 items-center justify-between">
+              <div class="flex gap-2">
+                <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+                <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10"><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
+              <% end %>
+              <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10"><%= link "Events", to: Routes.event_index_path(@conn, :index) %></li>
+            </div>
+            <%= render "_user_menu.html", assigns %>
+            </ul>
+          </div>
         </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src={Routes.static_path(@conn, "/images/phoenix.png")} alt="Phoenix Framework Logo"/>
-        </a>
       </section>
     </header>
     <%= @inner_content %>

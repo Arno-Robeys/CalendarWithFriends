@@ -3,10 +3,13 @@ defmodule CalendarwithfriendsWeb.EventLive.Index do
 
   alias Calendarwithfriends.Events
   alias Calendarwithfriends.Events.Event
+  alias Calendarwithfriends.Accounts
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :events, list_events())}
+    current_date = Date.utc_today()
+    assigns = %{events: list_events(), current_date: current_date}
+    {:ok, assign(socket, assigns)}
   end
 
   @impl true
