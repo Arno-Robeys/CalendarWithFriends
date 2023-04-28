@@ -4,21 +4,25 @@
   <thead>
     <tr>
       <th>pending_friend_id</th>
+
       <th>Message text</th>
 
       <th></th>
     </tr>
   </thead>
+
   <tbody>
     <%= for friend_request <- @friend_requests do %>
       <tr>
         <td><%= friend_request.pending_friend_id %></td>
+
         <td><%= friend_request.message_text %></td>
 
         <td>
           <span>
             <%= link("Show", to: Routes.html_friend_request_path(@conn, :show, friend_request)) %>
           </span>
+
           <span>
             <%= link("Delete",
               to: Routes.html_friend_request_path(@conn, :delete, friend_request),
@@ -31,5 +35,4 @@
     <% end %>
   </tbody>
 </table>
-
 <span><%= link("New Friend request", to: Routes.html_friend_request_path(@conn, :new)) %></span>

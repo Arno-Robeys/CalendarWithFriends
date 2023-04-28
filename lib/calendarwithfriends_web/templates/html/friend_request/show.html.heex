@@ -2,9 +2,7 @@
 
 <ul>
   <li>
-    <strong>Message text:</strong>
-    <%= @friend_request.message_text %>
+    <strong>Message text:</strong> <%= @friend_request.message_text %>
   </li>
 </ul>
-
 <span><%= link("Back", to: Routes.html_friend_request_path(@conn, :index)) %></span>
