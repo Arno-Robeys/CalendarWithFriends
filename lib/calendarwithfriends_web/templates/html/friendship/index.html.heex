@@ -1,0 +1,37 @@
+<h1>Listing Friendships</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>user_id</th>
+
+      <th>friend_id</th>
+
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= for friendship <- @friendships do %>
+      <tr>
+        <td><%= friendship.user_id %></td>
+
+        <td><%= friendship.friend_id %></td>
+
+        <td>
+          <span>
+            <%= link("Show", to: Routes.html_friendship_path(@conn, :show, friendship)) %>
+          </span>
+
+          <span>
+            <%= link("Delete",
+              to: Routes.html_friendship_path(@conn, :delete, friendship),
+              method: :delete,
+              data: [confirm: "Are you sure?"]
+            ) %>
+          </span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

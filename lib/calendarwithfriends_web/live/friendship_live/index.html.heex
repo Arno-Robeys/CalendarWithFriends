@@ -17,20 +17,28 @@
   <thead>
     <tr>
       <th>user_id</th>
+      
       <th>friend_id</th>
     </tr>
   </thead>
+  
   <tbody id="friendships">
     <%= for friendship <- @friendships do %>
       <tr id={"friendship-#{friendship.id}"}>
         <td><%= friendship.user_id %></td>
+        
         <td><%= friendship.friend_id %></td>
-
+        
         <td>
           <span>
             <%= live_redirect("Show", to: Routes.friendship_show_path(@socket, :show, friendship)) %>
           </span>
+          
+          <%!-- <span>
+            <%= live_patch("Edit", to: Routes.friendship_index_path(@socket, :edit, friendship)) %>
+          </span> --%>
         </td>
+        
         <td>
           <span>
             <%= link("Delete",
@@ -46,18 +54,14 @@
   </tbody>
 </table>
 
+<%!-- <span><%= live_patch("New Friendship", to: Routes.friendship_index_path(@socket, :new)) %></span> --%>
 <div class="mt-3">
-
-  <.form
-    let={f}
-    id="friendship-form"
-    phx_change="validate"
-    phx_submit="search"
-    for  <-  do
-
-    end
-  >
-    <%= label f, :search, "Add friends", class: "block font-medium text-sm text-gray-700" %>
-    <%= text_input f, :search, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4" %>
+  <.form let={f} id="friendship-form" phx_change="validate" phx_submit="search" for <- do end>
+    <%= label(f, :search, "Add friends", class: "block font-medium text-sm text-gray-700") %> <%= text_input(
+      f,
+      :search,
+      class:
+        "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4"
+    ) %>
   </.form>
 </div>
