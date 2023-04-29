@@ -1,54 +1,108 @@
-<div class="w-full max-w-md mx-auto">
-  <h1 class="text-3xl font-bold mb-8">Register</h1>
-
-  <.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
-    <%= if @changeset.action do %>
-      <div class="alert alert-danger">
-        <p>Oops, something went wrong! Please check the errors below.</p>
+<.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
+  <div class="pr-3 pb-24 pl-3">
+    <div class="pt-0 pr-3 pb-0 pl-3 mt-0 mr-auto mb-0 ml-auto max-w-7xl sm:px-5 lg:px-12">
+      <div class="bg-white rounded-xl sm:p-10">
+        <div class="grid lg:gap-x-10 lg:grid-cols-12 lg:gap-y-8 grid-cols-1">
+          <div class="hidden lg:col-span-5 lg:block">
+            <img
+              src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-1.2.1&amp;ixid=MnwxM[…]G90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=735&amp;q=80"
+              class="btn- rounded-2xl w-full h-full object-cover"
+            />
+          </div>
+          <div class="pt-8 pr-8 pb-8 pl-8 lg:col-span-7">
+            <p class="text-gray-900 text-left font-extrabold leading-snug tracking-tight mb-4 md:text-4xl">
+              Register
+            </p>
+            <%= if @changeset.action do %>
+              <div class="alert alert-danger">
+                <p>Oops, something went wrong! Please check the errors below.</p>
+              </div>
+            <% end %>
+            <div>
+              <div class="w-full mt-3 mr-auto mb-3 ml-auto">
+                <%= label(f, :full_name, "Your Full Name",
+                  class: "block text-sm font-medium text-gray-700"
+                ) %>
+                <div class="mt-1 mr-0 mb-0 ml-0">
+                  <%= text_input(f, :full_name,
+                    class:
+                      "border focus:ring-indigo-500
+                      focus:border-indigo-500 sm:text-sm w-full block h-10 border-gray-300 shadow-sm rounded-md",
+                    placeholder: "Ex: James Bond"
+                  ) %>
+                </div>
+                <div class="text-red-500 text-sm mt-2">
+                  <%= error_tag(
+                    f,
+                    :full_name
+                  ) %>
+                </div>
+              </div>
+              <div class="w-full mt-3 mr-auto mb-3 ml-auto">
+                <%= label(f, :email, "Your Email",
+                  class: "block text-sm font-medium text-gray-700"
+                ) %>
+                <div class="mt-1 mr-0 mb-0 ml-0">
+                  <%= email_input(
+                    f,
+                    :email,
+                    class:
+                      "border focus:ring-indigo-500
+                    focus:border-indigo-500 sm:text-sm w-full block h-10 border-gray-300 shadow-sm rounded-md",
+                    placeholder: "Ex: james@bond.com"
+                  ) %>
+                </div>
+                <div class="text-red-500 text-sm mt-2">
+                  <%= error_tag(
+                    f,
+                    :email
+                  ) %>
+                </div>
+              </div>
+              <div class="w-full mt-0 mr-auto mb-3 ml-auto">
+                <%= label(f, :password, "Your Password",
+                  class: "block text-sm font-medium text-gray-700"
+                ) %>
+                <div class="mt-1 mr-0 mb-0 ml-0">
+                  <%= password_input(
+                    f,
+                    :password,
+                    class:
+                      "border focus:ring-indigo-500
+                    focus:border-indigo-500 sm:text-sm w-full block h-10 border-gray-300 shadow-sm rounded-md",
+                    placeholder: "********"
+                  ) %>
+                </div>
+                <div class="text-red-500 text-sm mt-2">
+                  <%= error_tag(
+                    f,
+                    :password
+                  ) %>
+                </div>
+              </div>
+              <%= submit("Submit",
+                class:
+                  "hover:bg-gray-600 rounded-md text-xl pt-3 pr-3 pb-3 pl-3 bg-gray-800 font-semibold text-white
+                w-full text-center"
+              ) %>
+              <div class="flex items-center justify-start border-t-2 border-gray-100 mt-6 mr-0 mb-0 ml-0 pt-6 pr-0 pb-0
+                pl-0">
+                <p class="text-sm text-gray-800">Already have an account?</p>
+                <div>
+                  <%= link("Log in",
+                    to: Routes.user_session_path(@conn, :new),
+                    class: "text-sm text-blue-500 mt-0 mb-0 mx-2"
+                  ) %> | <%= link(
+                    "Forgot your password?",
+                    to: Routes.user_reset_password_path(@conn, :new),
+                    class: "text-sm text-blue-500 mt-0 mr-0 mb-0 ml-2"
+                  ) %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    <% end %>
-    <%= label(f, :full_name, class: "block text-gray-700 font-bold mb-2") %>
-    <%= text_input(f, :full_name,
-      required: true,
-      class:
-        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
-    ) %>
-    <%= error_tag(
-      f,
-      :full_name
-    ) %> <%= label(f, :email, class: "block text-gray-700 font-bold mb-2") %> <%= email_input(
-      f,
-      :email,
-      required: true,
-      required: true,
-      class:
-        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
-    ) %> <%= error_tag(
-      f,
-      :email
-    ) %> <%= label(f, :password, class: "block text-gray-700 font-bold mb-2") %> <%= password_input(
-      f,
-      :password,
-      required: true,
-      required: true,
-      class:
-        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
-    ) %> <%= error_tag(
-      f,
-      :password
-    ) %>
-    <div>
-      <%= submit("Register",
-        class:
-          "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      ) %>
     </div>
-  </.form>
-
-  <p class="text-right">
-    <%= link("Log in", to: Routes.user_session_path(@conn, :new)) %> | <%= link(
-      "Forgot your password?",
-      to: Routes.user_reset_password_path(@conn, :new)
-    ) %>
-  </p>
-</div>
+  </div>
+</.form>

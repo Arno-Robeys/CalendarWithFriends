@@ -1,5 +1,236 @@
-<section class="phx-hero">
-  <h1><%= gettext("Welcome to %{name}!", name: "Calendar With Friends") %></h1>
+<body>
+  <div>
+    <div class="w-full bg-white pt-20 pr-4 pb-20 pl-4 bg-gradient-to-b from-gray-100 to-white">
+      <div class="w-full mt-0 mr-auto mb-0 ml-auto text-left md:text-center md:w-3/4 lg:w-2/4">
+        <p class="mb-2 text-base font-semibold text-blue-700">
+          <%= gettext(
+            "Welcome to %{name}! This app allows you to view and manage events with your friends!",
+            name: "Calendar With Friends"
+          ) %>
+        </p>
+        <p class="mt-0 mr-0 mb-6 ml-0 text-3xl font-extrabold">
+          Kijk op deze pagina wat jouw vrienden doen! (Feed)
+        </p>
+        <div class="mt-- mr-- mb-0 ml-- space-x-0 md:space-x-2">
+          <a
+            href="/live/events"
+            class="bg-blue-700 text-white font-bold pt-2 pr-4 pb-2 pl-4 rounded inline-flex items-center justify-center
+          w-full mb-2 hover:bg-blue-900 sm:w-auto sm:mb-0"
+          >
+            <p class="inline-flex">Get Started</p>
+            <p class="inline-flex w-4 h-4 mt-0 mr-0 mb-0 ml-1">
+              <svg
+                classname="w-4 h-4 ml-1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewbox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillrule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586
+              11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  cliprule="evenodd"
+                />
+              </svg>
+            </p>
+          </a>
+          <%!-- <div class="bg-gray-100 text-gray-800 font-bold pt-2 pr-4 pb-2 pl-4 rounded inline-flex items-center
+          justify-center w-full mb-2 hover:bg-gray-200 sm:w-auto sm:mb-0">
+            <p class="inline-flex">Book a demo</p>
+            <p class="inline-flex w-4 h-4 mt-0 mr-0 mb-0 ml-1">
+              <svg
+                classname="w-4 h-4 ml-1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewbox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fillrule="evenodd"
+                  d="M6.672 1.911a1 1 0 10-1.932.518l.259.966a1 1 0 001.932-.518l-.26-.966zM2.429 4.74a1
+              1 0 10-.517 1.932l.966.259a1 1 0 00.517-1.932l-.966-.26zm8.814-.569a1 1 0 00-1.415-1.414l-.707.707a1 1 0
+              101.415 1.415l.707-.708zm-7.071 7.072l.707-.707A1 1 0 003.465 9.12l-.708.707a1 1 0 001.415
+              1.415zm3.2-5.171a1 1 0 00-1.3 1.3l4 10a1 1 0 001.823.075l1.38-2.759 3.018 3.02a1 1 0
+              001.414-1.415l-3.019-3.02 2.76-1.379a1 1 0 00-.076-1.822l-10-4z"
+                  cliprule="evenodd"
+                />
+              </svg>
+            </p>
+          </div> --%>
+        </div>
+      </div>
+    </div>
 
-  <p>Kijk op deze pagina wat jouw vrienden doen! (Feed)</p>
-</section>
+    <%!-- <div class="bg-white pt-16 pr-4 pb-16 pl-4 mt-0 mr-auto mb-0 ml-auto lg:max-w-screen-xl sm:max-w-xl md:max-w-full
+    md:px-24 lg:px-8 lg:py-20">
+      <div class="grid grid-cols-2 row-gap-8 md:grid-cols-4">
+        <div class="text-center md:border-r">
+          <p class="text-center text-4xl mb-2 font-bold lg:text-5xl xl:text-6xl text-blue-700">
+            144K
+          </p>
+          <p class="text-center text-sm font-medium tracking-widest text-gray-800 uppercase lg:text-base">
+            Downloads
+          </p>
+        </div>
+        <div class="text-center md:border-r">
+          <p class="text-center text-4xl mb-2 font-bold text-blue-700 lg:text-5xl xl:text-6xl">
+            12.9K
+          </p>
+          <p class="text-center text-sm font-medium tracking-widest text-gray-800 uppercase lg:text-base">
+            Subscribers
+          </p>
+        </div>
+        <div class="text-center md:border-r">
+          <p class="text-center text-4xl mb-2 font-bold text-blue-700 lg:text-5xl xl:text-6xl">
+            48.3K
+          </p>
+          <p class="text-center text-sm font-medium tracking-widest text-gray-800 uppercase lg:text-base">
+            Users
+          </p>
+        </div>
+        <div class="text-center md:border-r">
+          <p class="text-center text-4xl mb-2 font-bold text-blue-700 lg:text-5xl xl:text-6xl">
+            24.5K
+          </p>
+          <p class="text-center text-sm font-medium tracking-widest text-gray-800 uppercase lg:text-base">
+            Cookies
+          </p>
+        </div>
+      </div>
+    </div> --%>
+    <div class="bg-gray-900 pt-16 pr-4 pb-16 pl-4 md:px-24 lg:px-8 lg:py-20">
+      <div class="mt-0 mr-auto mb-0 ml-auto lg:max-w-screen-xl sm:max-w-xl md:max-w-full">
+        <div class="mt-0 mr-auto mb-5 ml-auto max-w-xl md:mx-auto sm:text-center lg:max-w-2xl">
+          <div class="mb-4">
+            <div class="inline-block">
+              <p class="Article max-w-lg font-sans tracking-tight transition-colors duration-200 hover:text-blue-900
+              sm:text-4xl text-3xl leading-none font-extrabold text-white">
+                Improve your day to the MAX with Calendar With Friends
+              </p>
+            </div>
+          </div>
+          <p class="text-base text-gray-300 md:text-lg">
+            See each other events and interact with them by being interested
+          </p>
+        </div>
+        <div class="mt-20 mr-0 mb-10 ml-0 sm:text-center flex justify-around max-w-xl md:mx-auto lg:max-w-2xl">
+          <div>
+            <div class="Author inline-block mb-1">
+              <img
+                src="https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+                class="btn- w-10 h-10 rounded-full shadow-sm object-cover"
+              />
+            </div>
+            <div>
+              <p class="font-semibold text-white Author transition-colors duration-200 hover:text-blue-900">
+                Nino
+                Verstraeten
+              </p>
+              <p class="font-medium leading-4 text-gray-400 text-sm">Author</p>
+            </div>
+          </div>
+          <div>
+            <div class="Author inline-block mb-1">
+              <img
+                src="https://images.pexels.com/photos/1680172/pexels-photo-1680172.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+                class="btn- w-10 h-10 rounded-full shadow-sm object-cover"
+              />
+            </div>
+            <div>
+              <p class="font-semibold text-white Author transition-colors duration-200 hover:text-blue-900">
+                Arno
+                Robeys
+              </p>
+              <p class="font-medium leading-4 text-gray-400 text-sm">Author</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%!-- <div class="w-full bg-white pt-16 pr-4 pb-0 pl-4 mt-0 mr-auto mb-0 ml-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl
+    md:px-24 lg:px-8">
+      <div class="mt-0 mr-0 mb-8 ml-0 grid gap-10 row-gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="sm:col-span-2">
+          <p class="inline-flex text-xl font-bold text-gray-800 tracking-wide uppercase">
+            Company
+          </p>
+          <div class="mt-6 lg:max-w-sm">
+            <p class="text-sm text-gray-800">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minimh.
+            </p>
+            <p class="mt-4 mr-0 mb-0 ml-0 text-sm text-gray-800">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
+            </p>
+          </div>
+        </div>
+        <div class="text-sm space-y-2">
+          <p class="tracking-wide text-base font-bold text-gray-900">Contacts</p>
+          <div class="flex">
+            <p class="text-base text-gray-800 mt-0 mr-1 mb-0 ml-0">Phone:</p>
+            <p class="text-base transition-colors duration-300 hover:text-deep-purple-800
+            text-deep-purple-accent-400">
+              090-123-5678
+            </p>
+          </div>
+          <div class="flex">
+            <p class="text-base text-gray-800 mt-0 mr-1 mb-0 ml-0">Email:</p>
+            <p class="text-base transition-colors duration-300 hover:text-deep-purple-800
+            text-deep-purple-accent-400">
+              info@lorem.mail
+            </p>
+          </div>
+          <div class="flex">
+            <p class="text-base text-gray-800 mt-0 mr-1 mb-0 ml-0">Address:</p>
+            <p class="text-base transition-colors duration-300 hover:text-deep-purple-800 text-deep-purple-accent-400">
+              312
+              Lovely Street, LM
+            </p>
+          </div>
+        </div>
+        <div>
+          <p class="tracking-wide text-base font-bold text-gray-900">Social</p>
+          <div class="space-x-3 flex items-center mt-1 mr-0 mb-0 ml-0">
+            <div class="transition-colors duration-300 hover:text-deep-purple-accent-400 text-gray-500">
+              <i href="" class="fa-twitter h-5 fab mt-0 mr-2 mb-0 ml-0 text-gray-500"></i>
+            </div>
+            <div class="transition-colors duration-300 hover:text-deep-purple-accent-400 text-gray-500">
+              <i href="" class="fa-instagram h-5 fab mt-0 mr-2 mb-0 ml-0 text-gray-500"></i>
+            </div>
+            <div class="transition-colors duration-300 hover:text-deep-purple-accent-400 text-gray-500">
+              <i href="" class="fa-facebook h-6 fab text-gray-500"></i>
+            </div>
+          </div>
+          <p class="text-sm text-gray-500 mt-4 mr-0 mb-0 ml-0">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+            do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col-reverse justify-between pt-5 pr-0 pb-10 pl-0 border-t lg:flex-row">
+        <p class="text-sm text-gray-600">© Copyright 2020 Lorem Inc. All rights reserved.</p>
+        <div class="space-y-2 lg:mb-0 sm:space-y-0 sm:space-x-5 sm:flex-row flex flex-col items-center mt-0 mr-0 mb-3
+        ml-0">
+          <div>
+            <p class="text-sm text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">
+              FAQ
+            </p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">
+              Privacy
+              Policy
+            </p>
+          </div>
+          <div>
+            <p class="text-sm text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400">
+              Terms &amp;
+              Conditions
+            </p>
+          </div>
+        </div>
+      </div>
+    </div> --%>
+  </div>
+</body>
