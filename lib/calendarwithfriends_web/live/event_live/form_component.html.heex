@@ -44,7 +44,7 @@
       <%= label(f, :start_time,
         class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       ) %>
-      <%= datetime_select(f, :start_time) %>
+      <%= my_datetime_select(f, :start_time) %>
       <%= error_tag(f, :start_time) %>
     </div>
 
@@ -52,7 +52,7 @@
       <%= label(f, :end_time,
         class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       ) %>
-      <%= datetime_select(f, :end_time) %>
+      <%= my_datetime_select(f, :end_time) %>
       <%= error_tag(f, :end_time) %>
     </div>
     <div class="flex items-start mb-6">

@@ -27,26 +27,31 @@ defmodule CalendarwithfriendsWeb.LiveHelpers do
     assigns = assign_new(assigns, :return_to, fn -> nil end)
 
     ~H"""
-    <div id="modal" class="phx-modal fade-in" phx-remove={hide_modal()}>
-      <div
-        id="modal-content"
-        class="phx-modal-content fade-in-scale"
-        phx-click-away={JS.dispatch("click", to: "#close")}
-        phx-window-keydown={JS.dispatch("click", to: "#close")}
-        phx-key="escape"
-      >
-        <%= if @return_to do %>
-          <%= live_patch("✖",
-            to: @return_to,
-            id: "close",
-            class: "phx-modal-close",
-            phx_click: hide_modal()
-          ) %>
-        <% else %>
-          <a id="close" href="#" class="phx-modal-close" phx-click={hide_modal()}>✖</a>
-        <% end %>
+    <div id="modal" class="fixed !mt-0 inset-0 z-50 overflow-auto bg-gray-500 bg-opacity-50">
+      <div class="relative mx-auto max-w-3xl my-20">
+        <div class="relative bg-white rounded-md shadow-lg">
+          <div class="p-6">
+            <%= if @return_to do %>
+              <%= live_patch("✖",
+                to: @return_to,
+                id: "close",
+                class: "absolute top-2 right-2 text-gray-400 hover:text-gray-500 focus:outline-none",
+                phx_click: hide_modal()
+              ) %>
+            <% else %>
+              <a
+                id="close"
+                href="#"
+                class="absolute top-2 right-2 text-gray-400 hover:text-gray-500 focus:outline-none"
+                phx-click={hide_modal()}
+              >
+                ✖
+              </a>
+            <% end %>
 
-        <%= render_slot(@inner_block) %>
+            <%= render_slot(@inner_block) %>
+          </div>
+        </div>
       </div>
     </div>
     """

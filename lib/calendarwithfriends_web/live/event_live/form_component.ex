@@ -52,4 +52,36 @@ defmodule CalendarwithfriendsWeb.EventLive.FormComponent do
         {:noreply, assign(socket, changeset: changeset)}
     end
   end
+
+  def my_datetime_select(form, field, opts \\ []) do
+    current_date = DateTime.utc_now()
+
+    default_opts = %{
+      day: current_date.day,
+      month: current_date.month,
+      year: current_date.year,
+      hour: current_date.hour,
+      minute: current_date.minute
+    }
+
+    builder = fn b ->
+      assigns = %{b: b}
+
+      ~H"""
+      <div class="flex items-center space-x-2 w-">
+        <%= @b.(:day, class: "w-20 py-2 px-3 rounded border-gray-300") %>
+        <span>/</span>
+        <%= @b.(:month, class: "w-32 py-2 px-3 rounded border-gray-300") %>
+        <span>/</span>
+        <%= @b.(:year, class: "w-28 py-2 px-3 rounded border-gray-300") %>
+        <span class="mx-2">-</span>
+        <%= @b.(:hour, class: "w-20 py-2 px-3 rounded border-gray-300") %>
+        <span>:</span>
+        <%= @b.(:minute, class: "w-20 py-2 px-3 rounded border-gray-300") %>
+      </div>
+      """
+    end
+
+    datetime_select(form, field, [builder: builder, default: default_opts] ++ opts)
+  end
 end
