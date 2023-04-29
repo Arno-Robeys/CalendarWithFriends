@@ -45,7 +45,7 @@
         <%= live_patch("Edit",
           to: Routes.event_show_path(@socket, :edit, @event),
           class:
-            "button block mt-10 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-gray-400 rounded-[14px] hover:bg-opacity-50 focus:outline-none text-white"
+            "button block mt-10 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-gray-400 rounded-[14px] hover:bg-opacity-50 hover:text-[#000000dd] focus:outline-none text-white"
         ) %>
         <%= link("Delete",
           to: Routes.event_index_path(@socket, :index),
@@ -53,7 +53,7 @@
           phx_value_id: @event.id,
           data: [confirm: "Are you sure?"],
           class:
-            "button block mt-1.5 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-gray-400 rounded-[14px] hover:bg-opacity-50 focus:outline-none text-white"
+            "button block mt-1.5 w-full px-4 py-3 font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-gray-400 rounded-[14px] hover:bg-opacity-50 hover:text-[#000000dd] focus:outline-none text-white"
         ) %>
         <%= live_redirect("Back",
           to: Routes.event_index_path(@socket, :index),

@@ -1,29 +1,54 @@
-<h1>Register</h1>
+<div class="w-full max-w-md mx-auto">
+  <h1 class="text-3xl font-bold mb-8">Register</h1>
 
-<.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+  <.form let={f} for={@changeset} action={Routes.user_registration_path(@conn, :create)}>
+    <%= if @changeset.action do %>
+      <div class="alert alert-danger">
+        <p>Oops, something went wrong! Please check the errors below.</p>
+      </div>
+    <% end %>
+    <%= label(f, :full_name, class: "block text-gray-700 font-bold mb-2") %>
+    <%= text_input(f, :full_name,
+      required: true,
+      class:
+        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
+    ) %>
+    <%= error_tag(
+      f,
+      :full_name
+    ) %> <%= label(f, :email, class: "block text-gray-700 font-bold mb-2") %> <%= email_input(
+      f,
+      :email,
+      required: true,
+      required: true,
+      class:
+        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
+    ) %> <%= error_tag(
+      f,
+      :email
+    ) %> <%= label(f, :password, class: "block text-gray-700 font-bold mb-2") %> <%= password_input(
+      f,
+      :password,
+      required: true,
+      required: true,
+      class:
+        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
+    ) %> <%= error_tag(
+      f,
+      :password
+    ) %>
+    <div>
+      <%= submit("Register",
+        class:
+          "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      ) %>
     </div>
-  <% end %>
-  <%= label(f, :full_name) %> <%= text_input(f, :full_name, required: true) %> <%= error_tag(
-    f,
-    :full_name
-  ) %> <%= label(f, :email) %> <%= email_input(f, :email, required: true) %> <%= error_tag(
-    f,
-    :email
-  ) %> <%= label(f, :password) %> <%= password_input(f, :password, required: true) %> <%= error_tag(
-    f,
-    :password
-  ) %>
-  <div>
-    <%= submit("Register") %>
-  </div>
-</.form>
+  </.form>
 
-<p>
-  <%= link("Log in", to: Routes.user_session_path(@conn, :new)) %> | <%= link(
-    "Forgot your password?",
-    to: Routes.user_reset_password_path(@conn, :new)
-  ) %>
-</p>
+  <p class="text-right">
+    <%= link("Log in", to: Routes.user_session_path(@conn, :new)) %> | <%= link(
+      "Forgot your password?",
+      to: Routes.user_reset_password_path(@conn, :new)
+    ) %>
+  </p>
+</div>
