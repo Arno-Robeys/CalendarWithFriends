@@ -421,4 +421,17 @@ defmodule Calendarwithfriends.Accounts do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(Calendarwithfriends.PubSub, "accounts")
+  end
+
+  defp broadcast({:error, _reason} = error, _account) do
+    error
+  end
+
+  defp broadcast({:ok, account}, broadcast_account) do
+    Phoenix.PubSub.broadcast(Calendarwithfriends.PubSub, "accounts", {broadcast_account, account})
+    {:ok, account}
+  end
 end

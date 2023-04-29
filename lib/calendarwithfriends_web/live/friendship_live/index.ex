@@ -12,8 +12,9 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
 
     assigns = %{
       current_user: user,
+      friendships: list_friendships(),
       temporary_assigns: [friendships: []],
-      friendships: list_friendships()
+      users: []
     }
 
     {:ok, assign(socket, assigns)}
@@ -52,6 +53,7 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
 
   def handle_event("search", %{"friendship" => search_query}, socket) do
     users = Accounts.list_users(search_query)
+    IO.inspect(users)
     {:noreply, assign(socket, :users, users)}
   end
 
