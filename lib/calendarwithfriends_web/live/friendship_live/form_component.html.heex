@@ -1,5 +1,5 @@
 <div>
-  <h2><%= @title %></h2>
+  <h2 class="text-lg mb-2"><%= @title %></h2>
 
   <.form
     let={f}
@@ -9,8 +9,23 @@
     phx-change="validate"
     phx-submit="save"
   >
+    <%= if @action in [:new] do %>
+      <%= hidden_input(f, :user_id, id: "user_id", value: @current_user.id) %>
+    <% end %>
+
+    <div class="mb-6">
+      <%= label(f, :search, "Add friends", class: "block font-medium text-sm text-gray-700") %>
+      <div class="mb-8">
+        <%= text_input(
+          f,
+          :search,
+          class:
+            "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mb-4"
+        ) %>
+      </div>
+    </div>
     <div>
-      <%= submit("Save", phx_disable_with: "Saving...") %>
+      <%= submit("Search", phx_disable_with: "Searching...") %>
     </div>
   </.form>
 </div>
