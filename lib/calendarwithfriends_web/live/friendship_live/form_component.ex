@@ -27,11 +27,6 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.FormComponent do
     save_friendship(socket, socket.assigns.action, friendship_params)
   end
 
-  def handle_event("search", %{"friendship" => %{"search" => search_query}}, socket) do
-    IO.inspect(search_query, label: "Search query:")
-    {:noreply, socket}
-  end
-
   defp save_friendship(socket, :edit, friendship_params) do
     case Friendships.update_friendship(socket.assigns.friendship, friendship_params) do
       {:ok, _friendship} ->

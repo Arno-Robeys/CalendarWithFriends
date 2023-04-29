@@ -16,7 +16,7 @@ defmodule CalendarwithfriendsWeb.EventLive.Show do
      |> assign(:event, Events.get_event!(id))
      |> assign(
        :image_link,
-       "background-image: url(https://loremflickr.com/420/236/#{String.replace(Events.get_event!(id).description, " ", "")}); background-size: cover; background-position: center;"
+       "background-image: url(https://loremflickr.com/420/236/#{String.replace(Events.get_event!(id).title, " ", "")}); background-size: cover; background-position: center;"
      )}
   end
 

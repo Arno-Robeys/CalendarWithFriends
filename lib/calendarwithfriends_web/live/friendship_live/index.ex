@@ -3,6 +3,7 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
 
   alias Calendarwithfriends.Friendships
   alias Calendarwithfriends.Friendships.Friendship
+  alias Calendarwithfriends.Accounts
 
   @impl true
   def mount(_params, _session, socket) do
@@ -38,6 +39,11 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
     {:ok, _} = Friendships.delete_friendship(friendship)
 
     {:noreply, assign(socket, :friendships, list_friendships())}
+  end
+
+  def handle_event("search", %{"friendship" => search_query}, socket) do
+    users = Accounts.list_users(search_query)
+    {:noreply, assign(socket, :users, users)}
   end
 
   defp list_friendships do

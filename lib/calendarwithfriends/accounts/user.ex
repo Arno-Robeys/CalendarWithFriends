@@ -1,6 +1,7 @@
 defmodule Calendarwithfriends.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query, only: [from: 2]
 
   alias Calendarwithfriends.Accounts.User
   alias Calendarwithfriends.Events.Event
@@ -11,48 +12,56 @@ defmodule Calendarwithfriends.Accounts.User do
   # @primary_key {:id,:binary_id,autogenerate: true}
   # @foreign_key_type :binary_id
   schema "users" do
-    field :full_name, :string
-    field :email, :string
-    field :password, :string, virtual: true, redact: true
-    field :hashed_password, :string, redact: true
-    field :confirmed_at, :naive_datetime
+    field(:full_name, :string)
+    field(:email, :string)
+    field(:password, :string, virtual: true, redact: true)
+    field(:hashed_password, :string, redact: true)
+    field(:confirmed_at, :naive_datetime)
 
-    many_to_many :friendships,
-                 User,
-                 join_through: Friendship,
-                 join_keys: [user_id: :id, friend_id: :id]
+    many_to_many(
+      :friendships,
+      User,
+      join_through: Friendship,
+      join_keys: [user_id: :id, friend_id: :id]
+    )
 
-    many_to_many :reverse_friendships,
-                 User,
-                 join_through: Friendship,
-                 join_keys: [friend_id: :id, user_id: :id]
+    many_to_many(
+      :reverse_friendships,
+      User,
+      join_through: Friendship,
+      join_keys: [friend_id: :id, user_id: :id]
+    )
 
-    many_to_many :friend_requests,
-                 User,
-                 join_through: FriendRequest,
-                 join_keys: [user_id: :id, pending_friend_id: :id]
+    many_to_many(
+      :friend_requests,
+      User,
+      join_through: FriendRequest,
+      join_keys: [user_id: :id, pending_friend_id: :id]
+    )
 
-    many_to_many :reverse_friend_requests,
-                 User,
-                 join_through: FriendRequest,
-                 join_keys: [pending_friend_id: :id, user_id: :id]
+    many_to_many(
+      :reverse_friend_requests,
+      User,
+      join_through: FriendRequest,
+      join_keys: [pending_friend_id: :id, user_id: :id]
+    )
 
-    has_many :events, Event
-    has_many :interests, Interest
+    has_many(:events, Event)
+    has_many(:interests, Interest)
 
     timestamps()
   end
 
   @doc """
   A user changeset for registration.
-  
+
   It is important to validate the length of both email and password.
   Otherwise databases may truncate the email without warnings, which
   could lead to unpredictable or insecure behaviour. Long passwords may
   also be very expensive to hash for certain algorithms.
-  
+
   ## Options
-  
+
     * `:hash_password` - Hashes the password so it can be stored securely
       in the database and ensures the password field is cleared to prevent
       leaks in the logs. If password hashing is not needed and clearing the
@@ -111,8 +120,20 @@ defmodule Calendarwithfriends.Accounts.User do
   end
 
   @doc """
+  A user search.
+  """
+  def search(query, search_term) do
+    wildcard_search = "%#{search_term}%"
+
+    from(user in query,
+      where: ilike(user.full_name, ^wildcard_search),
+      or_where: ilike(user.email, ^wildcard_search)
+    )
+  end
+
+  @doc """
   A user changeset for changing the email.
-  
+
   It requires the email to change otherwise an error is added.
   """
   def email_changeset(user, attrs) do
@@ -127,7 +148,7 @@ defmodule Calendarwithfriends.Accounts.User do
 
   @doc """
   A user changeset for changing the full name.
-  
+
   It requires the full_name to change otherwise an error is added.
   """
   def full_name_changeset(user, attrs) do
@@ -142,9 +163,9 @@ defmodule Calendarwithfriends.Accounts.User do
 
   @doc """
   A user changeset for changing the password.
-  
+
   ## Options
-  
+
     * `:hash_password` - Hashes the password so it can be stored securely
       in the database and ensures the password field is cleared to prevent
       leaks in the logs. If password hashing is not needed and clearing the
@@ -169,7 +190,7 @@ defmodule Calendarwithfriends.Accounts.User do
 
   @doc """
   Verifies the password.
-  
+
   If there is no user or the user doesn't have a password, we call
   `Pbkdf2.no_user_verify/0` to avoid timing attacks.
   """
