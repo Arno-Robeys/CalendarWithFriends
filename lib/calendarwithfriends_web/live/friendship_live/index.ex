@@ -45,10 +45,10 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
 
   @impl true
   def handle_event("delete", %{"id" => id}, socket) do
+    current_user = socket.assigns[:current_user]
     friendship = Friendships.get_friendship!(id)
     {:ok, _} = Friendships.delete_friendship(friendship)
-
-    {:noreply, assign(socket, :friendships, list_friendships())}
+    {:noreply, assign(socket, :friendships, list_friendships(current_user.id))}
   end
 
   def handle_event("search", %{"friendship" => search_query}, socket) do
@@ -57,7 +57,11 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
     {:noreply, assign(socket, :users, users)}
   end
 
-  defp list_friendships do
+  defp list_friendships(user_id) do
+    Friendships.list_friendships(%{user_id: Integer.to_string(user_id)})
+  end
+
+  defp list_friendships() do
     Friendships.list_friendships()
   end
 end

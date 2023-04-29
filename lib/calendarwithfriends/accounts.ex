@@ -44,14 +44,14 @@ defmodule Calendarwithfriends.Accounts do
   end
 
   @doc """
-  Search a user by full_name.
+  Search a user by query.
 
   ## Examples
 
-      iex> get_user_by_full_name("bob smith")
+      iex> list_users(%{"query" => "bob"})
       %User{}
 
-      iex> get_user_by_full_name("unknown user")
+      iex> list_users(%{"query" => "unknown"})
       nil
 
   """
