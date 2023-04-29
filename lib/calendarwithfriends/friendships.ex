@@ -18,7 +18,7 @@ defmodule Calendarwithfriends.Friendships do
   
   """
   def list_friendships do
-    Repo.all(Friendship)
+    Repo.all(from(f in Friendship, order_by: [asc: f.id]))
   end
 
   @doc """
@@ -53,6 +53,7 @@ defmodule Calendarwithfriends.Friendships do
     %Friendship{}
     |> Friendship.changeset(attrs)
     |> Repo.insert()
+    |> broadcast(:friendship_created)
   end
 
   @doc """
@@ -71,6 +72,7 @@ defmodule Calendarwithfriends.Friendships do
     friendship
     |> Friendship.changeset(attrs)
     |> Repo.update()
+    |> broadcast(:friendship_updated)
   end
 
   @doc """
@@ -87,6 +89,7 @@ defmodule Calendarwithfriends.Friendships do
   """
   def delete_friendship(%Friendship{} = friendship) do
     Repo.delete(friendship)
+    |> broadcast(:friendship_deleted)
   end
 
   @doc """
@@ -100,5 +103,23 @@ defmodule Calendarwithfriends.Friendships do
   """
   def change_friendship(%Friendship{} = friendship, attrs \\ %{}) do
     Friendship.changeset(friendship, attrs)
+  end
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(Calendarwithfriends.PubSub, "friendships")
+  end
+
+  defp broadcast({:error, _reason} = error, _friendship) do
+    error
+  end
+
+  defp broadcast({:ok, friendship}, broadcast_friendship) do
+    Phoenix.PubSub.broadcast(
+      Calendarwithfriends.PubSub,
+      "friendships",
+      {broadcast_friendship, friendship}
+    )
+
+    {:ok, friendship}
   end
 end

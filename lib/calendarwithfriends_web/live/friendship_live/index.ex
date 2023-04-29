@@ -6,8 +6,17 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
   alias Calendarwithfriends.Accounts
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, :friendships, list_friendships())}
+  def mount(_params, session, socket) do
+    user = Accounts.get_user_by_session_token(session["user_token"])
+    if connected?(socket), do: Friendships.subscribe()
+
+    assigns = %{
+      current_user: user,
+      temporary_assigns: [friendships: []],
+      friendships: list_friendships()
+    }
+
+    {:ok, assign(socket, assigns)}
   end
 
   @impl true
