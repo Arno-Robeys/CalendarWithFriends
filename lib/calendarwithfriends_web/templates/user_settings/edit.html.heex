@@ -1,6 +1,6 @@
 <div class="w-full max-w-md mx-auto">
   <h1 class="text-3xl font-bold mb-8">Settings</h1>
-
+  
   <.form
     let={f}
     for={@full_name_changeset}
@@ -13,9 +13,12 @@
         <p>Oops, something went wrong! Please check the errors below.</p>
       </div>
     <% end %>
-    <%= hidden_input(f, :action, name: "action", value: "update_full_name") %>
-    <%= label(f, :full_name, "Full Name", class: "block text-gray-700 font-bold mb-2") %>
-    <%= text_input(f, :full_name,
+     <%= hidden_input(f, :action, name: "action", value: "update_full_name") %> <%= label(
+      f,
+      :full_name,
+      "Full Name",
+      class: "block text-gray-700 font-bold mb-2"
+    ) %> <%= text_input(f, :full_name,
       required: true,
       class:
         "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
@@ -27,7 +30,7 @@
       ) %>
     </div>
   </.form>
-
+  
   <.form
     let={f}
     for={@email_changeset}
@@ -40,28 +43,24 @@
         <p>Oops, something went wrong! Please check the errors below.</p>
       </div>
     <% end %>
-    <%= hidden_input(f, :action, name: "action", value: "update_email") %>
-    <%= label(f, :email, class: "block text-gray-700 font-bold mb-2") %>
-    <%= email_input(
+     <%= hidden_input(f, :action, name: "action", value: "update_email") %> <%= label(f, :email,
+      class: "block text-gray-700 font-bold mb-2"
+    ) %> <%= email_input(
       f,
       :email,
       required: true,
       class:
         "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
-    ) %>
-    <%= error_tag(f, :email) %>
-    <%= label(f, :current_password,
+    ) %> <%= error_tag(f, :email) %> <%= label(f, :current_password,
       for: "current_password_for_email",
       class: "block text-gray-700 font-bold mb-2"
-    ) %>
-    <%= password_input(f, :current_password,
+    ) %> <%= password_input(f, :current_password,
       required: true,
       name: "current_password",
       id: "current_password_for_email",
       class:
         "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
-    ) %>
-    <%= error_tag(f, :current_password) %>
+    ) %> <%= error_tag(f, :current_password) %>
     <div>
       <%= submit("Save",
         class:
@@ -69,7 +68,7 @@
       ) %>
     </div>
   </.form>
-
+  
   <.form
     let={f}
     for={@password_changeset}
@@ -82,38 +81,31 @@
         <p>Oops, something went wrong! Please check the errors below.</p>
       </div>
     <% end %>
-    <%= hidden_input(f, :action, name: "action", value: "update_password") %>
-    <%= label(
+     <%= hidden_input(f, :action, name: "action", value: "update_password") %> <%= label(
       f,
       :password,
       "New password",
       class: "block text-gray-700 font-bold mb-2"
-    ) %>
-    <%= password_input(f, :password,
+    ) %> <%= password_input(f, :password,
       required: true,
       class:
         "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
-    ) %>
-    <%= error_tag(f, :password) %>
-    <%= label(
+    ) %> <%= error_tag(f, :password) %> <%= label(
       f,
       :password_confirmation,
       "Confirm new password",
       class: "block text-gray-700 font-bold mb-2"
-    ) %>
-    <%= password_input(f, :password_confirmation,
+    ) %> <%= password_input(f, :password_confirmation,
       required: true,
       class:
         "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
     ) %> <%= error_tag(
       f,
       :password_confirmation
-    ) %>
-    <%= label(f, :current_password,
+    ) %> <%= label(f, :current_password,
       for: "current_password_for_password",
       class: "block text-gray-700 font-bold mb-2"
-    ) %>
-    <%= password_input(
+    ) %> <%= password_input(
       f,
       :current_password,
       required: true,
@@ -121,8 +113,7 @@
       id: "current_password_for_password",
       class:
         "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
-    ) %>
-    <%= error_tag(f, :current_password) %>
+    ) %> <%= error_tag(f, :current_password) %>
     <div>
       <%= submit("Save",
         class:

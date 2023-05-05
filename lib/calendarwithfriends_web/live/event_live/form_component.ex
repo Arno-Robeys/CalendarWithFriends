@@ -70,14 +70,10 @@ defmodule CalendarwithfriendsWeb.EventLive.FormComponent do
       ~H"""
       <div class="flex items-center space-x-2 w-">
         <%= @b.(:day, class: "w-20 py-2 px-3 rounded border-gray-300") %>
-        <span>/</span>
-        <%= @b.(:month, class: "w-32 py-2 px-3 rounded border-gray-300") %>
-        <span>/</span>
-        <%= @b.(:year, class: "w-28 py-2 px-3 rounded border-gray-300") %>
-        <span class="mx-2">-</span>
-        <%= @b.(:hour, class: "w-20 py-2 px-3 rounded border-gray-300") %>
-        <span>:</span>
-        <%= @b.(:minute, class: "w-20 py-2 px-3 rounded border-gray-300") %>
+        <span>/</span> <%= @b.(:month, class: "w-32 py-2 px-3 rounded border-gray-300") %>
+        <span>/</span> <%= @b.(:year, class: "w-28 py-2 px-3 rounded border-gray-300") %>
+        <span class="mx-2">-</span> <%= @b.(:hour, class: "w-20 py-2 px-3 rounded border-gray-300") %>
+        <span>:</span> <%= @b.(:minute, class: "w-20 py-2 px-3 rounded border-gray-300") %>
       </div>
       """
     end

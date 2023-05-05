@@ -1,20 +1,19 @@
 <div class="w-full max-w-md mx-auto">
   <h1 class="text-3xl font-bold mb-8">Log in</h1>
-
+  
   <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user}>
     <%= if @error_message do %>
       <div class="alert alert-danger">
         <p><%= @error_message %></p>
       </div>
     <% end %>
-    <%= label(f, :email, class: "block text-gray-700 font-bold mb-2") %>
-    <%= email_input(f, :email,
+     <%= label(f, :email, class: "block text-gray-700 font-bold mb-2") %> <%= email_input(
+      f,
+      :email,
       required: true,
       class:
         "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
-    ) %>
-    <%= label(f, :password, class: "block text-gray-700 font-bold mb-2") %>
-    <%= password_input(
+    ) %> <%= label(f, :password, class: "block text-gray-700 font-bold mb-2") %> <%= password_input(
       f,
       :password,
       required: true,
@@ -26,11 +25,11 @@
         f,
         :remember_me,
         class: "h-5 w-5 text-blue-600"
-      ) %>
-      <%= label(f, :remember_me, "Keep me logged in for 60 days",
+      ) %> <%= label(f, :remember_me, "Keep me logged in for 60 days",
         class: "ml-2 text-gray-700 font-medium"
       ) %>
     </label>
+    
     <div>
       <%= submit("Log in",
         class:
@@ -38,7 +37,7 @@
       ) %>
     </div>
   </.form>
-
+  
   <p class="text-right">
     <%= link("Register", to: Routes.user_registration_path(@conn, :new)) %> | <%= link(
       "Forgot your password?",

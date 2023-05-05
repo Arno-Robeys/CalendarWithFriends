@@ -19,6 +19,7 @@
       <th></th>
     </tr>
   </thead>
+  
   <tbody id="interests">
     <%= for interest <- @interests do %>
       <tr id={"interest-#{interest.id}"}>
@@ -26,9 +27,11 @@
           <span>
             <%= live_redirect("Show", to: Routes.interest_show_path(@socket, :show, interest)) %>
           </span>
+          
           <span>
             <%= live_patch("Edit", to: Routes.interest_index_path(@socket, :edit, interest)) %>
           </span>
+          
           <span>
             <%= link("Delete",
               to: "#",
@@ -42,5 +45,4 @@
     <% end %>
   </tbody>
 </table>
-
-<span><%= live_patch("New Interest", to: Routes.interest_index_path(@socket, :new)) %></span>
+ <span><%= live_patch("New Interest", to: Routes.interest_index_path(@socket, :new)) %></span>

@@ -1,6 +1,6 @@
 <div>
   <h2 class="text-lg mb-2"><%= @title %></h2>
-
+  
   <.form
     let={f}
     for={@changeset}
@@ -12,7 +12,7 @@
     <%= if @action in [:new] do %>
       <%= hidden_input(f, :user_id, id: "user_id", value: @current_user.id) %>
     <% end %>
-
+    
     <div class="mb-6">
       <%= label(f, :search, "Add friends", class: "block font-medium text-sm text-gray-700") %>
       <div class="mb-8">
@@ -24,7 +24,7 @@
         ) %>
       </div>
     </div>
-
+    
     <div>
       <%= submit("Search", phx_disable_with: "Searching...") %>
     </div>

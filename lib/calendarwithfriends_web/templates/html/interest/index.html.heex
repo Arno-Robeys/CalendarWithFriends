@@ -4,16 +4,20 @@
   <thead>
     <tr>
       <th>user_id</th>
+      
       <th>event_id</th>
-
+      
       <th></th>
     </tr>
   </thead>
+  
   <tbody>
     <%= for interest <- @interests do %>
       <tr>
         <td><%= interest.user_id %></td>
+        
         <td><%= interest.event_id %></td>
+        
         <td>
           <span><%= link("Show", to: Routes.html_interest_path(@conn, :show, interest)) %></span>
           <span><%= link("Edit", to: Routes.html_interest_path(@conn, :edit, interest)) %></span>
@@ -29,5 +33,4 @@
     <% end %>
   </tbody>
 </table>
-
-<span><%= link("New Interest", to: Routes.html_interest_path(@conn, :new)) %></span>
+ <span><%= link("New Interest", to: Routes.html_interest_path(@conn, :new)) %></span>

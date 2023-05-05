@@ -54,14 +54,14 @@ defmodule Calendarwithfriends.Accounts.User do
 
   @doc """
   A user changeset for registration.
-
+  
   It is important to validate the length of both email and password.
   Otherwise databases may truncate the email without warnings, which
   could lead to unpredictable or insecure behaviour. Long passwords may
   also be very expensive to hash for certain algorithms.
-
+  
   ## Options
-
+  
     * `:hash_password` - Hashes the password so it can be stored securely
       in the database and ensures the password field is cleared to prevent
       leaks in the logs. If password hashing is not needed and clearing the
@@ -125,6 +125,7 @@ defmodule Calendarwithfriends.Accounts.User do
   def search(query, search_term) do
     if String.trim(search_term) != "" do
       wildcard_search = "%#{search_term}%"
+
       from(user in query,
         where: ilike(user.full_name, ^wildcard_search)
       )
@@ -133,7 +134,7 @@ defmodule Calendarwithfriends.Accounts.User do
 
   @doc """
   A user changeset for changing the email.
-
+  
   It requires the email to change otherwise an error is added.
   """
   def email_changeset(user, attrs) do
@@ -148,7 +149,7 @@ defmodule Calendarwithfriends.Accounts.User do
 
   @doc """
   A user changeset for changing the full name.
-
+  
   It requires the full_name to change otherwise an error is added.
   """
   def full_name_changeset(user, attrs) do
@@ -163,9 +164,9 @@ defmodule Calendarwithfriends.Accounts.User do
 
   @doc """
   A user changeset for changing the password.
-
+  
   ## Options
-
+  
     * `:hash_password` - Hashes the password so it can be stored securely
       in the database and ensures the password field is cleared to prevent
       leaks in the logs. If password hashing is not needed and clearing the
@@ -190,7 +191,7 @@ defmodule Calendarwithfriends.Accounts.User do
 
   @doc """
   Verifies the password.
-
+  
   If there is no user or the user doesn't have a password, we call
   `Pbkdf2.no_user_verify/0` to avoid timing attacks.
   """

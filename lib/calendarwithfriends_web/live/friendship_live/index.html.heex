@@ -12,7 +12,9 @@
 <% end %>
 
 <p class="font-bold">friends</p>
+
 <h2 class="text-3xl font-bold mb-8">All Friends</h2>
+
 <%= for friendship <- @friendships do %>
   <.live_component
     socket={@socket}
@@ -22,15 +24,18 @@
     routes={Routes}
   />
 <% end %>
+
 <%= for friendrequest <- @friendrequests do %>
   <.live_component
     socket={@socket}
     module={CalendarwithfriendsWeb.FriendshipLive.FriendRequestComponent}
     id={"#{friendrequest.id} row"}
     friendrequest={friendrequest}
+    current_user={@current_user}
     routes={Routes}
   />
 <% end %>
+
 <%!-- <span><%= live_patch("New Friendship", to: Routes.friendship_index_path(@socket, :new)) %></span> --%>
 <div class="my-3">
   <.form let={f} for={:friendship} id="friendship-form" phx_submit="search" end>
