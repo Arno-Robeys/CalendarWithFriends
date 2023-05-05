@@ -1,4 +1,4 @@
-defmodule CalendarwithfriendsWeb.FriendshipLive.FriendrequestComponent do
+defmodule CalendarwithfriendsWeb.FriendshipLive.FriendRequestComponent do
   use CalendarwithfriendsWeb, :live_component
 
   def render(assigns) do

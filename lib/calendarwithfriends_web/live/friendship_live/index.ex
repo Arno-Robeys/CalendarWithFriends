@@ -15,6 +15,7 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
     assigns = %{
       current_user: user,
       friendships: list_friendships(),
+      friendrequests: FriendRequests.list_friend_requests_user(user.id),
       temporary_assigns: [friendships: []],
       users: []
     }
