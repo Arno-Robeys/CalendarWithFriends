@@ -1,6 +1,8 @@
 defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
   use CalendarwithfriendsWeb, :live_view
 
+  alias Calendarwithfriends.FriendRequests
+  alias Calendarwithfriends.FriendRequests.FriendRequest
   alias Calendarwithfriends.Friendships
   alias Calendarwithfriends.Friendships.Friendship
   alias Calendarwithfriends.Accounts
@@ -53,8 +55,13 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
 
   def handle_event("search", %{"friendship" => search_query}, socket) do
     users = Accounts.list_users(search_query)
-    IO.inspect(users)
     {:noreply, assign(socket, :users, users)}
+  end
+
+  def handle_event("sendrequest", %{"id" => id}, socket) do
+    current_user = socket.assigns[:current_user]
+    FriendRequests.create_friend_request(%{user_id: current_user.id, friend_id: id})
+    {:noreply, assign(socket, :friendships, list_friendships(current_user.id))}
   end
 
   defp list_friendships(user_id) do

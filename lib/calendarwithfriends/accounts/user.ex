@@ -123,11 +123,12 @@ defmodule Calendarwithfriends.Accounts.User do
   A user search.
   """
   def search(query, search_term) do
-    wildcard_search = "%#{search_term}%"
-
-    from(user in query,
-      where: ilike(user.full_name, ^wildcard_search)
-    )
+    if String.trim(search_term) != "" do
+      wildcard_search = "%#{search_term}%"
+      from(user in query,
+        where: ilike(user.full_name, ^wildcard_search)
+      )
+    end
   end
 
   @doc """

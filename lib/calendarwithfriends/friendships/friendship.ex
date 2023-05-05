@@ -12,8 +12,8 @@ defmodule Calendarwithfriends.Friendships.Friendship do
   @doc false
   def changeset(friendship, attrs) do
     friendship
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:friend_id, :user_id])
+    |> validate_required([:friend_id, :user_id])
   end
 
   @doc """

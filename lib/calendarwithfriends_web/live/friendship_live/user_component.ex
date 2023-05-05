@@ -12,9 +12,12 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.UserComponent do
             <div class="text-gray-500">Online</div>
           </div>
         </div>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Send Request
-        </button>
+        <%= link("Send Request",
+        to: "#",
+        phx_click: "sendrequest",
+        phx_value_id: @user.id,
+        class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          ) %>
       </div>
     </div>
 
