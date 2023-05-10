@@ -3,7 +3,6 @@ defmodule Calendarwithfriends.FriendRequests.FriendRequest do
   import Ecto.Changeset
 
   schema "friend_requests" do
-    field :message_text, :string
     field :user_id, :id
     field :pending_friend_id, :id
 

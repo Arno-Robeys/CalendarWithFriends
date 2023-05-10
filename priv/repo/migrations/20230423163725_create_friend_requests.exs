@@ -3,7 +3,6 @@ defmodule Calendarwithfriends.Repo.Migrations.CreateFriendRequests do
 
   def change do
     create table(:friend_requests) do
-      add :message_text, :string
       add :user_id, references(:users)
       add :pending_friend_id, references(:users)
       timestamps()

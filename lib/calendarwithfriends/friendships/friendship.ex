@@ -21,7 +21,7 @@ defmodule Calendarwithfriends.Friendships.Friendship do
   """
   def search(query, user_id) do
     from(friendship in query,
-      where: friendship.user_id == ^user_id
+      where: friendship.user_id == ^user_id or friendship.friend_id == ^user_id
     )
   end
 end
