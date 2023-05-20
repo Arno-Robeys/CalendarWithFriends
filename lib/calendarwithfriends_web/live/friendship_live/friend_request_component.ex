@@ -4,10 +4,16 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.FriendRequestComponent do
   def render(assigns) do
     ~H"""
     <div id={"friendrequest-#{@friendrequest.id}"}>
-      <div class="flex">
+      <div class="flex pt-2 items-center justify-center">
+      <%= if @friendrequest.user_id == @current_user.id do %>
         <div class="friendrequest">
-          You sended a friend request to <%= @friendrequest.pending_friend_id %>
+          You sended a friend request to <%= @full_name %>
         </div>
+      <% else %>
+      <div class="friendrequest">
+          You got a friend request from <%= @full_name %>
+        </div>
+      <% end %>
 
         <div class="friendrequest__header__actions ml-auto flex items-center justify-center">
           <%= if @friendrequest.user_id == @current_user.id do %>

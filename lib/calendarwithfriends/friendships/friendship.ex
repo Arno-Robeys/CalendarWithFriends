@@ -3,6 +3,9 @@ defmodule Calendarwithfriends.Friendships.Friendship do
   import Ecto.Changeset
   import Ecto.Query, warn: false
 
+  alias Calendarwithfriends.Repo
+  alias Calendarwithfriends.Accounts.User
+
   schema "friendships" do
     field :user_id, :id
     field :friend_id, :id
@@ -20,8 +23,17 @@ defmodule Calendarwithfriends.Friendships.Friendship do
   A friendship search on user_id.
   """
   def search(query, user_id) do
-    from(friendship in query,
-      where: friendship.user_id == ^user_id or friendship.friend_id == ^user_id
+    user_id = String.to_integer(user_id)
+
+    from(f in query,
+      join: u in User,
+      on: fragment("CASE WHEN ? = ? THEN ? = ? ELSE ? = ? END",
+                  ^user_id, f.friend_id,
+                  u.id, f.user_id,
+                  u.id, f.friend_id),
+      where: f.user_id == ^user_id or f.friend_id == ^user_id,
+      select: {f, u.full_name}
     )
   end
+
 end

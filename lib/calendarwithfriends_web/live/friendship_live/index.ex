@@ -11,13 +11,12 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
   def mount(_params, session, socket) do
     user = Accounts.get_user_by_session_token(session["user_token"])
     if connected?(socket), do: Friendships.subscribe()
-    if connected?(socket), do: FriendRequests.subscribe()
 
     assigns = %{
       current_user: user,
       friendships: list_friendships(user.id),
       friendrequests: FriendRequests.list_friend_requests_user(user.id),
-      temporary_assigns: [friendships: []],
+      temporary_assigns: [friendships: [], friendrequests: []],
       users: []
     }
 
@@ -63,23 +62,28 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
   def handle_event("sendrequest", %{"id" => id}, socket) do
     current_user = socket.assigns[:current_user]
     FriendRequests.create_friend_request(%{user_id: current_user.id, pending_friend_id: id})
-    {:noreply, assign(socket, :friendships, list_friendships(current_user.id))}
+    {:noreply, assign(socket, :friendrequests, list_friend_requests(current_user.id))}
   end
 
   def handle_event("reject", %{"id" => id}, socket) do
     current_user = socket.assigns[:current_user]
     FriendRequests.delete_friend_request(%FriendRequest{:id => String.to_integer(id)})
-    {:noreply, assign(socket, :friendships, list_friendships(current_user.id))}
+    {:noreply, assign(socket, :friendrequests, list_friend_requests(current_user.id))}
   end
 
   def handle_event("accept", %{"id" => id, "userid" => userid}, socket) do
     current_user = socket.assigns[:current_user]
     FriendRequests.delete_friend_request(%FriendRequest{:id => String.to_integer(id)})
     Friendships.create_friendship(%{user_id: current_user.id, friend_id: userid})
-    {:noreply, assign(socket, :friendships, list_friendships(current_user.id))}
+    new_assigns = %{friendrequests: list_friend_requests(current_user.id), friendships: list_friendships(current_user.id)}
+    {:noreply, assign(socket, new_assigns)}
   end
 
   defp list_friendships(user_id) do
     Friendships.list_friendships(%{user_id: Integer.to_string(user_id)})
+  end
+
+  defp list_friend_requests(user_id) do
+    FriendRequests.list_friend_requests_user(user_id)
   end
 end

@@ -7,6 +7,8 @@ defmodule Calendarwithfriends.FriendRequests do
   alias Calendarwithfriends.Repo
 
   alias Calendarwithfriends.FriendRequests.FriendRequest
+  alias Calendarwithfriends.Repo
+  alias Calendarwithfriends.Accounts.User
 
   @doc """
   Returns the list of friend_requests.
@@ -24,7 +26,13 @@ defmodule Calendarwithfriends.FriendRequests do
   def list_friend_requests_user(user_id) do
     Repo.all(
       from(friend_request in FriendRequest,
-        where: friend_request.user_id == ^user_id or friend_request.pending_friend_id == ^user_id
+        join: u in User,
+        on: fragment("CASE WHEN ? = ? THEN ? = ? ELSE ? = ? END",
+                    ^user_id, friend_request.pending_friend_id,
+                    u.id, friend_request.user_id,
+                    u.id, friend_request.pending_friend_id),
+        where: friend_request.user_id == ^user_id or friend_request.pending_friend_id == ^user_id,
+        select: {friend_request, u.full_name}
       )
     )
   end
@@ -61,7 +69,6 @@ defmodule Calendarwithfriends.FriendRequests do
     %FriendRequest{}
     |> FriendRequest.changeset(attrs)
     |> Repo.insert()
-    |> broadcast(:friendship_request_created)
   end
 
   @doc """
@@ -80,7 +87,6 @@ defmodule Calendarwithfriends.FriendRequests do
     friend_request
     |> FriendRequest.changeset(attrs)
     |> Repo.update()
-    |> broadcast(:friendship_request_created)
   end
 
   @doc """
@@ -97,7 +103,6 @@ defmodule Calendarwithfriends.FriendRequests do
   """
   def delete_friend_request(%FriendRequest{} = friend_request) do
     Repo.delete(friend_request)
-    |> broadcast(:friendship_request_deleted)
   end
 
   @doc """
@@ -113,20 +118,4 @@ defmodule Calendarwithfriends.FriendRequests do
     FriendRequest.changeset(friend_request, attrs)
   end
 
-  def subscribe do
-    Phoenix.PubSub.subscribe(Calendarwithfriends.PubSub, "friend_request")
-  end
-
-  defp broadcast({:error, _reason} = error, _friendship_request) do
-    error
-  end
-
-  defp broadcast({:ok, friend_request}, broadcast_friend_request) do
-    Phoenix.PubSub.broadcast(
-      Calendarwithfriends.PubSub,
-      "friend_request",
-      {broadcast_friend_request, friend_request})
-
-    {:ok, friend_request}
-  end
 end
