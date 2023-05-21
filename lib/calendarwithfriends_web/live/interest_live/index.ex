@@ -3,10 +3,23 @@ defmodule CalendarwithfriendsWeb.InterestLive.Index do
 
   alias Calendarwithfriends.Interests
   alias Calendarwithfriends.Interests.Interest
+  alias Calendarwithfriends.Accounts
+  alias Calendarwithfriends.Events
+  alias Calendarwithfriends.Events.Event
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, assign(socket, :interests, list_interests())}
+  def mount(_params, session, socket) do
+    user = Accounts.get_user_by_session_token(session["user_token"])
+    if connected?(socket), do: Events.subscribe()
+
+    assigns = %{
+      interests: list_interests(),
+      events: list_public_events(),
+      current_user: user,
+      temporary_assigns: [events: []]
+    }
+
+    {:ok, assign(socket, assigns)}
   end
 
   @impl true
@@ -42,5 +55,14 @@ defmodule CalendarwithfriendsWeb.InterestLive.Index do
 
   defp list_interests do
     Interests.list_interests()
+  end
+
+  defp list_events do
+    Events.list_events()
+  end
+
+  defp list_public_events do
+    list_events()
+    |> Enum.filter(fn event -> event.is_private == false end)
   end
 end

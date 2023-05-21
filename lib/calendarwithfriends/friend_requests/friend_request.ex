@@ -10,6 +10,14 @@ defmodule Calendarwithfriends.FriendRequests.FriendRequest do
   end
 
   @attrs [:user_id, :pending_friend_id]
+  @spec changeset(
+          {map, map}
+          | %{
+              :__struct__ => atom | %{:__changeset__ => map, optional(any) => any},
+              optional(atom) => any
+            },
+          :invalid | %{optional(:__struct__) => none, optional(atom | binary) => any}
+        ) :: Ecto.Changeset.t()
   @doc false
   def changeset(friend_request, attrs) do
     friend_request

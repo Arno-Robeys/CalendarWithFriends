@@ -50,7 +50,8 @@ defmodule Calendarwithfriends.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:calendar, "~> 1.0"},
-      {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev}
+      {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
+      {:timex, "~> 3.7"}
     ]
   end
 

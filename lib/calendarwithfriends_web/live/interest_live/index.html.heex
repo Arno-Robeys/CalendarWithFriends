@@ -1,5 +1,3 @@
-<h1>Listing Interests</h1>
-
 <%= if @live_action in [:new, :edit] do %>
   <.modal return_to={Routes.interest_index_path(@socket, :index)}>
     <.live_component
@@ -8,41 +6,18 @@
       title={@page_title}
       action={@live_action}
       interest={@interest}
-      return_to={Routes.interest_index_path(@socket, :index)}
+      return_to={Routes.event_index_path(@socket, :index)}
     />
   </.modal>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-    </tr>
-  </thead>
+<div class="max-w-md mx-auto">
+  <h1 class="text-3xl">Listing events</h1>
   
-  <tbody id="interests">
-    <%= for interest <- @interests do %>
-      <tr id={"interest-#{interest.id}"}>
-        <td>
-          <span>
-            <%= live_redirect("Show", to: Routes.interest_show_path(@socket, :show, interest)) %>
-          </span>
-          
-          <span>
-            <%= live_patch("Edit", to: Routes.interest_index_path(@socket, :edit, interest)) %>
-          </span>
-          
-          <span>
-            <%= link("Delete",
-              to: "#",
-              phx_click: "delete",
-              phx_value_id: interest.id,
-              data: [confirm: "Are you sure?"]
-            ) %>
-          </span>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
- <span><%= live_patch("New Interest", to: Routes.interest_index_path(@socket, :new)) %></span>
+  <.live_component
+    module={CalendarwithfriendsWeb.Lib.FeedComponent}
+    id="calendar"
+    events={@events}
+    routes={Routes}
+  />
+</div>
