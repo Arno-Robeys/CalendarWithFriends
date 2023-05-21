@@ -11,7 +11,7 @@ defmodule CalendarwithfriendsWeb.Lib.FeedComponent do
         <div id={"event-#{event.id}"}>
           <div class="mt-10">
             <div class="bg-white rounded-3xl shadow-xl">
-              <div class="p-4 sm:p-6 space-y-2">
+              <div class="p-2 sm:p-4 space-y-2">
                 <ul>
                   <li>
                     <%= to_string(
@@ -21,23 +21,25 @@ defmodule CalendarwithfriendsWeb.Lib.FeedComponent do
                       )
                     ) %>
                   </li>
-                  
+
                   <li class="text-lg font-semibold leading-none">
                     <%= event.title %>
                   </li>
-                  
+
                   <li class="text-md font-semibold text-gray-500 leading-none">
                     <%= event.description %>
                   </li>
-                  
+
                   <li class="relative">
-                    <button class="bg-blue-500 text-white px-4 py-2 rounded-full absolute top-0 right-0 transform -translate-y-full">
                       <%= if true do %>
+                      <button class="bg-blue-500 text-white px-4 py-2 rounded-full absolute top-0 right-0 transform -translate-y-full">
                         Interest
+                      </button>
                       <% else %>
+                      <button class="bg-blue-500 text-white px-4 py-2 rounded-full absolute top-0 right-0 transform -translate-y-full">
                         Interested
+                      </button>
                       <% end %>
-                    </button>
                   </li>
                 </ul>
               </div>

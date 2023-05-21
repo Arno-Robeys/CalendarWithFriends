@@ -22,8 +22,6 @@ defmodule CalendarwithfriendsWeb.Router do
     pipe_through [:browser, :require_authenticated_user]
 
     get "/", PageController, :index
-
-    live "/my_page", MyPage
   end
 
   # scope "/api", CalendarwithfriendsWeb do
@@ -52,20 +50,10 @@ defmodule CalendarwithfriendsWeb.Router do
     live "/events/:id/show/edit", EventLive.Show, :edit
 
     live "/friend_requests", FriendRequestLive.Index, :index
-    live "/friend_requests/new", FriendRequestLive.Index, :new
-    live "/friend_requests/:id/edit", FriendRequestLive.Index, :edit
-
-    live "/friend_requests/:id", FriendRequestLive.Show, :show
-    live "/friend_requests/:id/show/edit", FriendRequestLive.Show, :edit
 
     live "/friendships", FriendshipLive.Index, :index
-    live "/friendships/new", FriendshipLive.Index, :new
-    live "/friendships/:id/edit", FriendshipLive.Index, :edit
 
-    live "/friendships/:id", FriendshipLive.Show, :show
-    live "/friendships/:id/show/edit", FriendshipLive.Show, :edit
-
-    live "/interests", InterestLive.Index, :index
+    live "/feed", InterestLive.Index, :index
     live "/interests/new", InterestLive.Index, :new
     live "/interests/:id/edit", InterestLive.Index, :edit
 

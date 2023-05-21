@@ -16,7 +16,7 @@
     >
     </script>
   </head>
-  
+
   <body class="bg-gray-100">
     <header>
       <section class="container">
@@ -24,12 +24,13 @@
           <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <ul class="relative flex h-16 items-center justify-between">
               <div class="flex gap-2">
-                <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-                  <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10">
-                    <%= link("LiveDashboard", to: Routes.live_dashboard_path(@conn, :home)) %>
-                  </li>
-                <% end %>
-                
+                <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10">
+                  <%= link("Home", to: "/") %>
+                </li>
+                <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10">
+                  <%= link("Feed", to: "/") %>
+                </li>
+
                 <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10">
                   <%= link("Events", to: Routes.event_index_path(@conn, :index)) %>
                 </li>
