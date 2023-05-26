@@ -12,7 +12,7 @@ defmodule CalendarwithfriendsWeb.EventLive.Index do
     if connected?(socket), do: Events.subscribe()
 
     assigns = %{
-      events: list_events(),
+      events: list_events(user.id),
       current_date: current_date,
       current_user: user,
       temporary_assigns: [events: []]
@@ -49,7 +49,7 @@ defmodule CalendarwithfriendsWeb.EventLive.Index do
     event = Events.get_event!(id)
     {:ok, _} = Events.delete_event(event)
 
-    {:noreply, assign(socket, :events, list_events())}
+    {:noreply, assign(socket, :events, list_events(socket.assigns[:current_user]))}
   end
 
   @impl true
@@ -62,7 +62,7 @@ defmodule CalendarwithfriendsWeb.EventLive.Index do
     {:noreply, update(socket, :events, fn events -> [event | events] end)}
   end
 
-  defp list_events do
-    Events.list_events()
+  defp list_events(userid) do
+    Events.list_user_events(userid)
   end
 end

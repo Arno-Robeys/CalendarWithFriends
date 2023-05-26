@@ -14,7 +14,7 @@ defmodule Calendarwithfriends.Interests.Interest do
   @doc false
   def changeset(interest, attrs) do
     interest
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:event_id, :user_id])
+    |> validate_required([:event_id, :user_id])
   end
 end

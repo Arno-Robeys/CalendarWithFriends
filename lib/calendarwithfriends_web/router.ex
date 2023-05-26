@@ -54,11 +54,6 @@ defmodule CalendarwithfriendsWeb.Router do
     live "/friendships", FriendshipLive.Index, :index
 
     live "/feed", InterestLive.Index, :index
-    live "/interests/new", InterestLive.Index, :new
-    live "/interests/:id/edit", InterestLive.Index, :edit
-
-    live "/interests/:id", InterestLive.Show, :show
-    live "/interests/:id/show/edit", InterestLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.
