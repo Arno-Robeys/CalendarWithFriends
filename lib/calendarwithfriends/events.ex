@@ -8,6 +8,7 @@ defmodule Calendarwithfriends.Events do
 
   alias Calendarwithfriends.Events.Event
   alias Calendarwithfriends.Friendships.Friendship
+  alias Calendarwithfriends.Interests.Interest
 
   @doc """
   Returns the list of events.
@@ -26,7 +27,16 @@ defmodule Calendarwithfriends.Events do
   Returns the list of user events.
   """
   def list_user_events(id) do
-    Repo.all(from(e in Event, where: e.user_id == ^id, order_by: [asc: e.id]))
+    query =
+      from(e in Event,
+        left_join: i in assoc(e, :interests),
+        left_join: u in assoc(e, :user),
+        where: i.user_id == ^id or u.id == ^id,
+        preload: [:interests]
+      )
+      |> distinct([e], e.id)
+
+    Repo.all(query)
   end
 
   @doc """
