@@ -14,12 +14,15 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.UserComponent do
             <div class="text-gray-500">Online</div>
           </div>
         </div>
-         <%= link("Send Request",
-          to: "#",
-          phx_click: "sendrequest",
-          phx_value_id: @user.id,
-          class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        ) %>
+
+        <%= unless Enum.any?(@friendships, fn friendship -> friendship[1] == @user.id end) do %>
+          <%= link("Send Request",
+            to: "#",
+            phx_click: "sendrequest",
+            phx_value_id: @user.id,
+            class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          ) %>
+        <% end %>
       </div>
     </div>
     """
