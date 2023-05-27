@@ -13,9 +13,6 @@ defmodule CalendarwithfriendsWeb.Router do
     plug :fetch_current_user
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
 
   scope "/", CalendarwithfriendsWeb do
     # pipe_through :browser
@@ -23,22 +20,6 @@ defmodule CalendarwithfriendsWeb.Router do
 
     get "/", PageController, :index
   end
-
-  # scope "/api", CalendarwithfriendsWeb do
-  #   pipe_through :api
-  #   resources "/events", EventController, except: [:new, :edit]
-  #   resources "/friend_requests", FriendRequestController, except: [:new, :edit]
-  #   resources "/friendships", FriendshipController, except: [:new, :edit]
-  #   resources "/interests", InterestController, except: [:new, :edit]
-  # end
-
-  # scope "/html", CalendarwithfriendsWeb.Html, as: :html do
-  #   pipe_through :browser
-  #   resources "/events", EventController
-  #   resources "/friend_requests", FriendRequestController, except: [:edit, :update]
-  #   resources "/friendships", FriendshipController, except: [:new, :create, :edit, :update]
-  #   resources "/interests", InterestController, except: [:edit, :update]
-  # end
 
   scope "live", CalendarwithfriendsWeb do
     pipe_through [:browser, :require_authenticated_user]
