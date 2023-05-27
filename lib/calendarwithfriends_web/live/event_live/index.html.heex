@@ -14,44 +14,6 @@
       />
     </.modal>
   <% end %>
-  
-  <%!-- <table class="table-fixed w-full">
-    <thead>
-      <tr>
-        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left border-slate-100 dark:border-slate-700">
-          By userid
-        </th>
-        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left border-slate-100 dark:border-slate-700">
-          Title
-        </th>
-        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left border-slate-100 dark:border-slate-700">
-          Description
-        </th>
-        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left border-slate-100 dark:border-slate-700">
-          Start time
-        </th>
-        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left border-slate-100 dark:border-slate-700">
-          End time
-        </th>
-        <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left border-slate-100 dark:border-slate-700">
-          Is private
-        </th>
-
-        <th class="border-b p-4 pl-8 border-slate-100 dark:border-slate-700"></th>
-      </tr>
-    </thead>
-    <tbody id="events" phx-update="append">
-      <%= for event <- @events do %>
-        <.live_component
-          socket={@socket}
-          module={CalendarwithfriendsWeb.EventLive.EventComponent}
-          id={"#{event.id} row"}
-          event={event}
-          routes={Routes}
-        />
-      <% end %>
-    </tbody>
-  </table> --%>
   <div>
     <%= live_patch("New Event",
       to: Routes.event_index_path(@socket, :new),
