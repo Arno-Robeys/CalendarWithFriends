@@ -86,7 +86,17 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
 
   def handle_event("removefriend", %{"friend" => friend_id}, socket) do
     current_user = socket.assigns[:current_user]
-    friendshipsOfOtherUser = list_friend_requests(friend_id)
+
+    friendshipsOfOtherUser = list_friendships(elem(Integer.parse(friend_id), 0))
+
+    filtered_friendships =
+      Enum.filter(friendshipsOfOtherUser, fn {friendship, _} ->
+        friendship.user_id == current_user.id || friendship.friend_id == current_user.id
+      end)
+
+    Enum.each(filtered_friendships, fn {friendship, _} ->
+      Friendships.delete_friendship(Friendships.get_friendship!(friendship.id))
+    end)
 
     # Friendships.delete_friendship(%{user_id: current_user.id, friend_id: friend_id})
     {:noreply, assign(socket, :friendships, list_friendships(current_user.id))}
