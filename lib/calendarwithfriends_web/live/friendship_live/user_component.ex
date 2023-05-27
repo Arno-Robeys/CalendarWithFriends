@@ -14,31 +14,31 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.UserComponent do
             <div class="text-gray-500">Online</div>
           </div>
         </div>
+
         <%= unless Enum.any?([Enum.any?(@friendships, fn {friendship, _} -> friendship.user_id == @user.id || friendship.friend_id == @user.id end), @current_user.id == @user.id]) do %>
-          <%= if Enum.any?(@friendrequests, fn {friendrequest, _} -> friendrequest.pending_friend_id == @user.id end) do %>
-            <%= link("Pending Friend Request",
-              to: "#",
-              class: "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
-            ) %>
-          <% end %>
-          <%= if Enum.any?(@friendrequests, fn {friendrequest, _} -> friendrequest.user_id == @user.id end) do %>
-            <%= link("Incoming Friend Request",
-              to: "#",
-              class: "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
-            ) %>
-          <% end %>
-          <%= unless Enum.any?([ Enum.any?(@friendrequests, fn {friendrequest, _} -> friendrequest.user_id == @user.id end),
-              Enum.any?(@friendrequests, fn {friendrequest, _} ->
-                friendrequest.pending_friend_id == @user.id
-              end)]) do %>
+          <%= cond do %>
+            <% Enum.any?(@friendrequests, fn {friendrequest, _} -> friendrequest.pending_friend_id == @user.id end) -> %>
+              <%= link("Pending Friend Request",
+                  to: "#",
+                  class: "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
+              ) %>
+
+            <% Enum.any?(@friendrequests, fn {friendrequest, _} -> friendrequest.user_id == @user.id end) -> %>
+              <%= link("Incoming Friend Request",
+                to: "#",
+                class: "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
+              ) %>
+
+            <% true -> %>
             <%= link("Send Request",
-              to: "#",
-              phx_click: "sendrequest",
-              phx_value_id: @user.id,
-              class: "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
-            ) %>
+                to: "#",
+                phx_click: "sendrequest",
+                phx_value_id: @user.id,
+                class: "bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
+              ) %>
           <% end %>
         <% end %>
+
         <%= if Enum.any?(@friendships, fn {friendship, _} -> (friendship.user_id == @user.id || friendship.friend_id == @user.id) && @current_user.id != @user.id end) do %>
           <%= link("Remove Friend",
             to: "#",
