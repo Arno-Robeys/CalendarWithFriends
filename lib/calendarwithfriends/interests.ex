@@ -21,6 +21,10 @@ defmodule Calendarwithfriends.Interests do
     Repo.all(Interest)
   end
 
+  def list_interests_by_user(user_id) do
+    Repo.all(from i in Interest, where: i.user_id == ^user_id)
+  end
+
   @doc """
   Gets a single interest.
 
@@ -37,7 +41,7 @@ defmodule Calendarwithfriends.Interests do
   """
   def get_interest!(id), do: Repo.get!(Interest, id)
 
-  def get_interest_eventid!(eventid) do Repo.get_by(Interest, event_id: eventid) end
+  def get_interest_eventid!(eventid, userid) do Repo.get_by(Interest, event_id: eventid, user_id: userid) end
 
   @doc """
   Creates a interest.

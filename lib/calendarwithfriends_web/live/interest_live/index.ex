@@ -11,7 +11,7 @@ defmodule CalendarwithfriendsWeb.InterestLive.Index do
     if connected?(socket), do: Events.subscribe()
 
     assigns = %{
-      interests: list_interests(),
+      interests: list_interests(user.id),
       events: list_public_events(user.id),
       current_user: user,
       temporary_assigns: [events: []]
@@ -33,19 +33,19 @@ defmodule CalendarwithfriendsWeb.InterestLive.Index do
 
   def handle_event("create_interest", %{"id" => id}, socket) do
     Interests.create_interest(%{event_id: id, user_id: socket.assigns.current_user.id})
-    {:noreply, assign(socket, :interests, list_interests())}
+    {:noreply, assign(socket, :interests, list_interests(socket.assigns.current_user.id))}
   end
 
   @impl true
   def handle_event("delete_interest", %{"id" => id}, socket) do
-    interest = Interests.get_interest_eventid!(id)
+    interest = Interests.get_interest_eventid!(id, socket.assigns.current_user.id)
     {:ok, _} = Interests.delete_interest(interest)
 
-    {:noreply, assign(socket, :interests, list_interests())}
+    {:noreply, assign(socket, :interests, list_interests(socket.assigns.current_user.id))}
   end
 
-  defp list_interests do
-    Interests.list_interests()
+  defp list_interests(userid) do
+    Interests.list_interests_by_user(userid)
   end
 
   defp list_public_events(id) do
