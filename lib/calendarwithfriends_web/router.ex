@@ -1,5 +1,6 @@
 defmodule CalendarwithfriendsWeb.Router do
   use CalendarwithfriendsWeb, :router
+  # use Plug.ErrorHandler
 
   import CalendarwithfriendsWeb.UserAuth
 
@@ -102,4 +103,9 @@ defmodule CalendarwithfriendsWeb.Router do
     get "/users/confirm/:token", UserConfirmationController, :edit
     post "/users/confirm/:token", UserConfirmationController, :update
   end
+
+  # @impl Plug.ErrorHandler
+  # def handle_errors(conn, %{kind: _kind, reason: _reason, stack: _stack}) do
+  #   send_resp(conn, conn.status, "Something went wrong")
+  # end
 end

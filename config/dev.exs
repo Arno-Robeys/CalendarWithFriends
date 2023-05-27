@@ -12,7 +12,7 @@ config :calendarwithfriends, CalendarwithfriendsWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
   code_reloader: true,
-  debug_errors: true,
+  debug_errors: false,
   secret_key_base: "k72LgKVRyO1pngpa9Vlhd2QuoABAOF2WNnFjsKjFzynj6qdo4Rt+/bKGgL5FNdh8",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)

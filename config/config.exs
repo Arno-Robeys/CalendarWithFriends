@@ -21,7 +21,8 @@ config :calendarwithfriends, CalendarwithfriendsWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [view: CalendarwithfriendsWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Calendarwithfriends.PubSub,
-  live_view: [signing_salt: "5mt/Z8Fc"]
+  live_view: [signing_salt: "5mt/Z8Fc"],
+  debug_errors: false
 
 # Configures the mailer
 #
