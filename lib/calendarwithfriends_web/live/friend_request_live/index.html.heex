@@ -1,6 +1,9 @@
-  <h1 class="font-bold">Listing All Friend requests</h1>
-    <%= for friend_request <- @friend_requests do %>
-      <div id={"friend_request-#{friend_request.id}"}>
-          <p><%= friend_request.id %>: Friend Request between <%= friend_request.user_id %> and <%= friend_request.pending_friend_id%> created at <%= friend_request.inserted_at %></p>
-      </div>
-    <% end %>
+<h1 class="font-bold">Listing All Friend requests</h1>
+
+<%= for friend_request <- @friend_requests do %>
+  <div id={"friend_request-#{friend_request.id}"}>
+    <p>
+      <%= friend_request.id %>: Friend Request between <%= friend_request.user_id %> and <%= friend_request.pending_friend_id %> created at <%= friend_request.inserted_at %>
+    </p>
+  </div>
+<% end %>

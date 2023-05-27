@@ -62,7 +62,12 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
     current_user = socket.assigns[:current_user]
     FriendRequests.delete_friend_request(%FriendRequest{:id => String.to_integer(id)})
     Friendships.create_friendship(%{user_id: current_user.id, friend_id: userid})
-    new_assigns = %{friendrequests: list_friend_requests(current_user.id), friendships: list_friendships(current_user.id)}
+
+    new_assigns = %{
+      friendrequests: list_friend_requests(current_user.id),
+      friendships: list_friendships(current_user.id)
+    }
+
     {:noreply, assign(socket, new_assigns)}
   end
 

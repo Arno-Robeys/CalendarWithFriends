@@ -1,7 +1,7 @@
 <ul class="flex gap-2">
   <%= if @current_user do %>
     <li class="text-white"><%= @current_user.email %></li>
-    
+
     <li>
       <%= link("Friends",
         to: Routes.friendship_index_path(@conn, :index),
@@ -9,7 +9,7 @@
 		hover:bg-opacity-10"
       ) %>
     </li>
-    
+
     <li>
       <%= link("Settings",
         to: Routes.user_settings_path(@conn, :edit),
@@ -17,7 +17,7 @@
 		hover:bg-opacity-10"
       ) %>
     </li>
-    
+
     <li>
       <%= link("Log out",
         to: Routes.user_session_path(@conn, :delete),
@@ -34,7 +34,7 @@
 		hover:bg-opacity-10"
       ) %>
     </li>
-    
+
     <li>
       <%= link("Log in",
         to: Routes.user_session_path(@conn, :new),

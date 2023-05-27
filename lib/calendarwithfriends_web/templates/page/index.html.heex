@@ -96,12 +96,14 @@
           </div>
         </div>
       </div>
-          <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-            <%= link("LiveDashboard",
-            to: Routes.live_dashboard_path(@conn, :home),
-            class: "flex justify-center rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10"
-            ) %>
-          <% end %>
+
+      <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+        <%= link("LiveDashboard",
+          to: Routes.live_dashboard_path(@conn, :home),
+          class:
+            "flex justify-center rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10"
+        ) %>
+      <% end %>
     </div>
   </div>
 </body>

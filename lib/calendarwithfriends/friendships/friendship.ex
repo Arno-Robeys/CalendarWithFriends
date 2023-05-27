@@ -27,13 +27,18 @@ defmodule Calendarwithfriends.Friendships.Friendship do
 
     from(f in query,
       join: u in User,
-      on: fragment("CASE WHEN ? = ? THEN ? = ? ELSE ? = ? END",
-                  ^user_id, f.friend_id,
-                  u.id, f.user_id,
-                  u.id, f.friend_id),
+      on:
+        fragment(
+          "CASE WHEN ? = ? THEN ? = ? ELSE ? = ? END",
+          ^user_id,
+          f.friend_id,
+          u.id,
+          f.user_id,
+          u.id,
+          f.friend_id
+        ),
       where: f.user_id == ^user_id or f.friend_id == ^user_id,
       select: {f, u.full_name}
     )
   end
-
 end

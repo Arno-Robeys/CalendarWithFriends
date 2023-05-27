@@ -10,12 +10,12 @@ defmodule Calendarwithfriends.Friendships do
 
   @doc """
   Returns the list of friendships.
-
+  
   ## Examples
-
+  
       iex> list_friendships()
       [%Friendship{}, ...]
-
+  
   """
   def list_friendships do
     Repo.all(from(f in Friendship, order_by: [asc: f.id]))
@@ -23,15 +23,14 @@ defmodule Calendarwithfriends.Friendships do
 
   @doc """
   Returns the list of friendships based on user_id.
-
+  
   ## Examples
-
+  
       iex> list_friendships()
       [%Friendship{}, ...]
-
+  
   """
   def list_friendships(params) do
-
     user_id =
       case params[:user_id] do
         nil ->
@@ -48,31 +47,31 @@ defmodule Calendarwithfriends.Friendships do
 
   @doc """
   Gets a single friendship.
-
+  
   Raises `Ecto.NoResultsError` if the Friendship does not exist.
-
+  
   ## Examples
-
+  
       iex> get_friendship!(123)
       %Friendship{}
-
+  
       iex> get_friendship!(456)
       ** (Ecto.NoResultsError)
-
+  
   """
   def get_friendship!(id), do: Repo.get!(Friendship, id)
 
   @doc """
   Creates a friendship.
-
+  
   ## Examples
-
+  
       iex> create_friendship(%{field: value})
       {:ok, %Friendship{}}
-
+  
       iex> create_friendship(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
-
+  
   """
   def create_friendship(attrs \\ %{}) do
     %Friendship{}
@@ -83,15 +82,15 @@ defmodule Calendarwithfriends.Friendships do
 
   @doc """
   Updates a friendship.
-
+  
   ## Examples
-
+  
       iex> update_friendship(friendship, %{field: new_value})
       {:ok, %Friendship{}}
-
+  
       iex> update_friendship(friendship, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
-
+  
   """
   def update_friendship(%Friendship{} = friendship, attrs) do
     friendship
@@ -102,15 +101,15 @@ defmodule Calendarwithfriends.Friendships do
 
   @doc """
   Deletes a friendship.
-
+  
   ## Examples
-
+  
       iex> delete_friendship(friendship)
       {:ok, %Friendship{}}
-
+  
       iex> delete_friendship(friendship)
       {:error, %Ecto.Changeset{}}
-
+  
   """
   def delete_friendship(%Friendship{} = friendship) do
     Repo.delete(friendship)
@@ -119,12 +118,12 @@ defmodule Calendarwithfriends.Friendships do
 
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking friendship changes.
-
+  
   ## Examples
-
+  
       iex> change_friendship(friendship)
       %Ecto.Changeset{data: %Friendship{}}
-
+  
   """
   def change_friendship(%Friendship{} = friendship, attrs \\ %{}) do
     Friendship.changeset(friendship, attrs)

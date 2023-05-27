@@ -1,6 +1,6 @@
 <div>
   <h2 class="text-lg mb-2"><%= @title %></h2>
-  
+
   <.form
     let={f}
     for={@changeset}
@@ -12,7 +12,7 @@
     <%= if @action in [:new] do %>
       <%= hidden_input(f, :user_id, id: "user_id", value: @current_user.id) %>
     <% end %>
-    
+
     <div class="mb-6">
       <%= label(f, :title, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white") %>
       <div class="mb-8">
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="mb-6">
       <%= label(f, :description,
         class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -40,19 +40,19 @@
         </div>
       </div>
     </div>
-    
+
     <div class="mb-6">
       <%= label(f, :start_time,
         class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       ) %> <%= my_datetime_select(f, :start_time) %> <%= error_tag(f, :start_time) %>
     </div>
-    
+
     <div class="mb-6">
       <%= label(f, :end_time,
         class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
       ) %> <%= my_datetime_select(f, :end_time) %> <%= error_tag(f, :end_time) %>
     </div>
-    
+
     <div class="flex items-start mb-6">
       <div class="flex items-center h-5">
         <%= checkbox(f, :is_private,
@@ -60,11 +60,9 @@
             "w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
         ) %> <%= error_tag(f, :is_private) %>
       </div>
-       <%= label(f, :is_private,
-        class: "ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-      ) %>
+      <%= label(f, :is_private, class: "ml-2 text-sm font-medium text-gray-900 dark:text-gray-300") %>
     </div>
-    
+
     <div>
       <%= submit("Save",
         phx_disable_with: "Saving...",
