@@ -9,6 +9,9 @@ module.exports = {
 		"../lib/*_web.ex",
 		"../lib/*_web/**/*.*ex",
 		"../lib/*_web/**/*.ex",
+		"../lib/*_web.heex",
+		"../lib/*_web/**/*.*heex",
+		"../lib/*_web/**/*.heex",
 	],
 	darkMode: "class",
 	theme: {
