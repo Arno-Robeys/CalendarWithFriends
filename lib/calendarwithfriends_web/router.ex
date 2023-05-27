@@ -41,7 +41,7 @@ defmodule CalendarwithfriendsWeb.Router do
   # end
 
   scope "live", CalendarwithfriendsWeb do
-    pipe_through :browser
+    pipe_through [:browser, :require_authenticated_user]
     live "/events", EventLive.Index, :index
     live "/events/new", EventLive.Index, :new
     live "/events/:id/edit", EventLive.Index, :edit

@@ -4,7 +4,6 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
   alias Calendarwithfriends.FriendRequests
   alias Calendarwithfriends.FriendRequests.FriendRequest
   alias Calendarwithfriends.Friendships
-  alias Calendarwithfriends.Friendships.Friendship
   alias Calendarwithfriends.Accounts
 
   @impl true

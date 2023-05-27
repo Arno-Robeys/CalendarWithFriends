@@ -2,7 +2,6 @@ defmodule CalendarwithfriendsWeb.FriendRequestLive.Index do
   use CalendarwithfriendsWeb, :live_view
 
   alias Calendarwithfriends.FriendRequests
-  alias Calendarwithfriends.FriendRequests.FriendRequest
 
   @impl true
   def mount(_params, _session, socket) do

@@ -2,10 +2,8 @@ defmodule CalendarwithfriendsWeb.InterestLive.Index do
   use CalendarwithfriendsWeb, :live_view
 
   alias Calendarwithfriends.Interests
-  alias Calendarwithfriends.Interests.Interest
   alias Calendarwithfriends.Accounts
   alias Calendarwithfriends.Events
-  alias Calendarwithfriends.Events.Event
 
   @impl true
   def mount(_params, session, socket) do
