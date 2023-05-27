@@ -2,24 +2,26 @@
 
 <h2 class="text-3xl font-bold mb-8">All Friends</h2>
 
-<%= for {friendship, full_name} <- @friendships do %>
-  <.live_component
-    socket={@socket}
-    module={CalendarwithfriendsWeb.FriendshipLive.FriendComponent}
-    id={"#{friendship.id} row"}
-    friendship={friendship}
-    full_name={full_name}
-    routes={Routes}
-  />
-<% end %>
+<div class="flex flex-wrap gap-2">
+  <%= for {friendship, full_name} <- @friendships do %>
+    <.live_component
+      socket={@socket}
+      module={CalendarwithfriendsWeb.FriendshipLive.FriendComponent}
+      id={"#{friendship.id} row"}
+      friendship={friendship}
+      full_name={full_name}
+      routes={Routes}
+    />
+  <% end %>
+</div>
 
 <%= for {friendrequest, full_name} <- @friendrequests do %>
   <.live_component
     socket={@socket}
     module={CalendarwithfriendsWeb.FriendshipLive.FriendRequestComponent}
     id={"#{friendrequest.id} row"}
-    friendrequest={friendrequest}nd
-
+    friendrequest={friendrequest}
+    nd
     current_user={@current_user}
     full_name={full_name}
     routes={Routes}
