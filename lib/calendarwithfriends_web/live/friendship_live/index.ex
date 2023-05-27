@@ -62,8 +62,34 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
     current_user = socket.assigns[:current_user]
     FriendRequests.delete_friend_request(%FriendRequest{:id => String.to_integer(id)})
     Friendships.create_friendship(%{user_id: current_user.id, friend_id: userid})
-    new_assigns = %{friendrequests: list_friend_requests(current_user.id), friendships: list_friendships(current_user.id)}
+
+    new_assigns = %{
+      friendrequests: list_friend_requests(current_user.id),
+      friendships: list_friendships(current_user.id)
+    }
+
     {:noreply, assign(socket, new_assigns)}
+  end
+
+  def handle_event("accept", %{"id" => id, "userid" => userid}, socket) do
+    current_user = socket.assigns[:current_user]
+    FriendRequests.delete_friend_request(%FriendRequest{:id => String.to_integer(id)})
+    Friendships.create_friendship(%{user_id: current_user.id, friend_id: userid})
+
+    new_assigns = %{
+      friendrequests: list_friend_requests(current_user.id),
+      friendships: list_friendships(current_user.id)
+    }
+
+    {:noreply, assign(socket, new_assigns)}
+  end
+
+  def handle_event("removefriend", %{"friend" => friend_id}, socket) do
+    current_user = socket.assigns[:current_user]
+    friendshipsOfOtherUser = list_friend_requests(friend_id)
+
+    # Friendships.delete_friendship(%{user_id: current_user.id, friend_id: friend_id})
+    {:noreply, assign(socket, :friendships, list_friendships(current_user.id))}
   end
 
   defp list_friendships(user_id) do
@@ -72,5 +98,8 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
 
   defp list_friend_requests(user_id) do
     FriendRequests.list_friend_requests_user(user_id)
+  end
+
+  defp filter_friend_requests_on_current_user(friendshipsOfOtherUser) do
   end
 end

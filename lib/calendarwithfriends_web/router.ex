@@ -13,7 +13,6 @@ defmodule CalendarwithfriendsWeb.Router do
     plug :fetch_current_user
   end
 
-
   scope "/", CalendarwithfriendsWeb do
     # pipe_through :browser
     pipe_through [:browser, :require_authenticated_user]

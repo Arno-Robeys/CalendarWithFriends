@@ -1,4 +1,5 @@
 defmodule Calendarwithfriends.FriendRequests.FriendRequest do
+  alias Calendarwithfriends.FriendRequests
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -18,6 +19,7 @@ defmodule Calendarwithfriends.FriendRequests.FriendRequest do
             },
           :invalid | %{optional(:__struct__) => none, optional(atom | binary) => any}
         ) :: Ecto.Changeset.t()
+
   @doc false
   def changeset(friend_request, attrs) do
     friend_request

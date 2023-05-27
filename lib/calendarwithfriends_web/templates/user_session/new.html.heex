@@ -1,13 +1,13 @@
 <div class="w-full max-w-md mx-auto">
   <h1 class="text-3xl font-bold mb-8">Log in</h1>
-  
+
   <.form let={f} for={@conn} action={Routes.user_session_path(@conn, :create)} as={:user}>
     <%= if @error_message do %>
       <div class="alert alert-danger">
         <p><%= @error_message %></p>
       </div>
     <% end %>
-     <%= label(f, :email, class: "block text-gray-700 font-bold mb-2") %> <%= email_input(
+    <%= label(f, :email, class: "block text-gray-700 font-bold mb-2") %> <%= email_input(
       f,
       :email,
       required: true,
@@ -29,7 +29,7 @@
         class: "ml-2 text-gray-700 font-medium"
       ) %>
     </label>
-    
+
     <div>
       <%= submit("Log in",
         class:
@@ -37,7 +37,7 @@
       ) %>
     </div>
   </.form>
-  
+
   <p class="text-right">
     <%= link("Register", to: Routes.user_registration_path(@conn, :new)) %> | <%= link(
       "Forgot your password?",

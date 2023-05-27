@@ -17,6 +17,7 @@ defmodule Calendarwithfriends.Friendships do
       [%Friendship{}, ...]
 
   """
+
   def list_friendships do
     Repo.all(from(f in Friendship, order_by: [asc: f.id]))
   end
@@ -31,7 +32,6 @@ defmodule Calendarwithfriends.Friendships do
 
   """
   def list_friendships(params) do
-
     user_id =
       case params[:user_id] do
         nil ->
