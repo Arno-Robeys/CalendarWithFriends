@@ -96,12 +96,20 @@ defmodule CalendarwithfriendsWeb.Lib.CalendarComponent do
                       <%= Calendar.strftime(day, "%d") %>
                     </time>
 
-                    <div class="h-full flex flex-wrap content-start gap-1 pt-12">
+                    <div
+                      class="h-full flex flex-wrap content-start gap-1 pt-12"
+                      phx-update="replace"
+                      id="events"
+                    >
                       <%= for event <- events_on_day(@events, day) do %>
                         <div>
                           <div
                             class="w-6 h-6 rounded-full bg-no-repeat bg-center bg-cover group relative"
                             style="background-image: url('https://source.unsplash.com/user/c_v_r/48x48');"
+                            id:
+                            event.id,
+                            event:
+                            event
                           >
                             <%= live_redirect("........",
                               to: @routes.event_show_path(@socket, :show, event),

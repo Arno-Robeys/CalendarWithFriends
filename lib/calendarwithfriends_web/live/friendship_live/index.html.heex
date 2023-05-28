@@ -15,23 +15,25 @@
   <% end %>
 </div>
 
-<%= for {friendrequest, full_name} <- @friendrequests do %>
-  <.live_component
-    socket={@socket}
-    module={CalendarwithfriendsWeb.FriendshipLive.FriendRequestComponent}
-    id={"#{friendrequest.id} row"}
-    friendrequest={friendrequest}
-    nd
-    current_user={@current_user}
-    full_name={full_name}
-    routes={Routes}
-  />
-<% end %>
+<div class="space-y-2">
+  <%= for {friendrequest, full_name} <- @friendrequests do %>
+    <.live_component
+      socket={@socket}
+      module={CalendarwithfriendsWeb.FriendshipLive.FriendRequestComponent}
+      id={"#{friendrequest.id} row"}
+      friendrequest={friendrequest}
+      nd
+      current_user={@current_user}
+      full_name={full_name}
+      routes={Routes}
+    />
+  <% end %>
+</div>
 
 <%!-- <span><%= live_patch("New Friendship", to: Routes.friendship_index_path(@socket, :new)) %></span> --%>
 <div class="my-3">
   <.form let={f} for={:friendship} id="friendship-form" phx_submit="search" end>
-    <%= label(f, :query, "Search people", class: "block font-medium text-sm text-gray-700") %> <%= text_input(
+    <%= label(f, :query, "Search people", class: "block font-medium text-sm text-gray-700 mb-2") %> <%= text_input(
       f,
       :query,
       class:
@@ -56,3 +58,5 @@
     user={user}
   />
 <% end %>
+
+<div class="w-full h-20"></div>

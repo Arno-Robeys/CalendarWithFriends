@@ -4,14 +4,14 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.FriendRequestComponent do
   def render(assigns) do
     ~H"""
     <div id={"friendrequest-#{@friendrequest.id}"}>
-      <div class="flex pt-2 items-center justify-center">
+      <div class="flex pt-2 items-center justify-center bg-white px-6 py-3 rounded-s-md shadow-sm">
         <%= if @friendrequest.user_id == @current_user.id do %>
-          <div class="friendrequest">
-            You sended a friend request to <%= @full_name %>
+          <div class="friendrequest text-md font-medium">
+            Friend Request sent to <%= @full_name %>
           </div>
         <% else %>
-          <div class="friendrequest">
-            You got a friend request from <%= @full_name %>
+          <div class="friendrequest text-md font-medium">
+            Friend Request from <%= @full_name %>
           </div>
         <% end %>
 
@@ -30,12 +30,12 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.FriendRequestComponent do
               phx_click: "accept",
               phx_value_id: @friendrequest.id,
               phx_value_userid: @friendrequest.user_id,
-              class: "mr-2 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+              class: "mr-2 bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
             ) %> <%= link("Reject",
               to: "#",
               phx_click: "reject",
               phx_value_id: @friendrequest.id,
-              class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              class: "bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded"
             ) %>
           <% end %>
         </div>

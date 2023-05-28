@@ -12,12 +12,12 @@ defmodule Calendarwithfriends.FriendRequests do
 
   @doc """
   Returns the list of friend_requests.
-  
+
   ## Examples
-  
+
       iex> list_friend_requests()
       [%FriendRequest{}, ...]
-  
+
   """
   def list_friend_requests do
     Repo.all(FriendRequest)
@@ -45,82 +45,102 @@ defmodule Calendarwithfriends.FriendRequests do
 
   @doc """
   Gets a single friend_request.
-  
+
   Raises `Ecto.NoResultsError` if the Friend request does not exist.
-  
+
   ## Examples
-  
+
       iex> get_friend_request!(123)
       %FriendRequest{}
-  
+
       iex> get_friend_request!(456)
       ** (Ecto.NoResultsError)
-  
+
   """
   def get_friend_request!(id), do: Repo.get!(FriendRequest, id)
 
   @doc """
   Creates a friend_request.
-  
+
   ## Examples
-  
+
       iex> create_friend_request(%{field: value})
       {:ok, %FriendRequest{}}
-  
+
       iex> create_friend_request(%{field: bad_value})
       {:error, %Ecto.Changeset{}}
-  
+
   """
   def create_friend_request(attrs \\ %{}) do
     %FriendRequest{}
     |> FriendRequest.changeset(attrs)
     |> Repo.insert()
+    |> broadcast(:friend_request_created)
   end
 
   @doc """
   Updates a friend_request.
-  
+
   ## Examples
-  
+
       iex> update_friend_request(friend_request, %{field: new_value})
       {:ok, %FriendRequest{}}
-  
+
       iex> update_friend_request(friend_request, %{field: bad_value})
       {:error, %Ecto.Changeset{}}
-  
+
   """
   def update_friend_request(%FriendRequest{} = friend_request, attrs) do
     friend_request
     |> FriendRequest.changeset(attrs)
     |> Repo.update()
+    |> broadcast(:friend_request_updated)
   end
 
   @doc """
   Deletes a friend_request.
-  
+
   ## Examples
-  
+
       iex> delete_friend_request(friend_request)
       {:ok, %FriendRequest{}}
-  
+
       iex> delete_friend_request(friend_request)
       {:error, %Ecto.Changeset{}}
-  
+
   """
   def delete_friend_request(%FriendRequest{} = friend_request) do
     Repo.delete(friend_request)
+    |> broadcast(:friend_request_deleted)
   end
 
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking friend_request changes.
-  
+
   ## Examples
-  
+
       iex> change_friend_request(friend_request)
       %Ecto.Changeset{data: %FriendRequest{}}
-  
+
   """
   def change_friend_request(%FriendRequest{} = friend_request, attrs \\ %{}) do
     FriendRequest.changeset(friend_request, attrs)
+  end
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(Calendarwithfriends.PubSub, "friend_requests")
+  end
+
+  defp broadcast({:error, _reason} = error, _friend_request) do
+    error
+  end
+
+  defp broadcast({:ok, friend_request}, broadcast_friend_request) do
+    Phoenix.PubSub.broadcast(
+      Calendarwithfriends.PubSub,
+      "friend_requests",
+      {broadcast_friend_request, friend_request}
+    )
+    {:ok, friend_request}
   end
 end

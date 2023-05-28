@@ -10,6 +10,7 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
   def mount(_params, session, socket) do
     user = Accounts.get_user_by_session_token(session["user_token"])
     if connected?(socket), do: Friendships.subscribe()
+    if connected?(socket), do: FriendRequests.subscribe()
 
     assigns = %{
       current_user: user,
@@ -106,10 +107,44 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
     Friendships.list_friendships(%{user_id: Integer.to_string(user_id)})
   end
 
+  defp filter_friend_requests_on_current_user(friendshipsOfOtherUser) do
+  end
+
   defp list_friend_requests(user_id) do
     FriendRequests.list_friend_requests_user(user_id)
   end
 
-  defp filter_friend_requests_on_current_user(friendshipsOfOtherUser) do
+  # broadcasts
+  @impl true
+  def handle_info({:friendship_created, friendship}, socket) do
+    {:noreply, update(socket, :friendships, list_friendships(socket.assigns[:current_user].id))}
+  end
+
+  @impl true
+  def handle_info({:friendship_deleted, friendship}, socket) do
+    {:noreply, update(socket, :friendships, list_friendships(socket.assigns[:current_user].id))}
+  end
+
+  @impl true
+  def handle_info({:friendship_updated, friendship}, socket) do
+    {:noreply, update(socket, :friendships, list_friendships(socket.assigns[:current_user].id))}
+  end
+
+  @impl true
+  def handle_info({:friend_request_created, friend_request}, socket) do
+    {:noreply,
+     update(socket, :friend_requests, list_friend_requests(socket.assigns[:current_user].id))}
+  end
+
+  @impl true
+  def handle_info({:friend_request_deleted, friend_request}, socket) do
+    {:noreply,
+     update(socket, :friend_requests, list_friend_requests(socket.assigns[:current_user].id))}
+  end
+
+  @impl true
+  def handle_info({:friend_request_updated, friend_request}, socket) do
+    {:noreply,
+     update(socket, :friend_requests, list_friend_requests(socket.assigns[:current_user].id))}
   end
 end
