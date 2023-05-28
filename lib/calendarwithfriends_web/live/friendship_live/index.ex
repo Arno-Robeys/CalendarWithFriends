@@ -54,22 +54,10 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
   end
 
   def handle_event("reject", %{"id" => id}, socket) do
-    current_user = socket.assigns[:current_user]
     FriendRequests.delete_friend_request(%FriendRequest{:id => String.to_integer(id)})
-    {:noreply, assign(socket, :friendrequests, list_friend_requests(current_user.id))}
-  end
 
-  def handle_event("accept", %{"id" => id, "userid" => userid}, socket) do
-    current_user = socket.assigns[:current_user]
-    FriendRequests.delete_friend_request(%FriendRequest{:id => String.to_integer(id)})
-    Friendships.create_friendship(%{user_id: current_user.id, friend_id: userid})
-
-    new_assigns = %{
-      friendrequests: list_friend_requests(current_user.id),
-      friendships: list_friendships(current_user.id)
-    }
-
-    {:noreply, assign(socket, new_assigns)}
+    {:noreply,
+     assign(socket, :friendrequests, list_friend_requests(socket.assigns[:current_user].id))}
   end
 
   def handle_event("accept", %{"id" => id, "userid" => userid}, socket) do
@@ -99,15 +87,11 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
       Friendships.delete_friendship(Friendships.get_friendship!(friendship.id))
     end)
 
-    # Friendships.delete_friendship(%{user_id: current_user.id, friend_id: friend_id})
     {:noreply, assign(socket, :friendships, list_friendships(current_user.id))}
   end
 
   defp list_friendships(user_id) do
     Friendships.list_friendships(%{user_id: Integer.to_string(user_id)})
-  end
-
-  defp filter_friend_requests_on_current_user(friendshipsOfOtherUser) do
   end
 
   defp list_friend_requests(user_id) do
@@ -116,35 +100,50 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.Index do
 
   # broadcasts
   @impl true
-  def handle_info({:friendship_created, friendship}, socket) do
-    {:noreply, update(socket, :friendships, list_friendships(socket.assigns[:current_user].id))}
-  end
-
-  @impl true
-  def handle_info({:friendship_deleted, friendship}, socket) do
-    {:noreply, update(socket, :friendships, list_friendships(socket.assigns[:current_user].id))}
-  end
-
-  @impl true
-  def handle_info({:friendship_updated, friendship}, socket) do
-    {:noreply, update(socket, :friendships, list_friendships(socket.assigns[:current_user].id))}
-  end
-
-  @impl true
-  def handle_info({:friend_request_created, friend_request}, socket) do
+  def handle_info({:friendship_created, _friendship}, socket) do
     {:noreply,
-     update(socket, :friend_requests, list_friend_requests(socket.assigns[:current_user].id))}
+     update(socket, :friendships, &(&1 = list_friendships(socket.assigns[:current_user].id)))}
   end
 
   @impl true
-  def handle_info({:friend_request_deleted, friend_request}, socket) do
+  def handle_info({:friendship_deleted, _friendship}, socket) do
     {:noreply,
-     update(socket, :friend_requests, list_friend_requests(socket.assigns[:current_user].id))}
+     update(socket, :friendships, &(&1 = list_friendships(socket.assigns[:current_user].id)))}
   end
 
   @impl true
-  def handle_info({:friend_request_updated, friend_request}, socket) do
+  def handle_info({:friendship_updated, _friendship}, socket) do
     {:noreply,
-     update(socket, :friend_requests, list_friend_requests(socket.assigns[:current_user].id))}
+     update(socket, :friendships, &(&1 = list_friendships(socket.assigns[:current_user].id)))}
+  end
+
+  @impl true
+  def handle_info({:friend_request_created, _friend_request}, socket) do
+    {:noreply,
+     update(
+       socket,
+       :friendrequests,
+       &(&1 = list_friend_requests(socket.assigns[:current_user].id))
+     )}
+  end
+
+  @impl true
+  def handle_info({:friend_request_deleted, _friend_request}, socket) do
+    {:noreply,
+     update(
+       socket,
+       :friendrequests,
+       &(&1 = list_friend_requests(socket.assigns[:current_user].id))
+     )}
+  end
+
+  @impl true
+  def handle_info({:friend_request_updated, _friend_request}, socket) do
+    {:noreply,
+     update(
+       socket,
+       :friendrequests,
+       &(&1 = list_friend_requests(socket.assigns[:current_user].id))
+     )}
   end
 end

@@ -6,12 +6,12 @@ defmodule CalendarwithfriendsWeb.LiveHelpers do
 
   @doc """
   Renders a live component inside a modal.
-
+  
   The rendered modal receives a `:return_to` option to properly update
   the URL when the modal is closed.
-
+  
   ## Examples
-
+  
       <.modal return_to={Routes.event_index_path(@socket, :index)}>
         <.live_component
           module={CalendarwithfriendsWeb.EventLive.FormComponent}
@@ -48,7 +48,7 @@ defmodule CalendarwithfriendsWeb.LiveHelpers do
                 ✖
               </a>
             <% end %>
-            <%= render_slot(@inner_block) %>
+             <%= render_slot(@inner_block) %>
           </div>
         </div>
       </div>

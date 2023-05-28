@@ -53,17 +53,17 @@ defmodule CalendarwithfriendsWeb.EventLive.Index do
   end
 
   @impl true
-  def handle_info({:event_created, event}, socket) do
+  def handle_info({:event_created, _event}, socket) do
     {:noreply, update(socket, :events, list_events(socket.assigns[:current_user].id))}
   end
 
   @impl true
-  def handle_info({:event_deleted, event}, socket) do
+  def handle_info({:event_deleted, _event}, socket) do
     {:noreply, update(socket, :events, list_events(socket.assigns[:current_user].id))}
   end
 
   @impl true
-  def handle_info({:event_updated, event}, socket) do
+  def handle_info({:event_updated, _event}, socket) do
     {:noreply, update(socket, :events, list_events(socket.assigns[:current_user].id))}
   end
 

@@ -3,7 +3,6 @@ defmodule Calendarwithfriends.Friendships.Friendship do
   import Ecto.Changeset
   import Ecto.Query, warn: false
 
-  alias Calendarwithfriends.Repo
   alias Calendarwithfriends.Accounts.User
 
   schema "friendships" do

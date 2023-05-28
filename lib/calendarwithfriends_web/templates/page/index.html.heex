@@ -8,11 +8,11 @@
             name: "Calendar With Friends"
           ) %>
         </p>
-
+        
         <p class="mt-0 mr-0 mb-6 ml-0 text-3xl font-extrabold">
           Kijk wat jouw vrienden doen!
         </p>
-
+        
         <div class="mt-- mr-- mb-0 ml-- space-x-0 md:space-x-2">
           <a
             href="/live/events"
@@ -20,7 +20,7 @@
           w-full mb-2 hover:bg-blue-900 sm:w-auto sm:mb-0"
           >
             <p class="inline-flex">Get Started</p>
-
+            
             <p class="inline-flex w-4 h-4 mt-0 mr-0 mb-0 ml-1">
               <svg
                 classname="w-4 h-4 ml-1"
@@ -40,7 +40,7 @@
         </div>
       </div>
     </div>
-
+    
     <div class="bg-slate-300 pt-16 pr-4 pb-16 pl-4 md:px-24 lg:px-8 lg:py-20">
       <div class="mt-0 mr-auto mb-0 ml-auto lg:max-w-screen-xl sm:max-w-xl md:max-w-full">
         <div class="mt-0 mr-auto mb-5 ml-auto max-w-xl md:mx-auto sm:text-center lg:max-w-2xl">
@@ -52,12 +52,12 @@
               </p>
             </div>
           </div>
-
+          
           <p class="text-base text-gray-700 md:text-lg">
             See each other events and interact with them by being interested
           </p>
         </div>
-
+        
         <div class="mt-20 mr-0 mb-10 ml-0 sm:text-center flex justify-around max-w-xl md:mx-auto lg:max-w-2xl">
           <div>
             <div class="Author inline-block mb-1">
@@ -66,7 +66,7 @@
                 class="btn- w-10 h-10 rounded-full shadow-sm object-cover"
               />
             </div>
-
+            
             <div>
               <p class="font-semibold text-text Author transition-colors duration-200">
                 Nino
@@ -74,7 +74,7 @@
               </p>
             </div>
           </div>
-
+          
           <div>
             <div class="Author inline-block mb-1">
               <img
@@ -82,7 +82,7 @@
                 class="btn- w-10 h-10 rounded-full shadow-sm object-cover"
               />
             </div>
-
+            
             <div>
               <p class="font-semibold text-text Author transition-colors duration-200">
                 Arno
@@ -92,7 +92,7 @@
           </div>
         </div>
       </div>
-
+      
       <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
         <%= link("LiveDashboard",
           to: Routes.live_dashboard_path(@conn, :home),

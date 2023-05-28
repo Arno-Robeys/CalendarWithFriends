@@ -6,7 +6,7 @@
         class: "rounded-md px-4 bg-background text-text py-2 text-sm font-medium"
       ) %>
     </li>
-
+    
     <li>
       <%= link("Friends",
         to: Routes.friendship_index_path(@conn, :index),
@@ -14,7 +14,7 @@
 		hover:bg-opacity-10"
       ) %>
     </li>
-
+    
     <li>
       <%= link("Settings",
         to: Routes.user_settings_path(@conn, :edit),
@@ -22,7 +22,7 @@
 		hover:bg-opacity-10"
       ) %>
     </li>
-
+    
     <li>
       <%= link("Log out",
         to: Routes.user_session_path(@conn, :delete),
@@ -39,7 +39,7 @@
 		hover:bg-opacity-10"
       ) %>
     </li>
-
+    
     <li>
       <%= link("Log in",
         to: Routes.user_session_path(@conn, :new),

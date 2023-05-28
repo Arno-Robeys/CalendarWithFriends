@@ -1,8 +1,8 @@
 <div class="space-y-4">
   <p class="font-bold">Friends</p>
-
+  
   <h2 class="text-3xl font-bold mb-8">All Friends</h2>
-
+  
   <div id="friendships" class="flex overflow-x-auto gap-2 w-full">
     <%= for {friendship, full_name} <- @friendships do %>
       <.live_component
@@ -15,7 +15,7 @@
       />
     <% end %>
   </div>
-
+  
   <div id="friend_requests" class="space-y-2">
     <%= for {friendrequest, full_name} <- @friendrequests do %>
       <.live_component
@@ -30,7 +30,7 @@
       />
     <% end %>
   </div>
-
+  
   <%!-- <span><%= live_patch("New Friendship", to: Routes.friendship_index_path(@socket, :new)) %></span> --%>
   <div class="my-3">
     <.form let={f} for={:friendship} id="friendship-form" phx_submit="search" end>
@@ -46,7 +46,7 @@
       ) %>
     </.form>
   </div>
-
+  
   <%= for user <- @users do %>
     <.live_component
       socket={@socket}
@@ -59,6 +59,6 @@
       user={user}
     />
   <% end %>
-
+  
   <div class="w-full h-20"></div>
 </div>

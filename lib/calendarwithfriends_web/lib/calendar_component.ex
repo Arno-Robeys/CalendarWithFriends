@@ -11,12 +11,12 @@ defmodule CalendarwithfriendsWeb.Lib.CalendarComponent do
           <span class="text-lg font-bold text-gray-800">
             <%= Calendar.strftime(@current_date, "%B") %>
           </span>
-
+          
           <span class="ml-1 text-lg text-gray-600 font-normal">
             <%= Calendar.strftime(@current_date, "%Y") %>
           </span>
         </div>
-
+        
         <div class="border rounded-lg px-1">
           <button
             class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-200 p-1 items-center"
@@ -39,9 +39,9 @@ defmodule CalendarwithfriendsWeb.Lib.CalendarComponent do
               </path>
             </svg>
           </button>
-
+          
           <div class="border-r inline-flex h-6"></div>
-
+          
           <button
             class="leading-none rounded-lg transition ease-in-out duration-100 inline-flex items-center cursor-pointer hover:bg-gray-200 p-1"
             type="button"
@@ -60,7 +60,7 @@ defmodule CalendarwithfriendsWeb.Lib.CalendarComponent do
           </button>
         </div>
       </div>
-
+      
       <table class="table-fixed border-t w-full">
         <thead>
           <tr class="h-20">
@@ -71,7 +71,7 @@ defmodule CalendarwithfriendsWeb.Lib.CalendarComponent do
             <% end %>
           </tr>
         </thead>
-
+        
         <tbody>
           <%= for week <- @week_rows do %>
             <tr>
@@ -95,7 +95,7 @@ defmodule CalendarwithfriendsWeb.Lib.CalendarComponent do
                     <time class="absolute top-0 left-0" datetime={Calendar.strftime(day, "%Y-%m-%d")}>
                       <%= Calendar.strftime(day, "%d") %>
                     </time>
-
+                    
                     <div
                       class="h-full flex flex-wrap content-start gap-1 pt-12"
                       phx-update="replace"
@@ -118,11 +118,11 @@ defmodule CalendarwithfriendsWeb.Lib.CalendarComponent do
                             <div class="text-text invisible group-hover:visible absolute left-6 bottom-8 z-20 w-80 text-left p-4 rounded-md bg-slate-50 break-words">
                               <ul>
                                 <li>title: <%= event.title %></li>
-
+                                
                                 <li>description: <%= event.description %></li>
-
+                                
                                 <li>start_time: <%= event.start_time %></li>
-
+                                
                                 <li>end_time: <%= event.end_time %></li>
                               </ul>
                             </div>
@@ -194,8 +194,6 @@ defmodule CalendarwithfriendsWeb.Lib.CalendarComponent do
   def handle_event("pick-date", %{"date" => date}, socket) do
     {:noreply, assign(socket, :selected_date, Date.from_iso8601!(date))}
   end
-
-  defp selected_date?(day, selected_date), do: day == selected_date
 
   defp today?(day), do: day == Date.utc_today()
 

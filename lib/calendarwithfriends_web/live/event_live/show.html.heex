@@ -5,6 +5,7 @@
       id={@event.id}
       title={@page_title}
       action={@live_action}
+      current_user={@current_user}
       event={@event}
       return_to={Routes.event_show_path(@socket, :show, @event)}
     />
@@ -15,54 +16,56 @@
   <div class="w-full max-w-md mx-auto bg-background rounded-3xl shadow-xl">
     <div class="max-w-md mx-auto relative">
       <div class="h-[150px]" style={@image_link}></div>
-
+      
       <div class="p-4 sm:p-6 space-y-2">
         <ul>
           <li>
             <%= @event.start_time %>
           </li>
-
+          
           <li class="text-lg font-semibold leading-none">
             <%= @event.title %>
           </li>
-
+          
           <li class="text-md font-semibold text-gray-500 leading-none">
             <%= @event.description %>
           </li>
         </ul>
-        <%= live_redirect("Back",
+         <%= live_redirect("Back",
           to: Routes.event_index_path(@socket, :index),
           class:
             "block w-full font-medium tracking-wide text-center capitalize transition-colors duration-300 transform rounded-md bg-gray-400 hover:bg-opacity-50 hover:text-[#000000dd] focus:outline-none text-white"
         ) %>
-        <div class="absolute top-0 text-white bg-black rounded-md ml-2 left-0 mt-2 mr-2 group overflow-visible z-20">
-          <button class="dropdown">
-            <svg class="h-6 w-12 fill-current" viewBox="0 0 20 20">
-              <path d="M6 9l4 4 4-4"></path>
-            </svg>
-          </button>
-
-          <ul class="dropdown-menu absolute invisible group-hover:visible text-gray-700 pt-1 w-72 space-y-2">
-            <li class="w-full">
-              <%= live_patch("Edit",
-                to: Routes.event_show_path(@socket, :edit, @event),
-                class:
-                  "block w-full font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-gray-400 rounded-md hover:bg-background hover:text-[#000000dd] focus:outline-none text-white"
-              ) %>
-            </li>
-
-            <li>
-              <%= link("Delete",
-                to: Routes.event_index_path(@socket, :index),
-                phx_click: "delete",
-                phx_value_id: @event.id,
-                data: [confirm: "Are you sure?"],
-                class:
-                  "block w-full font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-gray-400 rounded-md hover:bg-background hover:text-[#000000dd] focus:outline-none text-white"
-              ) %>
-            </li>
-          </ul>
-        </div>
+        <%= if @event.user_id == @current_user.id do %>
+          <div class="absolute top-0 text-white bg-black rounded-md ml-2 left-0 mt-2 mr-2 group overflow-visible z-20">
+            <button class="dropdown">
+              <svg class="h-6 w-12 fill-current" viewBox="0 0 20 20">
+                <path d="M6 9l4 4 4-4"></path>
+              </svg>
+            </button>
+            
+            <ul class="dropdown-menu absolute invisible group-hover:visible text-gray-700 pt-1 w-72 space-y-2">
+              <li class="w-full">
+                <%= live_patch("Edit",
+                  to: Routes.event_show_path(@socket, :edit, @event),
+                  class:
+                    "block w-full font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-gray-400 rounded-md hover:bg-background hover:text-[#000000dd] focus:outline-none text-white"
+                ) %>
+              </li>
+              
+              <li>
+                <%= link("Delete",
+                  to: Routes.event_index_path(@socket, :index),
+                  phx_click: "delete",
+                  phx_value_id: @event.id,
+                  data: [confirm: "Are you sure?"],
+                  class:
+                    "block w-full font-medium tracking-wide text-center capitalize transition-colors duration-300 transform bg-gray-400 rounded-md hover:bg-background hover:text-[#000000dd] focus:outline-none text-white"
+                ) %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

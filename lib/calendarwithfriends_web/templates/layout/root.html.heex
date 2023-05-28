@@ -16,7 +16,7 @@
     >
     </script>
   </head>
-
+  
   <body class="bg-gray-100">
     <header>
       <section class="container">
@@ -27,21 +27,21 @@
                 <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-background hover:bg-opacity-10">
                   <%= link("Home", to: "/") %>
                 </li>
-
+                
                 <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-background hover:bg-opacity-10">
                   <%= link("Feed", to: "/live/feed") %>
                 </li>
-
+                
                 <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-background hover:bg-opacity-10">
                   <%= link("Events", to: Routes.event_index_path(@conn, :index)) %>
                 </li>
               </div>
-              <%= render("_user_menu.html", assigns) %>
+               <%= render("_user_menu.html", assigns) %>
             </ul>
           </div>
         </nav>
       </section>
     </header>
-    <%= @inner_content %>
+     <%= @inner_content %>
   </body>
 </html>

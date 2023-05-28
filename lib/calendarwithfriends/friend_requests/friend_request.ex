@@ -1,5 +1,4 @@
 defmodule Calendarwithfriends.FriendRequests.FriendRequest do
-  alias Calendarwithfriends.FriendRequests
   use Ecto.Schema
   import Ecto.Changeset
 

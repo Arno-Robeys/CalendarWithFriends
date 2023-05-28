@@ -9,18 +9,18 @@
               class="btn- rounded-2xl w-full h-full object-cover"
             />
           </div>
-
+          
           <div class="pt-8 pr-8 pb-8 pl-8 lg:col-span-7">
             <p class="text-gray-900 text-left font-extrabold leading-snug tracking-tight mb-4 md:text-4xl">
               Register
             </p>
-
+            
             <%= if @changeset.action do %>
               <div class="alert alert-danger">
                 <p>Oops, something went wrong! Please check the errors below.</p>
               </div>
             <% end %>
-
+            
             <div>
               <div class="w-full mt-3 mr-auto mb-3 ml-auto">
                 <%= label(f, :full_name, "Your Full Name",
@@ -34,7 +34,7 @@
                     placeholder: "Ex: James Bond"
                   ) %>
                 </div>
-
+                
                 <div class="text-red-500 text-sm mt-2">
                   <%= error_tag(
                     f,
@@ -42,7 +42,7 @@
                   ) %>
                 </div>
               </div>
-
+              
               <div class="w-full mt-3 mr-auto mb-3 ml-auto">
                 <%= label(f, :email, "Your Email",
                   class: "block text-sm font-medium text-gray-700"
@@ -57,7 +57,7 @@
                     placeholder: "Ex: james@bond.com"
                   ) %>
                 </div>
-
+                
                 <div class="text-red-500 text-sm mt-2">
                   <%= error_tag(
                     f,
@@ -65,7 +65,7 @@
                   ) %>
                 </div>
               </div>
-
+              
               <div class="w-full mt-0 mr-auto mb-3 ml-auto">
                 <%= label(f, :password, "Your Password",
                   class: "block text-sm font-medium text-gray-700"
@@ -80,7 +80,7 @@
                     placeholder: "********"
                   ) %>
                 </div>
-
+                
                 <div class="text-red-500 text-sm mt-2">
                   <%= error_tag(
                     f,
@@ -88,7 +88,7 @@
                   ) %>
                 </div>
               </div>
-              <%= submit("Submit",
+               <%= submit("Submit",
                 class:
                   "hover:bg-gray-600 rounded-md text-xl pt-3 pr-3 pb-3 pl-3 bg-gray-800 font-semibold text-white
                 w-full text-center"
@@ -96,7 +96,7 @@
               <div class="flex items-center justify-start border-t-2 border-gray-100 mt-6 mr-0 mb-0 ml-0 pt-6 pr-0 pb-0
                 pl-0">
                 <p class="text-sm text-gray-800">Already have an account?</p>
-
+                
                 <div>
                   <%= link("Log in",
                     to: Routes.user_session_path(@conn, :new),

@@ -7,14 +7,14 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.UserComponent do
       <div class="flex items-center justify-between">
         <div class="flex items-center">
           <div class="h-10 w-10 rounded-full bg-gray-300"></div>
-
+          
           <div class="ml-4">
             <div class="font-semibold text-lg text-gray-800"><%= @user.full_name %></div>
-
+            
             <div class="text-gray-500">Online</div>
           </div>
         </div>
-
+        
         <%= unless Enum.any?([Enum.any?(@friendships, fn {friendship, _} -> friendship.user_id == @user.id || friendship.friend_id == @user.id end), @current_user.id == @user.id]) do %>
           <%= cond do %>
             <% Enum.any?(@friendrequests, fn {friendrequest, _} -> friendrequest.pending_friend_id == @user.id end) -> %>
@@ -34,7 +34,7 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.UserComponent do
               ) %>
           <% end %>
         <% end %>
-
+        
         <%= if Enum.any?(@friendships, fn {friendship, _} -> (friendship.user_id == @user.id || friendship.friend_id == @user.id) && @current_user.id != @user.id end) do %>
           <%= link("Remove Friend",
             to: "#",

@@ -14,11 +14,11 @@ defmodule CalendarwithfriendsWeb.UserAuth do
 
   @doc """
   Logs the user in.
-  
+
   It renews the session ID and clears the whole session
   to avoid fixation attacks. See the renew_session
   function to customize this behaviour.
-  
+
   It also sets a `:live_socket_id` key in the session,
   so LiveView sessions are identified and automatically
   disconnected on log out. The line can be safely removed
@@ -26,7 +26,6 @@ defmodule CalendarwithfriendsWeb.UserAuth do
   """
   def log_in_user(conn, user, params \\ %{}) do
     token = Accounts.generate_user_session_token(user)
-    user_return_to = get_session(conn, :user_return_to)
     # redirect to events
     user_return_to = "/live/events"
 
@@ -35,7 +34,7 @@ defmodule CalendarwithfriendsWeb.UserAuth do
     |> put_session(:user_token, token)
     |> put_session(:live_socket_id, "users_sessions:#{Base.url_encode64(token)}")
     |> maybe_write_remember_me_cookie(token, params)
-    |> redirect(to: user_return_to || signed_in_path(conn))
+    |> redirect(to: user_return_to)
   end
 
   defp maybe_write_remember_me_cookie(conn, token, %{"remember_me" => "true"}) do
@@ -69,7 +68,7 @@ defmodule CalendarwithfriendsWeb.UserAuth do
 
   @doc """
   Logs the user out.
-  
+
   It clears all session data for safety. See renew_session.
   """
   def log_out_user(conn) do
@@ -125,7 +124,7 @@ defmodule CalendarwithfriendsWeb.UserAuth do
 
   @doc """
   Used for routes that require the user to be authenticated.
-  
+
   If you want to enforce the user email is confirmed before
   they use the application at all, here would be a good place.
   """

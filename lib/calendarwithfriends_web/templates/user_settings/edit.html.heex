@@ -1,6 +1,6 @@
 <div class="w-full max-w-md mx-auto">
   <h1 class="text-3xl font-bold mb-8">Settings</h1>
-
+  
   <.form
     let={f}
     for={@full_name_changeset}
@@ -13,7 +13,7 @@
         <p>Oops, something went wrong! Please check the errors below.</p>
       </div>
     <% end %>
-    <%= hidden_input(f, :action, name: "action", value: "update_full_name") %> <%= label(
+     <%= hidden_input(f, :action, name: "action", value: "update_full_name") %> <%= label(
       f,
       :full_name,
       "Full Name",
@@ -30,7 +30,7 @@
       ) %>
     </div>
   </.form>
-
+  
   <.form
     let={f}
     for={@email_changeset}
@@ -43,7 +43,7 @@
         <p>Oops, something went wrong! Please check the errors below.</p>
       </div>
     <% end %>
-    <%= hidden_input(f, :action, name: "action", value: "update_email") %> <%= label(f, :email,
+     <%= hidden_input(f, :action, name: "action", value: "update_email") %> <%= label(f, :email,
       class: "block text-gray-700 font-bold mb-2"
     ) %> <%= email_input(
       f,
@@ -68,7 +68,7 @@
       ) %>
     </div>
   </.form>
-
+  
   <.form
     let={f}
     for={@password_changeset}
@@ -81,7 +81,7 @@
         <p>Oops, something went wrong! Please check the errors below.</p>
       </div>
     <% end %>
-    <%= hidden_input(f, :action, name: "action", value: "update_password") %> <%= label(
+     <%= hidden_input(f, :action, name: "action", value: "update_password") %> <%= label(
       f,
       :password,
       "New password",

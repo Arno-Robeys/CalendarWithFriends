@@ -2,10 +2,17 @@ defmodule CalendarwithfriendsWeb.EventLive.Show do
   use CalendarwithfriendsWeb, :live_view
 
   alias Calendarwithfriends.Events
+  alias Calendarwithfriends.Accounts
 
   @impl true
-  def mount(_params, _session, socket) do
-    {:ok, socket}
+  def mount(_params, session, socket) do
+    user = Accounts.get_user_by_session_token(session["user_token"])
+
+    assigns = %{
+      current_user: user
+    }
+
+    {:ok, assign(socket, assigns)}
   end
 
   @impl true

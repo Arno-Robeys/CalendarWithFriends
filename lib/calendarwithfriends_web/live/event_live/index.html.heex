@@ -1,6 +1,6 @@
 <div class="space-y-8">
   <h1 class="text-3xl">Listing Events</h1>
-
+  
   <%= if @live_action in [:new, :edit] do %>
     <.modal return_to={Routes.event_index_path(@socket, :index)}>
       <.live_component
@@ -14,14 +14,14 @@
       />
     </.modal>
   <% end %>
-
+  
   <div>
     <%= live_patch("New Event",
       to: Routes.event_index_path(@socket, :new),
       class: "px-4 py-2 rounded-xl bg-primary_button text-white hover:bg-opacity-50 shadow-md"
     ) %>
   </div>
-
+  
   <.live_component
     module={CalendarwithfriendsWeb.Lib.CalendarComponent}
     id="calendar"
