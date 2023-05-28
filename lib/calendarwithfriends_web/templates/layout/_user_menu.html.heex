@@ -1,6 +1,11 @@
 <ul class="flex gap-2">
   <%= if @current_user do %>
-    <li class="text-white"><%= @current_user.email %></li>
+    <li>
+      <%= link(@current_user.full_name,
+        to: Routes.user_settings_path(@conn, :edit),
+        class: "rounded-md px-4 bg-white text-black py-2 text-sm font-medium"
+      ) %>
+    </li>
 
     <li>
       <%= link("Friends",

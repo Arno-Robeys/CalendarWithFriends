@@ -41,19 +41,19 @@
       </div>
     </div>
 
-    <div class="bg-gray-900 pt-16 pr-4 pb-16 pl-4 md:px-24 lg:px-8 lg:py-20">
+    <div class="bg-slate-300 pt-16 pr-4 pb-16 pl-4 md:px-24 lg:px-8 lg:py-20">
       <div class="mt-0 mr-auto mb-0 ml-auto lg:max-w-screen-xl sm:max-w-xl md:max-w-full">
         <div class="mt-0 mr-auto mb-5 ml-auto max-w-xl md:mx-auto sm:text-center lg:max-w-2xl">
           <div class="mb-4">
             <div class="inline-block">
-              <p class="Article max-w-lg font-sans tracking-tight transition-colors duration-200 hover:text-blue-900
-              sm:text-4xl text-3xl leading-none font-extrabold text-white">
+              <p class="text-black Article max-w-lg font-sans tracking-tight transition-colors duration-200
+              sm:text-4xl text-3xl leading-none font-extrabold">
                 Improve your day to the MAX with Calendar With Friends
               </p>
             </div>
           </div>
 
-          <p class="text-base text-gray-300 md:text-lg">
+          <p class="text-base text-gray-700 md:text-lg">
             See each other events and interact with them by being interested
           </p>
         </div>
@@ -68,12 +68,10 @@
             </div>
 
             <div>
-              <p class="font-semibold text-white Author transition-colors duration-200 hover:text-blue-900">
+              <p class="font-semibold text-black Author transition-colors duration-200">
                 Nino
                 Verstraeten
               </p>
-
-              <p class="font-medium leading-4 text-gray-400 text-sm">Author</p>
             </div>
           </div>
 
@@ -86,12 +84,10 @@
             </div>
 
             <div>
-              <p class="font-semibold text-white Author transition-colors duration-200 hover:text-blue-900">
+              <p class="font-semibold text-black Author transition-colors duration-200">
                 Arno
                 Robeys
               </p>
-
-              <p class="font-medium leading-4 text-gray-400 text-sm">Author</p>
             </div>
           </div>
         </div>
@@ -101,7 +97,7 @@
         <%= link("LiveDashboard",
           to: Routes.live_dashboard_path(@conn, :home),
           class:
-            "flex justify-center rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10"
+            "max-w-xl md:mx-auto lg:max-w-2xl flex justify-center rounded-md px-3 py-2 text-sm font-medium text-white bg-blue-800 hover:bg-opacity-80"
         ) %>
       <% end %>
     </div>

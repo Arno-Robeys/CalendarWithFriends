@@ -141,6 +141,7 @@ defmodule Calendarwithfriends.FriendRequests do
       "friend_requests",
       {broadcast_friend_request, friend_request}
     )
+
     {:ok, friend_request}
   end
 end
