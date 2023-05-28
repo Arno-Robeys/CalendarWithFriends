@@ -24,15 +24,15 @@
           <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <ul class="relative flex h-16 items-center justify-between">
               <div class="flex gap-2">
-                <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10">
+                <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-background hover:bg-opacity-10">
                   <%= link("Home", to: "/") %>
                 </li>
 
-                <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10">
+                <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-background hover:bg-opacity-10">
                   <%= link("Feed", to: "/live/feed") %>
                 </li>
 
-                <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white hover:bg-opacity-10">
+                <li class="rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-background hover:bg-opacity-10">
                   <%= link("Events", to: Routes.event_index_path(@conn, :index)) %>
                 </li>
               </div>

@@ -3,14 +3,14 @@
     <li>
       <%= link(@current_user.full_name,
         to: Routes.user_settings_path(@conn, :edit),
-        class: "rounded-md px-4 bg-white text-black py-2 text-sm font-medium"
+        class: "rounded-md px-4 bg-background text-text py-2 text-sm font-medium"
       ) %>
     </li>
 
     <li>
       <%= link("Friends",
         to: Routes.friendship_index_path(@conn, :index),
-        class: "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white
+        class: "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-background
 		hover:bg-opacity-10"
       ) %>
     </li>
@@ -18,7 +18,7 @@
     <li>
       <%= link("Settings",
         to: Routes.user_settings_path(@conn, :edit),
-        class: "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white
+        class: "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-background
 		hover:bg-opacity-10"
       ) %>
     </li>
@@ -28,14 +28,14 @@
         to: Routes.user_session_path(@conn, :delete),
         method: :delete,
         class: "rounded-md px-3 py-2 text-sm font-medium text-white
-		hover:bg-white hover:bg-opacity-10"
+		hover:bg-background hover:bg-opacity-10 whitespace-nowrap"
       ) %>
     </li>
   <% else %>
     <li>
       <%= link("Register",
         to: Routes.user_registration_path(@conn, :new),
-        class: "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white
+        class: "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-background
 		hover:bg-opacity-10"
       ) %>
     </li>
@@ -43,7 +43,7 @@
     <li>
       <%= link("Log in",
         to: Routes.user_session_path(@conn, :new),
-        class: "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-white
+        class: "rounded-md px-3 py-2 text-sm font-medium text-white hover:bg-background
 		hover:bg-opacity-10"
       ) %>
     </li>

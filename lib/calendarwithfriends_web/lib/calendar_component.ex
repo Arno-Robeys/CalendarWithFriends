@@ -5,7 +5,7 @@ defmodule CalendarwithfriendsWeb.Lib.CalendarComponent do
 
   def render(assigns) do
     ~H"""
-    <div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="bg-background rounded-lg shadow overflow-hidden">
       <div class="flex items-center justify-between py-2 px-6">
         <div>
           <span class="text-lg font-bold text-gray-800">
@@ -115,7 +115,7 @@ defmodule CalendarwithfriendsWeb.Lib.CalendarComponent do
                               to: @routes.event_show_path(@socket, :show, event),
                               class: "w-6 h-6 opacity-0"
                             ) %>
-                            <div class="text-black invisible group-hover:visible absolute left-6 bottom-8 z-20 w-80 text-left p-4 rounded-md bg-slate-50 break-words">
+                            <div class="text-text invisible group-hover:visible absolute left-6 bottom-8 z-20 w-80 text-left p-4 rounded-md bg-slate-50 break-words">
                               <ul>
                                 <li>title: <%= event.title %></li>
 

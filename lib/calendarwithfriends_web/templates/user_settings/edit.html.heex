@@ -21,12 +21,12 @@
     ) %> <%= text_input(f, :full_name,
       required: true,
       class:
-        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
+        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-background focus:border-gray-500 mb-2"
     ) %> <%= error_tag(f, :full_name) %>
     <div>
       <%= submit("Save",
         class:
-          "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          "bg-primary_button hover:bg-primary_button hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       ) %>
     </div>
   </.form>
@@ -50,7 +50,7 @@
       :email,
       required: true,
       class:
-        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
+        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-background focus:border-gray-500 mb-2"
     ) %> <%= error_tag(f, :email) %> <%= label(f, :current_password,
       for: "current_password_for_email",
       class: "block text-gray-700 font-bold mb-2"
@@ -59,12 +59,12 @@
       name: "current_password",
       id: "current_password_for_email",
       class:
-        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
+        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-background focus:border-gray-500 mb-2"
     ) %> <%= error_tag(f, :current_password) %>
     <div>
       <%= submit("Save",
         class:
-          "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          "bg-primary_button hover:bg-primary_button hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       ) %>
     </div>
   </.form>
@@ -89,7 +89,7 @@
     ) %> <%= password_input(f, :password,
       required: true,
       class:
-        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
+        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-background focus:border-gray-500 mb-2"
     ) %> <%= error_tag(f, :password) %> <%= label(
       f,
       :password_confirmation,
@@ -98,7 +98,7 @@
     ) %> <%= password_input(f, :password_confirmation,
       required: true,
       class:
-        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
+        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-background focus:border-gray-500 mb-2"
     ) %> <%= error_tag(
       f,
       :password_confirmation
@@ -112,12 +112,12 @@
       name: "current_password",
       id: "current_password_for_password",
       class:
-        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mb-2"
+        "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-background focus:border-gray-500 mb-2"
     ) %> <%= error_tag(f, :current_password) %>
     <div>
       <%= submit("Save",
         class:
-          "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          "bg-primary_button hover:bg-primary_button hover:bg-opacity-80 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
       ) %>
     </div>
   </.form>

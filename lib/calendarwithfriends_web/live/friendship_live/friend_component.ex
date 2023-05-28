@@ -3,7 +3,7 @@ defmodule CalendarwithfriendsWeb.FriendshipLive.FriendComponent do
 
   def render(assigns) do
     ~H"""
-    <div id={"friendships-#{@friendship.id}"} class="bg-white shadow-sm rounded-lg px-6 py-3 mb-2">
+    <div id={"friendships-#{@friendship.id}"} class="bg-background shadow-sm rounded-lg px-6 py-3 mb-2">
       <div class="flex items-center justify-between">
         <div class="flex items-center">
           <div class="h-10 w-10 rounded-full bg-gray-300"></div>

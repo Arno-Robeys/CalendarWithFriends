@@ -9,7 +9,7 @@ defmodule CalendarwithfriendsWeb.Lib.FeedComponent do
     <div id="events" class="space-y-2">
       <%= for event <- @events do %>
         <div id={"event-#{event.id}"}>
-          <div class="bg-white rounded-md shadow-sm">
+          <div class="bg-background rounded-md shadow-sm">
             <div class="p-2 sm:p-4 space-y-2">
               <ul>
                 <li>
@@ -32,7 +32,7 @@ defmodule CalendarwithfriendsWeb.Lib.FeedComponent do
                   <li class="relative">
                     <%= if Enum.any?(@interests, fn interest -> interest.event_id == event.id end) do %>
                       <button
-                        class="bg-blue-800 text-white px-4 py-2 rounded-full absolute top-0 right-0 transform -translate-y-full"
+                        class="bg-primary_button text-white px-4 py-2 rounded-full absolute top-0 right-0 transform -translate-y-full"
                         phx-click="delete_interest"
                         phx-value-id={event.id}
                       >
@@ -40,7 +40,7 @@ defmodule CalendarwithfriendsWeb.Lib.FeedComponent do
                       </button>
                     <% else %>
                       <button
-                        class="bg-blue-500 text-white px-4 py-2 rounded-full absolute top-0 right-0 transform -translate-y-full"
+                        class="bg-primary_button hover:bg-opacity-60500 text-white px-4 py-2 rounded-full absolute top-0 right-0 transform -translate-y-full"
                         phx-click="create_interest"
                         phx-value-id={event.id}
                       >

@@ -1,8 +1,8 @@
 <body>
   <div>
-    <div class="w-full bg-white pt-20 pr-4 pb-20 pl-4 bg-gradient-to-b from-gray-100 to-white">
+    <div class="w-full bg-background pt-20 pr-4 pb-20 pl-4 bg-gradient-to-b from-gray-100 to-white">
       <div class="w-full mt-0 mr-auto mb-0 ml-auto text-left md:text-center md:w-3/4 lg:w-2/4">
-        <p class="mb-2 text-base font-semibold text-blue-700">
+        <p class="mb-2 text-base font-semibold text-text">
           <%= gettext(
             "Welcome to %{name}!",
             name: "Calendar With Friends"
@@ -16,7 +16,7 @@
         <div class="mt-- mr-- mb-0 ml-- space-x-0 md:space-x-2">
           <a
             href="/live/events"
-            class="bg-blue-700 text-white font-bold pt-2 pr-4 pb-2 pl-4 rounded inline-flex items-center justify-center
+            class="bg-primary_button hover:bg-opacity-80 text-white font-bold pt-2 pr-4 pb-2 pl-4 rounded inline-flex items-center justify-center
           w-full mb-2 hover:bg-blue-900 sm:w-auto sm:mb-0"
           >
             <p class="inline-flex">Get Started</p>
@@ -46,7 +46,7 @@
         <div class="mt-0 mr-auto mb-5 ml-auto max-w-xl md:mx-auto sm:text-center lg:max-w-2xl">
           <div class="mb-4">
             <div class="inline-block">
-              <p class="text-black Article max-w-lg font-sans tracking-tight transition-colors duration-200
+              <p class="text-text Article max-w-lg font-sans tracking-tight transition-colors duration-200
               sm:text-4xl text-3xl leading-none font-extrabold">
                 Improve your day to the MAX with Calendar With Friends
               </p>
@@ -68,7 +68,7 @@
             </div>
 
             <div>
-              <p class="font-semibold text-black Author transition-colors duration-200">
+              <p class="font-semibold text-text Author transition-colors duration-200">
                 Nino
                 Verstraeten
               </p>
@@ -84,7 +84,7 @@
             </div>
 
             <div>
-              <p class="font-semibold text-black Author transition-colors duration-200">
+              <p class="font-semibold text-text Author transition-colors duration-200">
                 Arno
                 Robeys
               </p>
@@ -97,7 +97,7 @@
         <%= link("LiveDashboard",
           to: Routes.live_dashboard_path(@conn, :home),
           class:
-            "max-w-xl md:mx-auto lg:max-w-2xl flex justify-center rounded-md px-3 py-2 text-sm font-medium text-white bg-blue-800 hover:bg-opacity-80"
+            "max-w-xl md:mx-auto lg:max-w-2xl flex justify-center rounded-md px-3 py-2 text-sm font-medium text-white bg-primary_button hover:bg-opacity-80"
         ) %>
       <% end %>
     </div>
