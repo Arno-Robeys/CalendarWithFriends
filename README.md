@@ -1,5 +1,7 @@
 # Calendarwithfriends
 
+Simple calendar with a friend system. Your friends can see your calendar and be interested in them.
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
